@@ -1,1 +1,4 @@
-# PYNQ_Bootcamp2019
+<p align="center">
+  <img src=./flier.png/>
+</p>
+
