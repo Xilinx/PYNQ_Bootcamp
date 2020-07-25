@@ -12,6 +12,5 @@ setup(
     author_email="lewis.mclaughlin@strath.ac.uk",
     packages=find_packages(),
     package_data={
-        '': hw_data_files,
     },
     description="Python driver for Grove AHT20 peripheral.")
