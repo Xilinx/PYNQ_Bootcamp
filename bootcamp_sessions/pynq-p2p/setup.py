@@ -2,9 +2,9 @@ import setuptools
 
 setuptools.setup(
         name="pynqp2p",
-        version="0.0.1",
+        version="0.2.0",
         author="Xilinx Inc.",
-        description="Client side functions for pynqp2p",
+        description="Board to Board Messaging for PYNQ",
         packages=setuptools.find_packages(),
         python_requires='>=3.6',
 )
