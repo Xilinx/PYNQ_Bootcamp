@@ -1,2 +1,1 @@
-getmac
 requests
