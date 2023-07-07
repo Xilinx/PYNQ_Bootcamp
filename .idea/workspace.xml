@@ -4,7 +4,98 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ddd11e4-18b1-46a7-9cd2-e27e5b24f8c6" name="Changes" comment="" />
+    <list default="true" id="7ddd11e4-18b1-46a7-9cd2-e27e5b24f8c6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_cdc/CDC Acceptance Test - Ardumoto.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_cdc/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_cdc/ardumoto_wiring_cdc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_cdc/doc/CDC_Acceptance_Test.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/PYNQ101_board_io.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/PYNQ101_buttons.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/PYNQ101_intro_to_pynq.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/PYNQ201_led_bar.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/PYNQ301_intro_to_cameras.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/PYNQ501_Motors.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/PYNQ601_AHT20.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/PYNQ601_board_to_board.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/AHT20_setup.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/Ardumoto_Battery.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/H-Bridge.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/Notebook_Tour.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/PYNQ_Ardumoto.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/Qwiic_grove.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/Sparkfun_Env.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/ardumoto_wiring_cdc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/birds.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/itc_setup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/move_1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/move_2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/rgb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/data/z2_peripherals.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/pynq-p2p/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/pynq-p2p/pynqp2p/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/pynq-p2p/pynqp2p/server.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/pynq-p2p/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootcamp_sessions/pynq-p2p/setup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/1_2_temp_sensor_AHT20.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/PYNQ401_external_leds.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/PYNQ402_computer_vision.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/PYNQ403_intermediate_python.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/bootcamp_sessions/PYNQ 502 - Breakout 2/Intermediate Python/PYNQ502_intermediate_python.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/PYNQ404_audio.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/AHT20_setup.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/Capturing-Audio-Data.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/PYNQ-Z2-HP-MIC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/Thumbs.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/birds.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/cv_haar_gif.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/cv_heading.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/cv_irrigation.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/cv_mask.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bootcamp_sessions/general_data/cv_mask.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/cv_nn.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/cv_plant_monitoring.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bootcamp_sessions/general_data/cv_plant_monitoring.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/cv_social_distance.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bootcamp_sessions/general_data/cv_social_distance.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/cv_tesla.png" beforeDir="false" afterPath="$PROJECT_DIR$/bootcamp_sessions/general_data/cv_tesla.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/cv_yolo_cars.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bootcamp_sessions/general_data/cv_yolo_cars.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/dog.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/great_white_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/grove.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/haar.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/led_connection_image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/data/led_connection_picture.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakout_sessions/sds_trace_data.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/00_index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/01_setup.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/02_networking.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/03_contributing.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/ButtonsWithAsyncio.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/Grove_Capacitive_Soil_Moisture_Sensor.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/Markdown_Examples.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/PYNQ601_TH02.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_barometer/Notebooks/grove_barometer.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_barometer/include/grove_barometer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_barometer/include/grove_barometer_hw.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_barometer/src/grove_barometer.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_envsensor/include/grove_envsensor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_envsensor/include/grove_envsensor_hw.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_envsensor/notebooks/grove_envsensor.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_envsensor/src/grove_envsensor.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_ph_sensor.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_sunlight/images/spectrum.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_sunlight/images/sunlight_back.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_sunlight/images/sunlight_front.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_sunlight/images/uv_index.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_sunlight/include/grove_sunlight.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_sunlight/notebooks/grove_sunlight.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_sunlight/src/grove_sunlight.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_waterlevel/Grove_Water_Level_Sensor.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/grove_waterlevel/images/grove_waterlevel_hardware.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/sds_trace_data.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/temp_ledbar_example_ATH20.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/temp_ledbar_example_TH02.ipynb" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,9 +121,16 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\benmorri\Documents\GitHub\PYNQ_Bootcamp\bootcamp_sessions\PYNQ 502 - Breakout 2\Intermediate Python" />
+      <recent name="C:\Users\benmorri\Documents\GitHub\PYNQ_Bootcamp\bootcamp_sessions" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -42,6 +140,7 @@
       <option name="presentableId" value="Default" />
       <updated>1688765187557</updated>
       <workItem from="1688765187885" duration="337000" />
+      <workItem from="1688766609097" duration="2234000" />
     </task>
     <servers />
   </component>
