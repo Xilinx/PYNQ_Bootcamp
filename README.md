@@ -18,11 +18,11 @@ interns get started as fast as possible with their boards, so that they can get
 stared with interacting and experimenting with the PYNQ board.
 
 
-- See the [Quickstart Guide](./doc/01_setup.md) for a quick introduction to
+- See the [Quickstart Guide](documentation/01_setup.md) for a quick introduction to
   getting your board up and running with a proper development environment.
-- See [Network Configuration](./doc/02_networking.md) for guides on setting up a
+- See [Network Configuration](documentation/02_networking.md) for guides on setting up a
   network connetion and troubleshooting common network errors.
-- See [Contribution Help](./doc/03_contributing.md) for help with submitting
+- See [Contribution Help](documentation/03_contributing.md) for help with submitting
   your changes for review by a maintainer. Other relevant documentation pages
   exist for other issues/advanced usage.
 
