@@ -1,8 +1,0 @@
-{
-    "lib": "libvart-dpu-runner.so",
-    "filename": "openpose_pruned_0_3.xmodel",
-    "kernel": [
-        "subgraph_Mconv1_stage2_L1"
-    ],
-    "target": "DPUCZDX8G_ISA1_B4096"
-}

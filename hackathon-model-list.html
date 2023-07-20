@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>PYNQ Bootcamp</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <style>
+    .menu-index {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            <h1>Model List</h1>
+            <hr>
+            <p class="text">
+              These are all of the pre trained models that will be avaliable for the bootcamp 
+              with instructions on how to get them working on the board. The models are divided 
+              by type. 
+            </p>
+
+            <h2>Classification</h2>
+            <hr> 
+            <p class="text">
+              Identifies patterns in input data and categorizes into specific classes. 
+            </p>
+
+            <div class="gallery add-top-margin-small add-bottom-margin-small">
+              <a href="javascript:void(0)" class="flex-column"><img src="img/led-bar.png">
+                <div>LED Bar</div>
+              </a>
+              <a href="javascript:void(0)" class="flex-column"><img src="img/oled-screen.png">
+                <div>OLED Screen</div>
+              </a>
+            
+            </div>
+            <h2>Segmentation</h2>
+            <hr>
+            <p class="text">
+              Divides input images or data into meaningful segments or regions. 
+            </p>
+            <div class="gallery add-top-margin-small add-bottom-margin-small">
+              <a href="javascript:void(0)" class="flex-column"><img src="img/led-bar.png">
+                <div>LED Bar</div>
+              </a>
+              <a href="javascript:void(0)" class="flex-column"><img src="img/oled-screen.png">
+                <div>OLED Screen</div>
+              </a>
+            
+            </div>
+
+            <h2>Natural language Processing (NLP)</h2>
+            <hr> 
+            <p class="text">
+              Processes and interperates human language to produce natural language responses.. 
+            </p>
+
+            <div class="gallery add-top-margin-small add-bottom-margin-small">
+              <a href="javascript:void(0)" class="flex-column"><img src="img/led-bar.png">
+                <div>LED Bar</div>
+              </a>
+              <a href="javascript:void(0)" class="flex-column"><img src="img/oled-screen.png">
+                <div>OLED Screen</div>
+              </a>
+            </div>
+            <h2>Text-OCR (Optical Character Recognition)</h2>
+            <hr>
+            <p class="text">
+              Converts images of printed or hand written text into text that the computer can understand. 
+            </p>
+
+            <div class="gallery add-top-margin-small add-bottom-margin-small">
+              <a href="javascript:void(0)" class="flex-column"><img src="img/led-bar.png">
+                <div>LED Bar</div>
+              </a>
+              <a href="javascript:void(0)" class="flex-column"><img src="img/oled-screen.png">
+                <div>OLED Screen</div>
+              </a>
+            </div>
+            <h2>Surveillance</h2>
+            <hr>
+            <p class="text">
+              Used for general surveillance. Includes object detection, activity detetction, facial recognition and crowd monitoring.
+            </p>
+
+            <div class="gallery add-top-margin-small add-bottom-margin-small">
+              <a href="javascript:void(0)" class="flex-column"><img src="img/led-bar.png">
+                <div>LED Bar</div>
+              </a>
+              <a href="javascript:void(0)" class="flex-column"><img src="img/oled-screen.png">
+                <div>OLED Screen</div>
+              </a>
+            </div>
+
+            <h2>How to Upload and use a New Model</h2>
+            <hr>
+            <ol>
+              <li>Access the Vitis AI Model Zoo (2.5 Branch) <a href="https://github.com/Xilinx/Vitis-AI/tree/2.5/model_zoo/model-list">(Click Here!)</a> </li>
+              <li>Select the Model that you want and open it up in the github</li>
+                <ul>
+                  <li>For example you may want this model: tf_mlperf_resnet34_coco_1200_1200_433G_2.5</li>
+                </ul>
+              <li> Open {Model-Name}.yaml</li>
+                <ul>
+                  <li>after opening the file you will see a page with information on the model. 
+                    Find the line with {Board: KV260} below this line there is a URI ending in {.tar.gz} </li>
+                </ul>
+              <li> After finding the link open your Terminal on your board and download the file</li>
+              <ul>
+                <li>Use the command below to download the file to your current directory</li>
+                <li>wget {link from previous step} </li>
+              </ul>
+              <li> After downloading the file</li>
+              <ul>
+                <li>In your DIR you should see 2 new files, open the file with the same name as the model. 
+                  Inside of this DIR there should be a .xmodel file with more files with information</li>
+              
+              </ul>
+              <li>Take this .xmodel file and put it in the same directory as your .ipynb notebook file on your board</li>
+          </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container"></div>
+</body>
+
+</html>

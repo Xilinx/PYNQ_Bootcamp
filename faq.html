@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>PYNQ Bootcamp</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <style>
+    .menu-index {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+
+
+            <h2>Frequently Asked Questions</h2>
+            <hr>
+
+
+            <h2>Operating System Install</h2>
+            <hr>
+            <p class="text">
+            Test
+            </p>
+
+            <h2>Connect to Board Via UART</h2>
+            <hr>
+            <ol>
+                <li>Unplug the power cable from KRIA-SOM</li>
+                <li>Plug in Micro USB to KRIA-SOM and the USB end to your computer</li>
+                <li>Find the KRIA-SOM under the Ports tab on the Device Manager on Windows (Might not be COM4)</li>
+                <img class="image" src="img/dev-manager.png">
+                <li>Download Putty <a href="https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.78-installer.msi">(Click Here!)</a> which will allow us to connect directly to the board</li>
+                <li>Run PuTTY, and Under COM4 Change the Highlighted sections under the sessions tab</li>
+                <img class="image" src="img/putty1.png">
+                <li>Change the highlighted sections under the serial tab</li>
+                <img class="image" src="img/putty2.png">
+                <li>Plug back in the power cable into the KRIA-SOM</li>
+                <li>Select open and log into the KRIA-SOM</li>
+                <img class="image" src="img/putty3.png">
+                
+            </ol>
+            <h2> </h2>
+            <h2>Get IP Address of the Board</h2>
+            <hr>
+
+            <h2>Connecting to Jupyter Notebooks</h2>
+            <hr>
+            <p class="text">
+                Once you have the IP address of your board, we can finally connect to it through your laptop!
+                For this to work your board and laptop must be on the same Wifi network
+                </p>
+            <ol>
+                <li>Connect your laptop to the Wifi network assigned to you and your board</li>
+                <li>Open a web browser of your choice</li>
+                <li>In the search bar type in the IP address of your board followed by ":9090". It will look something like this "192.168.1.5:9090"</li>
+                <li>This will open up the login page for the Juypter notebooks. The password is <strong>xilinx</strong></li>
+                <li>You are now ready to start writing code!</li>
+            </ol>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container"></div>
+</body>
+
+</html>
