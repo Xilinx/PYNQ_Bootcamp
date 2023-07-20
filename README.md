@@ -26,7 +26,3 @@ stared with interacting and experimenting with the PYNQ board.
   your changes for review by a maintainer. Other relevant documentation pages
   exist for other issues/advanced usage.
 
-<p align="center">
-  <img src=./flier.png/>
-</p>
-
