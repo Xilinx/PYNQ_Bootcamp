@@ -1,3 +1,4 @@
-.ipynb_checkpoints/
-.ipynb_checkpoints/*
-sds_trace_data.dat
+*~
+.DS_Store
+.idea/
+

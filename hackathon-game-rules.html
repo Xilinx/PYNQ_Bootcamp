@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>PYNQ Bootcamp</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/widgets.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/widgets.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/custom.js"></script>
+  <style>
+    .menu-widget {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+        <!--Hackathon Games Rules -->
+        <div class="flex-row"> 
+            <div class="flex-item flex-column">
+                <h1>Games</h1>
+            
+                <p>We will be playing three different games as fun activities to break up the hackathon:</p>
+                <ol>
+                    <li><a href="#paint">MS Paint</a></li>
+                    <li><a href="#airplanes">Airplanes</a></li>
+                    <li><a href="#memory">Memory Game</a></li>
+                </ol>
+        
+                <hr />
+        
+                <h2 id="paint">MS Paint</h2>
+        
+                <p><em>Prove your artistic skill.</em></p>
+        
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Laptop with MS Paint for each student</li>
+                    <li>Bob Ross YouTube video</li>
+                    <li>Room with projector</li>
+                    <li>Voting Tokens (three post-it notes per student)</li>
+                </ul>
+        
+                <h3>Setup</h3>
+                <ol>
+                    <li>Every student opens MS Paint on their laptop.</li>
+                    <li>Organizers play back Bob Ross video on the projector. Make sure all students are ready before starting to play.</li>
+                    <li>Periodically remind students to save their work.</li>
+                    <li>As students are painting, organizers distribute three voting tokens to each student.</li>
+                    <li>After video is done, students get five extra minutes for finishing touches to their masterpieces.</li>
+                    <li>Students roam around looking at other's artwork. They vote for their favorites by placing their tokens next to the laptops showing the artwork they like.</li>
+                    <li>The student who receives most tokens wins. Display their artwork on the projector.</li>
+                </ol>
+        
+                <h3>Rules</h3>
+                <ol>
+                    <li>No painting after the five minute cut-off!</li>
+                    <li>You may only use MS Paint, no other painting software and no other aids.</li>
+                    <li>You may not vote for your own artwork.</li>
+                    <li>You may give multiple of your tokens to the same artwork if you especially like it.</li>
+                </ol>
+        
+                <h3>Winning Prize</h3>
+                <p>Art Supplies Kit</p>
+        
+                <hr />
+        
+                <h2 id="airplanes">Paper Airplanes</h2>
+        
+                <p><em>Who can build the most aerodynamic plane?</em></p>
+        
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Paper</li>
+                    <li>Table/workspace on which students can fold planes</li>
+                    <li>Good outside location to launch the planes</li>
+                </ul>
+        
+                <h3>Setup</h3>
+                <ol>
+                    <li>Distribute three sheets of paper to every student.</li>
+                    <li>Give students 15 minutes to fold three paper airplanes.</li>
+                    <li>Every student puts an identifying mark on the wings of their plane (e.g. their name).</li>
+                    <li>Head to launch site.</li>
+                    <li>Students go one by one launching their first plane, from the same location, in the same target direction.</li>
+                    <li>After all stundents launched their first plane, judges evaluate which plane flew farthest in the target direction and take note.</li>
+                    <li>Repeat the same for the next two paper planes of each student.</li>
+                    <li>Judges announce the constructor of the plane that flew the farthest overall as the winner of the competition.</li>
+                </ol>
+        
+                <h3>Rules</h3>
+                <ol>
+                    <li>All students launch their planes from the same location in the same direction.</li>
+                    <li>You are judged based on distance travelled in the target direction. If a plane flies far, but it goes the wrong direction, that does not count.</li>
+                    <li>The best run of the three planes is the one that counts.</li>
+                </ol>
+        
+                <h3>Winning Prize</h3>
+                <p>AMD Xilinx Swag</p>
+        
+                <hr />
+        
+                <h2 id="memory">Memory Game</h2>
+        
+                <p><em>Show off your memorization skills!</em></p>
+        
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Table</li>
+                    <li>a cloth</li>
+                    <li>15-20 random items</li>
+                    <li>timer</li>
+                    <li>Pen &amp; paper</li>
+                </ul>
+        
+                <h3>Setup / Rules</h3>
+                <ol>
+                    <li>Give a paper and pen to each student. </li>
+                    <li>Take a set of 15-20 items and place them on a table. </li>
+                    <li>Allow students to study all the items for 25-30 seconds. </li>
+                    <li>Then place a cloth on all the items. </li>
+                    <li>Start the timer for 50/60 seconds. </li>
+                    <li>Students will write the list of articles they memorize within the limit. </li>
+                    <li>Winner is the one that gets the highest count. </li>
+                </ol>
+        
+                <h3>Winning prize</h3>
+        
+                <p>Sequence Board Game</p>    
+
+            </div>
+        </div>
+</body>
+</html>
