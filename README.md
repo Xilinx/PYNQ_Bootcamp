@@ -3,26 +3,21 @@
 
 # PYNQ Bootcamp
 
-This is a repository of materials around the PYNQ Bootcamp, aimed at teaching
-students how to program and interface with the PYNQ Z1/Z2 boards with the PYNQ
-python framework. This repository contains notebooks that have been used in
-previous bootcamps. Each notebook focuses on one area of functionality of the
-PYNQ board. This repository also contains useful documentation for interns
-running future bootcamps.
+This is a repository of materials used in the PYNQ2023 Bootcamp. The goal of this bootcamp 
+is to teach students how to use both the KRIA SOM board, Jupyter Notebooks, and some of 
+the AI models within Xilinx's AI model zoo. The repository contains multiple files and 
+directories detailed below:
 
+bootcamp_sessions:
+    Contains all of the jupyter notebook trainings aswell as the resources needed to run them.
 
-## Documentation
+drivers: 
+    Containes all drivers needed that are not included in the KRIA SOMs initial image.
 
-Along with jupyter notebooks, this repository contains documentation to help
-interns get started as fast as possible with their boards, so that they can get
-stared with interacting and experimenting with the PYNQ board.
+models:
+    Conatains a template for using models not explicetly demonstrated in the trainings as well
+    as the additional models.
 
-
-- See the [Quickstart Guide](documentation/01_setup.md) for a quick introduction to
-  getting your board up and running with a proper development environment.
-- See [Network Configuration](documentation/02_networking.md) for guides on setting up a
-  network connetion and troubleshooting common network errors.
-- See [Contribution Help](documentation/03_contributing.md) for help with submitting
-  your changes for review by a maintainer. Other relevant documentation pages
-  exist for other issues/advanced usage.
+get_latest_training_material.ipynb
+    Contains a sumple bas git pull command to update the repository and pull all of the new materials onto the board.
 
