@@ -35,17 +35,16 @@
             <ul>
               <li><a href="#unboxing">Unboxing</a></li>
               <li><a href="#power">Powering on The Board</a></li>
-              <li><a href="#ip">Get IP Address of the Board</a></li>
+              <li><a href="#ip">Find Your Board's IP Address with OLED Screen</a></li>
               <li><a href="#connect">Connecting to Jupyter Notebooks</a></li>
-              
+              <li><a href="#amd">More Information for Getting Started</a></li>
             </ul>
-
-
+            
 
             <h2 id="unboxing">Unboxing</h2>
             <hr>
             <p class="text">
-            You kit will include the following items
+            Your kit will include the following items
             </p>
             <ul>
               <li>KIRA SOM Board</li>
@@ -90,10 +89,14 @@
             <hr>
           <ol>
               <li>Unplug your board from power</li>
-              <li>In step 3 of poweing on your board, you installed the PMOD adapter. PLUG in the OLED screen from you kit into <strong>pin G4</strong> on the PMOD adapter</li>
+              <il>Connect your laptop to the Wifi network assigned to you</il>
+              <li>In step 3 of powering on your board, you installed the PMOD adapter. PLUG in the OLED screen from your kit into <strong>pin G4</strong> on the PMOD adapter</li>
+              <li>Plug your board back in</li>
               <li>Wait for a minute for the board to power up</li>
               <li>You should now see text displayed on the OLED screen that shows what network you are connected to as well as your board's IP address</li>
-              <li> If this does not work then check out <a href="faq.html">Connect to your Board Via UART</a> on the F.A.Q page</li>
+              <img class="image" src="img/oled-example.png">
+              <il>If you wait for more than 3 minutes and you still do not see the text displayed on the OLED screen, reboot your board by unplugging it and plugging it back in.</il>
+              <li>If after trying this process several times and it still does not work then try this, <a href="faq.html">Connect to your Board Via UART</a> on the F.A.Q page</li>
               <li><strong>NOTE: Your IP address will change if you connect to different networks</strong></li>
           </ol>
             <h2 id="connect">Connecting to Jupyter Notebooks</h2>
@@ -108,9 +111,14 @@
                 <li>In the search bar type in the IP address of your board followed by ":9090". It will look something like this "192.168.1.5:9090"</li>
                 <li>This will open up the login page for the Juypter notebooks. The password is <strong>xilinx</strong></li>
                 <li>You are now ready to start writing code!</li>
+                <li>This is what you will see after loging in. These are all of the notebooks and training sthat will be used throught the bootcamp. </li>
+                <img class="image" src="img/jupyter.png">
                 <li><strong>NOTE: If you are no longer able to connect to your notebooks, repeat the steps to find your IP address as it may have changed</strong></li>
             </ol>
 
+            <h2 id="amd">More Information for Getting Started</h2>
+            <a href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html">AMD's KRIA Getting Started Page</a>
+            <hr>
           </div>
         </div>
       </div>
