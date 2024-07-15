@@ -1,0 +1,17 @@
+model {
+   name : "openpose_368x368"
+   kernel {
+     name: "openpose_368x368"
+     mean: 128.0
+     mean: 128.0
+     mean: 128.0
+     scale: 0.0078125
+     scale: 0.0078125
+     scale: 0.0078125
+   }
+   model_type : OPENPOSE
+   open_pose_param : {
+     layer_name : "L1"
+     layer_name : "L2"
+   }
+}
