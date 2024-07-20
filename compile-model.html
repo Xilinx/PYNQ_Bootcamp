@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>PYNQ Bootcamp</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <style>
+    .menu-index {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+
+    table, th, td {
+    border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+        <!-------------------------------------------------------------------------------------------->
+        <h2>How to Upload and use a New Model</h2>
+            <hr>
+            <ol>
+              <li>Access the Vitis AI Model Zoo (2.5 Branch) <a href="https://github.com/Xilinx/Vitis-AI/tree/2.5/model_zoo/model-list">(Click Here!)</a> </li>
+              <li>Select the Model that you want and open it up in the github</li>
+                <ul>
+                  <li>For example you may want this model: tf_mlperf_resnet34_coco_1200_1200_433G_2.5</li>
+                </ul>
+              <li> Open {Model-Name}.yaml</li>
+                <ul>
+                  <li>after opening the file you will see a page with information on the model. 
+                    Find the line with {Board: KV260} below this line there is a URI ending in {.tar.gz} </li>
+                </ul>
+              <li> After finding the link open your Terminal on your board and download the file</li>
+              <ul>
+                <li>Use the command below to download the file to your current directory</li>
+                <li>wget {link from previous step} </li>
+              </ul>
+              <li> After downloading the file</li>
+              <ul>
+                <li>In your DIR you should see 2 new files, open the file with the same name as the model. 
+                  Inside of this DIR there should be a .xmodel file with more files with information</li>
+              
+              </ul>
+              <li>Take this .xmodel file and put it in the same directory as your .ipynb notebook file on your board</li>
+          </ol>
+        
+        <!-------------------------------------------------------------------------------------------->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container"></div>
+</body>
+
+</html>
