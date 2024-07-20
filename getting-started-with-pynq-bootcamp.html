@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>PYNQ Bootcamp</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <style>
+    .menu-index {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+
+            <h2 id="scratch">Getting Started with PYNQ Bootcamp</h2>
+            <hr>
+            <p class="text">
+              This guide provides instructions for downloading an already setup image or using a pre-flashed 32GB SD card. If you do not have a flashed SD card and prefer to set it up independently, navigate to this page: Board Setup & Bootcamp Image Creation. This guide also includes steps for setting up a static IP on your computer and accessing the Notebooks.
+              <ul>
+                <li><a href="#whatyouneed">What you need</a></li>
+                <li><a href="#image">PYNQ Bootcamp 2024 Image</a></li>
+                <li><a href="#setupnetwork">Setup Network - Ethernet with Static IP to Configure Wi-Fi Credentials</a></li>
+                <li><a href="#power">Power on KRIA-SOM</a></li>
+                <li><a href="#ip">Find Your Board's IP Address with OLED Screen</a></li>
+                <li><a href="#jupyter">Accessing the Jupyter Notebooks </a></li>
+              </ul>
+            </p>
+          
+            <h2 id="whatyouneed">What you need</h2>
+            <hr>
+            <ul>
+              <li>PYNQ Bootcamp image</li>
+              <li>PMOD Grove adaptor</li>
+              <li>Grove OLED V1.1 display</li>
+              <li>Ethernet Cable</li>
+              <li>Wi-Fi dongle</li>
+            </ul>
+
+            <h2 id="image">PYNQ Bootcamp 2024 Image</h2>
+            <hr>
+            <h3>Getting the PYNQ Bootcamp 2024 Image</h3>
+            <p class="text">Download PYNQ Bootcamp 2024 image from: <a href="https://amdcloud-my.sharepoint.com/personal/shwprasa_amd_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fshwprasa%5Famd%5Fcom%2FDocuments%2FPYNQ%5FBootCamp%5FImage%5FFolder%2FFinal%5FPynq%5FBootcamp%5FImage%2Eimg&parent=%2Fpersonal%2Fshwprasa%5Famd%5Fcom%2FDocuments%2FPYNQ%5FBootCamp%5FImage%5FFolder&openShare=truel">Pynq Bootcamp Image</a></p>
+            <h3>Flash the image to a 32 GB SD Card</h3>
+            <ol>
+              <li>
+                Download Balena Etcher from <a href="https://etcher.balena.io/" target="_blank">https://etcher.balena.io/</a>
+              </li>
+              <li>
+                Download the latest bootcamp image from above.
+              </li>
+              <li>
+                Insert the SD card into your computer. 
+              </li>
+              <li>
+                Run BalenaEtcher as Administrator.
+              </li>
+              <li>
+                Flash the image to your SD card using Balena Etcher. (This may take a second try if the flash fails the first time.)
+              </li>
+            </ol>
+
+            <h2 id="setupnetwork">Setup Network - Ethernet with Static IP to Configure Wi-Fi Credentials</h2>
+            <hr>
+            <p><strong>Note:</strong> This setup only needs to be done once unless you are trying to setup credentials again on a separate network. If you have already completed this step, skip to <a href="#power">Power on KRIA-SOM</a></li></p>
+            
+            <ol>
+            <div class="gallery add-top-margin-small add-bottom-margin-small">
+              <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/sd-card.png">
+                <div>1. Insert the sd card. </div>
+              </a>
+              <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/e3.jpg">
+                <div>2. Connect Ethernet cable between the Kria-SOM Board and your computer.</div>
+              </a>
+              <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/e4.jpg">
+                <div>3. Power on the board by plugging in the barrel power cord.</div>
+              </a>
+            </div>
+          
+              <li value="4">Configure the static I.P. on the computer:
+                <ol>
+                  <li>Open the "Network Connections" in the settings.</li>
+                  <li>Right click on the "Ethernet Adaptor" and open the TCP/IPv4 from the properties.</li>
+                  <li>Add these settings in the TCP/IPv4:
+                    <ul>
+                      <li>IP Address: 192.168.1.1</li>
+                      <li>Subnet Mask: 255.255.255.0</li>
+                      <li>Default Gateway: 192.168.1.0</li>
+                    </ul>
+                  </li>
+                  <div style="width:80%;max-width:480px;margin:20px auto;">
+                    <img src="img/ipv4configgettingstarted.png" alt="Instructional Image" style="width:100%;">
+                  </div>
+                </ol>
+              </li>
+              <li>Open the browser on the computer open the I.P. address 192.168.1.2:9090 that will open the jupyter notebooks your computer.</li>
+              <li>Use "wifi-setup.ipynb" Jupyter notebook to setup your Wi-Fi credentials.</li>
+              <li>Power off the board.</li>
+              <li>Remove Ethernet Cable.</li>
+            </ol>
+
+            <h2 id="power">Power on KRIA-SOM</h2>
+            <hr>
+            <div class="gallery add-top-margin-small add-bottom-margin-small">
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/sd-card.png">
+                  <div>Step 1: Insert the sd card </div>
+                </a>
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/micro-usb.png">
+                  <div>Step 2: Plug in the micro-USB cable to the board</div>
+                </a>
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/pmod.png">
+                  <div>Step 3: Plug in the PMOD Adapter</div>
+                </a>
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/wifi.png">
+                  <div>Step 4: Plug in the Wifi Dongle</div>
+                </a>
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/power-plug.png">
+                  <div>Step 5: Plug in the Barrel Power Cord</div>
+                </a>
+              </div>
+
+            <h2 id="ip">Find Your Board's IP Address with OLED Screen</h2>
+            <hr>
+          <ol>
+            <ol>
+              <li>Unplug your board from power</li>
+              <li>Connect your laptop to the Wifi network assigned to you</li>
+              <li>In step 3 of powering on your board, you installed the PMOD adapter. PLUG in the OLED screen from your kit into <strong>pin G4</strong> on the PMOD adapter</li>
+              <li>Plug power back into your board</li>
+              <li>Wait for a few minutes for the board to power up</li>
+              <li>You should now see text displayed on the OLED screen that shows what network you are connected to as well as your board's IP address</li>
+            </ol>
+            <img class="image" src="img/oled-example.png">
+            <p><strong>Note:</strong> If you wait for more than 4 minutes and you still do not see the text displayed on the OLED screen, reboot your board by unplugging it and plugging it back in.</p>
+            <p><strong>Note:</strong> Your IP address will change if you connect to different networks.</p>
+
+
+
+            <h2 id="jupyter">Accessing the Jupyter Notebooks</h2>
+            <hr>
+            <p>Once you have the IP address of your board, we can finally connect to it through your laptop! For this to work your board and laptop must be on the same Wifi network</p>
+            <ol>
+              <li>Connect your laptop to the Wifi network assigned to you and your board</li>
+              <li>Open a web browser of your choice</li>
+              <li>In the search bar type in the IP address of your board followed by ":9090". It will look something like this "192.168.1.5:9090"</li>
+              <pre><code>&lt;ip-address&gt;:9090</code></pre>
+              <li>You are now ready to start writing code!</li>
+              <li>This is what you will see after logging in. These are all of the notebooks and trainings that will be used throught the bootcamp. <br> To see an overview, click <a href="Trainings.html">Trainings</a></li>
+            </ol>
+            <div style="width:100%;max-width:1000px;margin:20px auto;">
+              <img src="img/jupyter.png" alt="Instructional Image" style="width:100%;">
+            </div>
+            <p><strong>Note:</strong> If you are no longer able to connect to your notebooks, repeat the steps to find your IP address as it may have changed.</p>
+            <br>
+            <h2 id="amd">More Information for Getting Started</h2>
+            <hr>
+           <a href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html">AMD's KRIA Getting Started Page</a>
+           <h2 id="amd">Frequently Asked Questions</h2>
+           <hr>
+           <a href="faq.html">Frequently Asked Questions</a>
+          
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container"></div>
+</body>
+
+</html>

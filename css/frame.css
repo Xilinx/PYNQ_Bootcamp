@@ -1329,7 +1329,7 @@ ol.nested>li:before {
 }
 
 .add-bottom-margin-small {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .add-bottom-margin-large {
@@ -1528,4 +1528,46 @@ ol.nested>li:before {
     flex: 1 0 100%;
     max-width: 100%;
   }
+}
+
+.links-container {
+  display: flex;
+  justify-content: space-around; /* Adjusts the spacing between the links */
+}
+
+.links-container h2 {
+  margin: 0 2px; /* Adds horizontal space between the links */
+  gap: 2px; /* Adjusts the gap between the links. Reduce for closer links */
+}
+
+pre {
+  background-color: #f5f5f5; /* Light grey background */
+  border: 1px solid #ddd; /* Light grey border */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  padding: 15px; /* Padding inside the box */
+  border-radius: 5px; /* Rounded corners */
+  overflow: auto; /* Ensures content fits within the padding */
+  text-align: left; /* Align text to the left */
+}
+
+.thin-code-box {
+  width: 50%; /* Adjust this value as needed */
+  margin: auto; /* Centers the box */
+  overflow: auto; /* Adds a scrollbar if the content is wider than the box */
+}
+
+.spread-out {
+  margin: 0 30px; /* Adjust the value as needed */
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%; /* Adjust the width as needed */
+}
+th, td {
+  border: 1px solid #cccccc; /* Light grey border */
+  padding: 15px; /* Increased padding for more space */
+  text-align: center;
 }

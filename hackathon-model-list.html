@@ -30,249 +30,97 @@
       <div class="content-table flex-column">
         <div class="flex-row">
           <div class="flex-item flex-column">
-            <h1>Model List</h1>
+            <h2>Models</h2>
             <hr>
             <p class="text">
-              These are all of the pre trained models that will be avaliable for the bootcamp 
-              with instructions on how to get them working on the board. The models are divided 
-              by type. 
+              The <a href="https://github.com/Xilinx/Vitis-AI/tree/v2.5/model_zoo">Vitis AI Model Zoo</a> contains optimized deep learning models designed to accelerate the deployment of deep learning inference on Xilinx platforms. These models span various applications such as ADAS/AD, medical imaging, video surveillance, robotics, data centers, and more. 
+              <br>
+              This model zoo has over 100 different models with diverse deep learning frameworks. Some of the models from this zoo included in the trainings are: 
+              <ul>
+                <li>MNIST Classifier Model</li>
+                <li>YOLOv3 Model Trained on the VOC dataset</li>
+                <li>Bayesian Crowd Counting (BCC) Model for Crowd Detection</li>
+                <li>Face Mask Detection Model</li>
+                <li>ENet Cityscapes Image Segmentation Model</li>
+                <li>OpenPose Pose Detection Model</li>
+              </ul>
             </p>
+            <p>
+              Additional models that can be uploaded and used on the KRIA-SOM board are noted below. The instructions to use new models from the Vitis AI Model Zoo are provided on <a href="compile-model.html">Compile Models</a>. </p>
 
-
-            <h2>Classification</h2>
-            <hr> 
-            <p class="text">
-              Identifies patterns in input data and categorizes into specific classes. 
-            </p>
-
-            
-            <h2>Segmentation</h2>
-            <hr>
-            <p class="text">
-              Divides input images or data into meaningful segments or regions. 
-            </p>
-            
-
-            <h2>Natural language Processing (NLP)</h2>
-            <hr> 
-            <p class="text">
-              Processes and interperates human language to produce natural language responses.. 
-            </p>
-
-            <h2>Text-OCR (Optical Character Recognition)</h2>
-            <hr>
-            <p class="text">
-              Converts images of printed or hand written text into text that the computer can understand. 
-            </p>
-            <h2>Surveillance</h2>
-            <hr>
-            <p class="text">
-              Used for general surveillance. Includes object detection, activity detetction, facial recognition and crowd monitoring.
-            </p>
             <h2>List of Models</h2>
             <hr>
             <p class="text">
-             Here are some of the pre trained models that work on the kv260.
-             There are extra steps required to get the new models to work that are outside of the training notebooks
-             and it is not guarenteed that they will work right away. 
+              These models were taken from the <a href="https://github.com/Xilinx/Vitis-AI/tree/v2.5/model_zoo">Vitis AI Model Zoo</a>.
             </p>
-            <table style="border-style: solid; width: 786px; height: 414px;" width="786">
-              <tbody>
-              <tr style="height: 18px;">
-              <td style="width: 304.797px; height: 18px;"><strong>Model Name</strong></td>
-              <td style="width: 172.438px; height: 18px;"><strong>Task</strong></td>
-              <td style="width: 143.375px; height: 18px;"><strong>Description</strong></td>
-              <td style="width: 137.391px; height: 18px;"><strong>Framework</strong></td>
+            <table>
+
+              <tr>
+                <th>Model</th>
+                <th>Dataset</th>
+                <th>Description</th>
               </tr>
-              <tr style="height: 36px;">
-              <td style="width: 304.797px; height: 36px;">tf2_resnet50_imagenet_22 4_224_7.76G_2.5</td>
-              <td style="width: 172.438px; height: 36px;">Object detection</td>
-              <td style="width: 143.375px; height: 36px;">Classifies various objects</td>
-              <td style="width: 137.391px; height: 36px;">TensorFlow</td>
+              <tr>
+                <td>cf_VPGnet_caltechlane_<br>480_640_0.99_2.5G_2.5</td>
+                <td>VPGNet (Vanishing Point Guided Network) benchmark dataset, containing 20,000 images across scenarios like no rain, rain, heavy rain, and night.</td>
+                <td>A lane and road marking detection and recognition system model under. The model uses a unified multi-task network to detect and classify lanes and road markings, guided by a vanishing point, even under adverse weather conditions, achieving real-time performance. </td>
               </tr>
-              <tr style="height: 72px;">
-              <td style="width: 304.797px; height: 72px;">pt_vehicle-type-classification_ CompCars_224_224_3.63G_2.5</td>
-              <td style="width: 172.438px; height: 72px;">Classification</td>
-              <td style="width: 143.375px; height: 72px;">Images of cars and car parts with labels and bounding boxes added</td>
-              <td style="width: 137.391px; height: 72px;">PyTorch</td>
+              <tr>
+                <td>cf_densebox_wider_<br>320_320_0.49G_2.5</td>
+                <td>The densebox model is trained on MALF face detection and KITTI car detection datasets. </td>
+                <td>This model uses the DenseBox neural network, a full convolutional neural network (FCN), to perform object detection, specifically on identifying human faces in images. It processes input images containing faces and outputs a structured vector detailing each detected face's bounding box coordinates. </td>
               </tr>
-              <tr style="height: 36px;">
-              <td style="width: 304.797px; height: 36px;">pt_OFA-rcan_DIV2K_360_640_45.7G_2.5</td>
-              <td style="width: 172.438px; height: 36px;">Surveillance</td>
-              <td style="width: 143.375px; height: 36px;">RCAN image super-resolution</td>
-              <td style="width: 137.391px; height: 36px;">Pytorch</td>
+              <tr>
+                <td>cf_landmark_celeba_<br>96_72_0.14G_2.5</td>
+                <td>he CelebA Attributes Dataset which is a large-scale collection of celebrity images (200,000 images of celebrities, each annotated with 40 different attribute labels).</td>
+                <td>Employs a Face Landmark network to detect five key points on human faces (left eye, right eye, nose, and corners of the lips). This network adjusts face orientation for accurate feature extraction from images with varied poses and backgrounds. </td>
               </tr>
-              <tr style="height: 54px;">
-              <td style="width: 304.797px; height: 54px;">pt_face-mask-detection_3.5</td>
-              <td style="width: 172.438px; height: 54px;">Surveillance</td>
-              <td style="width: 143.375px; height: 54px;">Real-time video streaming mask detection</td>
-              <td style="width: 137.391px; height: 54px;">Pytorch</td>
+              <tr>
+                <td>cf_openpose_aichallenger_<br>368_368_0.3_189.7G_2.5</td>
+                <td>Trained on using data from AI Challenger, a platform for AI competitions and open datasets.</td>
+                <td>The model employs the Openpose Detection library to identify human body posture, represented by 14 key points including head, shoulders, elbows, wrists, hips, knees, and ankles. The model processes 368x368 input images to output these key points for pose analysis.</td>
               </tr>
-              <tr style="height: 36px;">
-              <td style="width: 304.797px; height: 36px;">pt_ENet_cityscapes_512_ 1024_11.3G_3.0</td>
-              <td style="width: 172.438px; height: 36px;">Segmentation</td>
-              <td style="width: 143.375px; height: 36px;">Segmentation for cityscapes</td>
-              <td style="width: 137.391px; height: 36px;">Pytorch</td>
+              <tr>
+                <td>cf_plate-detection_<br>320_320_0.49G_2.5</td>
+                <td>The DenseBox model is trained on MALF face detection and KITTI car detection datasets. </td>
+                <td>The Plate Detection model utilizes DenseBox neural networks to accurately locate license plates in vehicle images. It employs Single Shot MultiBox Detector (SSD) for vehicle detection, extracting precise plate coordinates. The model is trained on diverse datasets of vehicle images to ensure robust performance in real-world scenarios.</td>
               </tr>
-              <tr style="height: 36px;">
-              <td style="width: 304.797px; height: 36px;">pt_BCC_shanghaitech_800_ 1000_268.9G_2.5</td>
-              <td style="width: 172.438px; height: 36px;">Surveillance</td>
-              <td style="width: 143.375px; height: 36px;">Couting number of people in corwds</td>
-              <td style="width: 137.391px; height: 36px;">Pytorch</td>
+              <tr>
+                <td>cf_refinedet_coco_<br>360_480_123G_2.5</td>
+                <td>COCO (Common Objects in Context) dataset for object detection contains diverse images annotated with object labels and segmentation masks. </td>
+                <td>Trained to detect pedestrians within images. It utilizes the Refinedet architecture, with a focus on accurately locating and identifying pedestrians in different contexts and scenes captured in images.</td>
               </tr>
-              <tr style="height: 36px;">
-              <td style="width: 304.797px; height: 36px;">tf_yolov3_voc_416_416 _65.63G_2.5</td>
-              <td style="width: 172.438px; height: 36px;">Object Detection</td>
-              <td style="width: 143.375px; height: 36px;">Real tiem object detection</td>
-              <td style="width: 137.391px; height: 36px;">TensorFlow</td>
+              <tr>
+                <td>pt_DRUNet_Kvasir_<br>528_608_0.4G_2.5</td>
+                <td>The model uses the CBSD68 and the Urban100 datsets CBSD68 is a dataset for image denoising benchmarks containing 68 images. Urban100 contains 100 images of urban scenes used as a test set to evaluate performance of super-resolution models. </td>
+                <td>This model utilizes a discriminately learned deep convolutional neural network as  denoiser for a plug-and-play image restoration. Trained extensively, it integrates into iterative algorithms for tasks like deblurring, super-resolution, and de-mosaicing.                </td>
               </tr>
-              <tr style="height: 18px;">
-              <td style="width: 304.797px; height: 18px;">pt_movenet_coco_192 _192_0.5G_2.5</td>
-              <td style="width: 172.438px; height: 18px;">Surveillance</td>
-              <td style="width: 143.375px; height: 18px;">Pose detection</td>
-              <td style="width: 137.391px; height: 18px;">Pytorch</td>
+              <tr>
+                <td>pt_FairMOT_mixed_<br>640_480_0.5_36G_2.5</td>
+                <td>The model may leverage datasets such as the MOT17-20 which is a large collection of datasets. </td>
+                <td>FairMOT_mixed integrates object detection and re-identification (re-ID) for simultaneous multi-object tracking (MOT). It detects persons in images while extracting their distinctive features, enabling robust tracking capabilities. This model is designed for real-time applications requiring accurate and continuous tracking of individuals across video frames.</td>
               </tr>
-              <tr style="height: 18px;">
-              <td style="width: 304.797px; height: 18px;">vehicle_type_resnet18_pt&nbsp;</td>
-              <td style="width: 172.438px; height: 18px;">Classification</td>
-              <td style="width: 143.375px; height: 18px;">Identifies car types</td>
-              <td style="width: 137.391px; height: 18px;">Pytorch</td>
+              <tr>
+                <td>pt_OCR_ICDAR2015_<br>960_960_875G_2.5</td>
+                <td>The model is trained on the ICDAR2015 or ICDAR2017 dataset, which is a widely used benchmark in the field of optical character recognition (OCR). It consists of diverse images contained text captured under various conditions.</td>
+                <td>The model utilizes ResNet34 for optical character recognition, combining text detection and recognition. It identifies and extracts words from images, providing their positions.</td>
               </tr>
-              <tr style="height: 36px;">
-              <td style="width: 304.797px; height: 36px;">cf_plate-detection_320 _320_0.49G_2.5</td>
-              <td style="width: 172.438px; height: 36px;">Detection</td>
-              <td style="width: 143.375px; height: 36px;">License Plate detetcion</td>
-              <td style="width: 137.391px; height: 36px;">Cafe&nbsp;</td>
+              <tr>
+                <td>pt_OFA-rcan_DIV2K_<br>360_640_45.7G_2.5</td>
+                <td>Some datasets that this model may have been trained on can include datasets that contain pairs of low-resolution and corresponding high-resolution images. </td>
+                <td>OFA-rcan is a super-resolution network that reconstructs high-resolution images from low-resolution inputs, doubling their dimensions. It enhances clarity in applications such as surveillance, satellite imaging, and medical diagnostics. This model preserves image quality even upon significant magnification, crucial for detailed visual analysis in various domains.                </td>
               </tr>
-              <tr style="height: 18px;">
-              <td style="width: 304.797px; height: 18px;">cf_refinedet_coco_360_480 _0.8_25G_2.5</td>
-              <td style="width: 172.438px; height: 18px;">Detection</td>
-              <td style="width: 143.375px; height: 18px;">Pedestrian Detection</td>
-              <td style="width: 137.391px; height: 18px;">Cafe&nbsp;</td>
+              <tr>
+                <td>pt_person-orientation_<br>224_112_558M_2.5</td>
+                <td>This model may have been trained on the Caltech Pedestrian Dataset or KITTI Dataset which contain images with pedestrian annotations in various environments. </td>
+                <td>The person-orientation model is a novel pedestrian classifier focusing on orientation estimation. It integrates classification and orientation into a unified probabilistic framework, utilizing view-related models and Bayesian principles. This approach achieves significant performance gains in both tasks, leveraging real-world data for robust pedestrian analysis across multiple cameras.</td>
               </tr>
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">tf2_resnet50_imagenet_224_224_7.76G_2.5</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">pt_vehicle-type-classification_CompCars_224_224_3.63G_2.5</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">pt_OFA-rcan_DIV2K_360_640_45.7G_2.5</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">tf_rcan_DIV2K_360_640_0.98_86.95G_2.5</td>
-            </tr>
-              
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">pt_face-mask-detection_3.5</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">pt_BCC_shanghaitech_800_1000_268.9G_2.5</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">tf_yolov3_voc_416_416_65.63G_2.5</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">pt_movenet_coco_192_192_0.5G_2.5</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">pointpillars_nuscenes_40000_64_1_pt</td>
-            </tr>
-              
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">chen_color_resnet18_pt</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">vehicle_make_resnet18_pt</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">vehicle_type_resnet18_pt</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">inception_v4</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">pmg_pt</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">tsd_yolox_pt</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">ssd_mobilenet_v2</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;">ocr_pt</td>
-            </tr>
-
-            </tr>
-            <tr style="height: 18px;">
-            <td style="width: 304.797px; height: 18px;"></td>
-            </tr>
-            
-              </tbody>
-              </table>
-       
-        
-
-            <h2>How to Upload and use a New Model</h2>
-            <hr>
-            <ol>
-              <li>Access the Vitis AI Model Zoo (2.5 Branch) <a href="https://github.com/Xilinx/Vitis-AI/tree/2.5/model_zoo/model-list">(Click Here!)</a> </li>
-              <li>Select the Model that you want and open it up in the github</li>
-                <ul>
-                  <li>For example you may want this model: tf_mlperf_resnet34_coco_1200_1200_433G_2.5</li>
-                </ul>
-              <li> Open {Model-Name}.yaml</li>
-                <ul>
-                  <li>after opening the file you will see a page with information on the model. 
-                    Find the line with {Board: KV260} below this line there is a URI ending in {.tar.gz} </li>
-                </ul>
-              <li> After finding the link open your Terminal on your board and download the file</li>
-              <ul>
-                <li>Use the command below to download the file to your current directory</li>
-                <li>wget {link from previous step} </li>
-              </ul>
-              <li> After downloading the file</li>
-              <ul>
-                <li>In your DIR you should see 2 new files, open the file with the same name as the model. 
-                  Inside of this DIR there should be a .xmodel file with more files with information</li>
-              
-              </ul>
-              <li>Take this .xmodel file and put it in the same directory as your .ipynb notebook file on your board</li>
-          </ol>
+              <tr>
+                <td>pt_textmountain_ICDAR_<br>960_960_575.2G_2.5</td>
+                <td>ICDAR-2017 provides diverse images for training text detection models, crucial for developing robust systems across languages and environments.</td>
+                <td>The Textmountain model detects multilingual text using a ResNet-FPN feature extractor and a detection predictor. Trained on the ICDAR-2017 dataset, it processes images containing text to output recognized words and their positions. </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>

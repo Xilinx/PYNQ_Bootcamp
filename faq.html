@@ -34,28 +34,159 @@
 
             <h2>Frequently Asked Questions</h2>
             <hr>
-            <h3>Table of Contents</h3>
             <ul>
-              <li><a href="#connect-to-uart">Unboxing</a></li>
+              <li><a href="#xilinxdev">Xilinx Development and Demonstration Set Up Errors</a></li>
+              <li><a href="#jupyter">Accessing the Jupyter Notebooks</a></li>
+              <li><a href="#networksetup">Network Setup Errors/Issues</a></li>
+              <li><a href="#troubleshooting">Network Setup Errors/Issues</a></li>
             </ul>
 
-            <h2 id="connect-to-uart">Connect to Board Via UART</h2>
+            <h2 id="xilinxdev">Xilinx Development and Demonstration Set Up Errors</h2>
             <hr>
-            <ol>
-                <li>Unplug the power cable from KRIA-SOM</li>
-                <li>Plug in Micro USB to KRIA-SOM and the USB end to your computer</li>
-                <li>Find the KRIA-SOM under the Ports tab on the Device Manager on Windows (Might not be COM4)</li>
-                <img class="image" src="img/dev-manager.png">
-                <li>Download Putty <a href="https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.78-installer.msi">(Click Here!)</a> which will allow us to connect directly to the board</li>
-                <li>Run PuTTY, and Under COM4 Change the Highlighted sections under the sessions tab</li>
-                <img class="image" src="img/putty1.png">
-                <li>Change the highlighted sections under the serial tab</li>
-                <img class="image" src="img/putty2.png">
-                <li>Plug back in the power cable into the KRIA-SOM</li>
-                <li>Select open and log into the KRIA-SOM</li>
-                <img class="image" src="img/putty3.png">
-                
-            </ol>
+            <details>
+              <summary>Firefox says "Your Computer Clock is Wrong" which prevents you from connecting securely.</summary>
+              <p>Likely, your NTP service is inactive and you can use the "timedatectl" to see its status.</p>
+              <p><strong>Solution:</strong><br>
+                Make sure you are on a non-restricted network. Run the following commands to update the time: </p>
+                <pre><code>sudo timedatectl set-timezone America/Denver<br>sudo timedatectl set-ntp false<br>sudo timedatectl set-ntp true</code></pre>
+            </details>
+
+            <h2 id="jupyter">Accessing the Jupyter Notebooks</h2>
+            <hr>
+            <details>
+              <summary>Cannot connect to the notebook. </summary>
+              <p>The IP address may have changed, note that the ip address will differ from network to network.</p>
+              <p><strong>Solution:</strong><br>
+                Ensure that your KRIA-SOM board and computer are connected to the same network. <br>Repeat the steps found on <a href="getting-started-with-pynq-bootcamp.html#ip">Find Your Board's IP Address with OLED Screen</a> and use <a href="#uart">KRIA-SOM UART Setup</a> to troubleshoot</p>
+            </details><br>
+            <details>
+              <summary>Programming Device failed </summary>
+              <p>More than one notebook may be trying to run at a time.</p>
+              <img class="image" src="img/faqnotebookerror.jpg">
+              <p><strong>Solution:</strong><br>
+                Shutdown and close all running notebooks you are not using. In the top left corner of the notebook, <br><code> Kernel > Restart & Clear Output </code> and then rerun the notebook.</details>
+            
+            <h2 id="networksetup">Network Setup Errors/Issues</h2>
+            <hr>
+            <details>
+              <summary>I Don't See the IP Address on the OLED</summary>
+              <p><strong>Solution:</strong><br>
+                <ul>
+                  <li>It takes approximately 90 seconds for the board to startup and connect to the wifi and output the IP address. You should wait at least 3x that time to be sure. So have you waited ~4min30 since you powered on the board??</li>
+                  <li>Is the wifi dongle securely attached? Is the OLED securely attached? Disconnect, make sure they are good, and then reboot the machine by disconnecting, waiting 30 seconds, and reconnecting the power to the board. Even if they seem securely attached, rebooting is a good thing to attempt at least once.</li>
+                  <li>Are you using an image that has the wifi drivers installed, uses the new wifi configuration (the two netplan config files), and you ran the show-kria-ip (<a href="https://github.com/hunhoffe/show-kria-ip">https://github.com/hunhoffe/show-kria-ip</a>)script (just once per image)? Can you reach the wifi using your laptop/other device using the credentials setup on the board?</li>
+                  <li>If everything else seems good, we can try to find out what is wrong with the board setup. This requires logging onto the board in some way. You can either use UART or the static IP address using an ethernet connection between your laptop and the board. UART instructions are above, so I'll focus on static IP</li>
+                  <ul>
+                    <li>Connect the ethernet cable to the board and your laptop. Setup for bridging on your laptop using the instructions above. Note you don't actually have to share internet access, you just have to set the IP address and subnet mask for the ethernet adaptor.</li>
+                    <li>From your laptop <code>ssh ubuntu@192.168.1.2 </code> using powershell (or putty) </li>
+                    <li>Steps to debug:</li>
+                    <ul>
+                    <li>Check ifconfig. You should see an interface starting with wl. If you don't, the wifi dongle isn't being registered and there's something physically wrong with either the port or dongle, or the wifi drivers aren't working correctly.</li>
+                    <ul>
+                      <li>Sanity check: If you unplug the dongle, the wl interface should go away. If you plug it in again, it should come back.</li>
+                    </ul>
+                    <li>Check ifconfig that both eth0 and the wl interface have assigned IPv4 addresses. If they don't, then you are failing to connect to the router and/or dhcp and be assigned an IP address for some reason. Double check the wifi credentials, that the router is not overloaded, that you have waited enough time.  Review the /etc/netplan wifi setup configuration file for accuracy.</li>
+                    <li>Check </li>
+                    <pre><code>route -n</code></pre>
+                    <p>You should see two routes (one for each direction) for the ethernet (static IP) wlan and two routes for the wifi. The ethernet routes should have a lower metric than the wifi. If you don't see these routes, it means that dhcp running on the network was unable to assign the routes for the wifi.</p>
+                  <li>If something is wrong with the last two bullet points (IP address assignment or routes), and you've already tried patience, rebooting the machine, moving closer to a wifi access point, etc., then we can try resetting the wifi config with netplan. First, MOVE (not copy) the <code>/etc/netplan/02-wifi-config.yaml</code> file to another location. Then run </li>
+                  <pre><code>sudo netplan try</code></pre>  
+                  <p>You should maintain access through the static IP, but should not be attached to the wifi. Then, move the <code>02-wifi-config.yaml </code> file to the original <code>/etc/netplan </code> file. Again, run</p>
+                  <pre><code>sudo netplan try</code></pre>  
+                  <p>Check ifconfig and route and ping to see if the issue is fixed.</p>
+                </ul>
+                </ul>
+            </details><br>
+
+            <details>
+              <summary>The Setup Wifi Notebook Isn't Working</summary>
+              <p>The setup-wifi notebook is not the most robust; in particular, it is known to be sensitive to some special characters in passwords such as quotes.</p>
+              <p><strong>Solution:</strong><br></p>
+              <ul>
+                <li>If the setup-wifi notebook stalls (commands not finishing)
+                  <ul>
+                    <li>Wait at least 3 minutes</li>
+                    <li>If it's still stalled, restart the notebook kernel and try again</li>
+                    <li>If still stalled, try editing the wifi config file manually</li>
+                  </ul>
+                </li>
+                <li>If there's another error:
+                  <ul>
+                    <li>Try to edit the wifi config file manually</li>
+                  </ul>
+                </li>
+              </ul>
+              <p>How to edit the wifi config file: use an editor with root access to edit the file <code>/etc/netplan/02-wifi-setup.yaml.</code></p>
+                <pre><code>sudo vim /etc/netplan/02-wifi-setup.yaml</code></pre>
+                <p>It's been to do this over a terminal using the static IP or UART, because if you mess up the config, your connection will drop if you are editing over the wifi. Note that this file is sensitive to indentation, and that the permissions for this file should remain at 600 to avoid warnings from netplan.
+
+                  After any changes, run</p>
+                  <pre><code>sudo netplan apply</code></pre> 
+                  <p>If you are in a bad state, I'd try to remove all existing access points and add one new one corresponding with the wifi you'd like to try to connect to. When editing this configuration file, it's always recommend to make a backup (using cp or a similar command) before you make any changes.</p>
+            </details><br>
+
+            <details>
+              <summary>I Think My Configuration is Wrong</summary>             
+              <p><strong>Solution:</strong><br>
+                All of the configuration for the network are in the static IP and wifi setup configuration files found in /etc/netplan. These are normal text files. You can edit these files, and apply any changes with:  </p>
+                <pre><code>sudo netplan try</code></pre>
+                <p>Before you edit these files, I'd recommend backing up the original files. The text of the original files in the image are found in this document, so you can always "start from scratch" by restoring these files and applying the restored files.</p>
+            </details><br>
+
+            <details>
+              <summary>Netplan Configuration Is STILL Not Working</summary>
+              <p><strong>Solution:</strong><br>
+                If you've tried everything and it's during the bootcamp and you just need some solution ASAP, you can do the somewhat nuclear option of using the kira-wifi github setup, described above using wsasupplicant. BEWARE that this is incompatible with future netplan usage, and you will lose access to the static IP address for the forseeable future with that image. So only do this as a last resort to try. </p>
+                <ul>
+                  <li>First, connect via UART and remove both the static IP and wifi setup files from /etc/netplan</li>
+                  <li>Then, run </li>
+                </ul>
+                <pre><code>sudo netplan apply</code></pre>
+                <p>Lastly, follow the directions as usual to setup for the wifi using the wsasupplicant and hope that it works</p>
+              </details>
+
+
+              <h2 id="troubleshooting">Troubleshooting</h2>
+              <hr>
+              <details>
+                <summary>Configuring Static IP for Ethernet on KRIA-SOM</summary>
+                <ol>
+                  <li>Create a new file at <code>/etc/netplan/</code></li>
+                  <pre><code>vi /etc/netplan/01-network-manager-all.yaml</code></pre>
+                  <li>Add the following settings to the file and save it</li>
+                  <pre class="thin-code-box"><code>network:<br>&nbsp&nbspversion: 2<br>&nbsp&nbsprenderer: NetworkManager<br>&nbsp&nbspethernets:<br>&nbsp&nbsp&nbsp&nbspeth0:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdhcp4: false<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdhcp6: false<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspaddresses:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- 192.168.1.2/24<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsproutes:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- to: default<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspvia: 192.168.1.1<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmetric: 10<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspnameservers:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspaddresses: [8.8.8.8,8.8.4.4]</code></pre>
+                  <li>Apply the Netplan</li>
+                  <pre><code>sudo netplan try<br>ip a</code></pre>
+                  <li>Then plug in the ethernet cable to your computer. Set the IPv4 settings for the ethernet adaptor belonging to the cable attached to your cable to:
+                    <ul>
+                      <li>IP Address: 192.168.1.1</li>
+                      <li>Subnet Mask: 255.255.255.0</li>
+                      <li>Default Gateway: 192.168.1.0</li>
+                    </ul>
+                  </li>
+                </ol>
+                </details><br>
+                <details>
+                  <summary id="uart">KRIA-SOM UART Setup</summary>
+                  <ol>
+                    <li>Unplug the power cable from KRIA-SOM</li>
+                    <li>Plug in Micro USB to KRIA-SOM and the USB end to your computer</li>
+                    <li>Find the KRIA-SOM under the Ports tab on the Device Manager on Windows (Might not be COM4)</li>
+                    <img class="image" src="img/dev-manager.png">
+                    <li>Run PuTTY. Under sessions, change the highlighted fields. (For serial line field use whatever port was found in step 3. It may not be the first port displayed.) <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Putty Download</a></li>
+                    <div style="width:80%;max-width:480px;margin:20px auto;">
+                      <img src="img/uart2.png" alt="Instructional Image" style="width:80%;">
+                    </div>
+                    <li>Change the highlighted sections under the serial tab</li>
+                    <div style="width:80%;max-width:480px;margin:20px auto;">
+                      <img src="img/uart3.png" alt="Instructional Image" style="width:80%;">
+                    </div>
+                    <li>Plug back in the power cable into the KRIA-SOM</li>
+                    <li>Select open and log into the KRIA-SOM</li>
+                    <img class="image" src="img/putty3.png">
+                  </ol>
+                  </details>
+
 
           </div>
         </div>

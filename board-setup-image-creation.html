@@ -1,0 +1,359 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>PYNQ Bootcamp</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <style>
+    .menu-index {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            
+            <h2 id="scratch">How to create an image for PYNQ Bootcamp</h2>
+            <hr>
+            <p class="text">
+            This guide will walk you through the process of setting up your SD card and the KRIA-SOM board for the PYNQ-DPU environment. If your SD card already has a suitable image installed, you can skip directly to the (<a href="getting-started-with-pynq-bootcamp.html#scratch">Getting Started with PYNQ Bootcamp</a>) step. <br> <br>
+
+            The KRIA-SOM AI Starter Kit is designed to help you get started with AI projects by leveraging the PYNQ-DPU environment. The KRIA-SOM module uses an Ubuntu-based image, which you can download from the AMD website and flash onto an SD card. <br> <br>
+            
+            Once you have the KRIA-SOM image installed on your SD card, you can enhance your development experience by installing the PYNQ-DPU package. This package is available on GitHub and comes with easy-to-use install scripts. The PYNQ-DPU environment provides access to a wide range of AI models, example projects, and PYNQ peripherals, enabling you to quickly get started with your AI and machine learning projects.  
+            <ul>
+                <li><a href="#setupsdcard">Setting Up Your SD Card</a></li>
+                <li><a href="#updateboot">Update the KRIA Boot Binary</a></li>
+                <li><a href="#softwaresetup">Software Setup</a></li>
+                <li><a href="#netconfig">Setup Network Configurations </a></li>
+                <ol>
+                  <li>
+                    <a href="#ethconnection">Ethernet Connection </a>
+                  </li>
+                  <li>
+                    <a href="#wifidongle">WiFi Dongle </a>
+                  </li>
+                  <li>
+                    <a href="#staticip">Local LAN using Static IP </a>
+                  </li>
+                </ol>
+                
+              </ul>
+              <p>Troubleshooting:</p>
+                <ul>
+                  <li><a href="#uart">KRIA-SOM UART Setup</a></li>
+                </ul>
+        </p>
+            <div class="instruction-section">
+              <h2 id="setupsdcard">Setting Up Your SD Card</h2>
+              <hr>
+              
+              <ol>
+                <li>
+                  Download Balena Etcher from <a href="https://etcher.balena.io/" target="_blank">https://etcher.balena.io/</a>
+                </li>
+                <li>
+                  Download the latest Ubuntu image for AMD-Xilinx from <a href="https://ubuntu.com/download/amd-xilinx" target="_blank">https://ubuntu.com/download/amd-xilinx</a>
+                </li>
+                <li>
+                  Insert the SD card into your computer. 
+                </li>
+                <li>
+                  Run BalenaEtcher as Administrator.
+                </li>
+                <li>
+                  Flash the image to your SD card using Balena Etcher. (This may take a second try if the flash fails the first time.)
+                </li>
+              </ol>
+            </div>
+            <div class="instruction-section">
+              <h2 id="updateboot">Update the KRIA Boot Binary</h2>
+              <hr>
+              <h3>Preparation</h3>
+              <ul>
+                <li>The upcoming steps will require a USB UART connection. If you are using Windows 11, you will need to download the <a href="https://ftdichip.com/wp-content/uploads/2021/08/CDM212364_Setup.zip">USB-UART drivers</a>.</li>
+              </ul>
+              <hr>
+              <ol>
+                <li>
+                  Download the 2022.1 boot binary at: <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM" target="_blank">https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM</a> (Search the page for "Boot Firmware Updates")
+                </li>
+                <li>
+                  Follow the steps to set up UART found here: <a href="#uart"> KRIA-SOM UART Setup</a>
+                </li>
+                <li>
+                  Connect Ethernet cable from KRIA board to a Windows host laptop or PC.
+                </li>
+                <li>
+                  Configure host network settings:
+                  <ul>
+                    <li>Press Win+R, type <code>ncpa.cpl</code> and press OK.</li>
+                    <li>Click on the unidentified ethernet connection.</li>
+                    <li>Select Properties.</li>
+                    <li>Double Click on "Internet Protocol Version 4".</li>
+                    <li>Configure with the following settings:
+                      <ul>
+                        <li>IP address: 192.168.0.220</li>
+                        <li>Subnet mask: 255.255.255.0</li>
+                        <li>Default gateway: 192.168.0.1</li>
+                      </ul>
+                    </li>
+                    <li>Click OK or close on all network windows.</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+            <div style="width:80%;max-width:480px;margin:20px auto;">
+              <img src="img/ipv4config.PNG" alt="Instructional Image" style="width:100%;">
+            </div>
+            <ol>
+              <li>Hold down the FWUEN button (located about 2 inches below the power connector) and power cycle the KRIA by unplugging/plugging it back in to enter recovery mode.</li>
+              <li>You should see a message on the UART terminal directing you to point your browser to an IP.</li>
+              <li>Select settings:
+                <ul>
+                  <li>Image A: Bootable</li>
+                  <li>Image B: Bootable</li>
+                  <li>Request Boot Image: Image A</li>
+                  <li>Select Image to be recovered: Image A</li>
+                  <li>Browse to and select the image downloaded earlier.</li>
+                </ul>
+              </li>
+              <li>Press upload, and address any pop-ups during download. If the Upload fails, simply reselect the settings again and retry until it works. (It might fail and take 2 or 3 tries.)</li>
+              <li>Press the reset button on the board, and the process is complete!</li>
+            </ol>
+            <div style="width:100%;max-width:1000px;margin:20px auto;">
+              <img src="img/firmware.PNG" alt="Instructional Image" style="width:100%;">
+            </div>
+            
+
+
+            <div class="instruction-section">
+              <h2 id="softwaresetup">Software Setup</h2>
+              <hr>
+              <h3>Preparation</h3>
+              <ul>
+                
+                <li>There are two methods to set up the development software: </li>
+                <ul>
+                  <li>Using the board itself, necessitating a monitor, mouse, and keyboard connection. </li>
+                  <li>Using a computer, requiring a UART connection to the board.  <a href="#uart"> KRIA-SOM UART Setup</a> </li>
+                </ul>
+                <li>Once a connection has been established, connect the power adaptor to boot the KRIA. Login using the following credentials:</li>
+                  <ul>
+                    <li><strong>Username:</strong> <code>ubuntu</code></li>
+                    <li><strong>Password:</strong> <code>ubuntu</code></li>
+                    <ul>
+                      <li><em>Optional: change the password to <code>pynqbootcamp</code></em> </li>
+                    </ul>
+                  </ul>
+                <li>Connect board to network for internet access:</li>
+                <ul>
+                  <li>Connect an ethernet cable between the board and a port in your router</li>
+                  <li>Make sure network is established using  <code>ifconfig</code> or  <code>ping 8.8.8.8</code></li>
+                </ul>
+              </ul><br>
+
+              <hr>
+            <h3>Xilinx Development and Demonstration Set Up</h3>
+            <ol>
+                <li>Install the xlnx-config snap using:
+                <pre><code>sudo snap install xlnx-config --classic --channel=2.x</code></pre>
+                </li>
+                <li>Now run the following command to install KRIA Specific PPAs:
+                <pre><code>sudo xlnx-config.sysinit</code></pre>
+                <p>Select <strong>Y</strong> for all of the <code>[Y/n]</code> questions and press enter to continue when prompted.</p>
+                
+                Towards the end, windows may appear. On the "Configuring flash-kernel" window, select the first option "install the package maintainer's version".
+                <p><strong>Note:</strong> the second option is selected in the photo. <strong>DO NOT CHOOSE THE YELLOW HIGHLIGHTED OPTION FROM THE PHOTO.</strong> You want the option above it circled in red.</p>
+                
+                For any other windows, the default settings are fine so simply hit enter.
+
+                <div style="width:100%;max-width:1000px;margin:20px auto;">
+                  <img src="img/s1.png" alt="Instructional Image" style="width:100%;">
+                </div>
+            </ol><br>
+
+            <h3>Setting up Wi-Fi Driver</h3>
+            <p>Running the following commands will install the driver for the EW-7811UTC Dual Band WIFI Adapter.</p>
+            <ol>
+                <li>Run the following commands to clone and install PYNQ:</li>
+                    <pre><code>sudo apt install -y dkms git build-essential iw</code></pre>
+                    <ul><li>Press enter if prompted with a pop up menu</li></ul>
+                    <pre><code>git clone https://github.com/morrownr/8821au-20210708.git<br>cd 8821au-20210708</code></pre>
+                    <li>This final command will prompt you for two [Y/n] inputs. Enter <strong>"n" for the first</strong> and <strong>"Y" for the second</strong>.</li>
+                    <pre><code>sudo ./install-driver.sh</code></pre>
+                    <ul><li>This will trigger a reboot and the WiFi adapter should work.</li></ul>
+                    
+            </ol><br>
+
+            <h3>PYNQ Install</h3>
+            <ol>
+                <li>Run the following commands to clone and install PYNQ:
+                    <pre><code>git clone https://github.com/skalade/Kria-PYNQ -b bootcamp <br>Kria-PYNQ <br>sudo bash ./install.sh -b KV260</code></pre>
+            </ol><br>
+
+          <h3>Getting PYNQ Bootcamp Training Material</h3>
+          <ol>
+            <li>All PYNQ Bootcamp training content is available on github. Run the following commands to clone the repository:
+            </li>
+            <pre><code>sudo su - <br>cd /home/root/jupyter_notebook <br>git clone https://github.com/Xilinx/PYNQ_Bootcamp.git <br>cd PYNQ_Bootcamp</code></pre>
+          </ol><br>
+          
+          <h3>Accessing the Jupyter Notebooks</h3>
+          <ul>
+            <li>For local access (on the board), on a browser navigate to </li>
+            <pre><code>kria:9090</code></pre>
+            <li>For remote access (from a different computer), ensure the computer is connected to the same internet as the board and on a browser navigate to </li>
+            <pre><code>&lt;ip-address&gt;:9090</code></pre>
+          </ul>
+          <div style="width:100%;max-width:1000px;margin:20px auto;">
+            <img src="img/jupyter.png" alt="Instructional Image" style="width:100%;">
+          </div>
+        </div>
+
+            <div class="instruction-section">
+              <h2 id="netconfig">Setup Network Configurations</h2>
+              <hr>
+              There are three ways you can setup you host and board communication:
+              <ol>
+                <li>Ethernet Connection </li>
+                <li>WiFi Dongle </li>
+                <li>Local LAN using Static IP </li>
+              </ol>
+              <hr>
+              <h3 id="ethconnection">Ethernet Connection</h3>
+              <p>This is how the board was accessed during setup:</p>
+              <ol>
+                <li>Connect the Ethernet cable you got with your kit to the Ethernet port on the board.</li>
+                <li>Connect the other side of the Ethernet cable to a port in your router.</li>
+                <li><strong>Note:</strong> Make sure your laptop is on the same network as the board.</li>
+              </ol><br>
+
+              <h3 id="wifidongle">Wi-Fi Dongle (Netplan)</h3>
+              <ol>
+                <li>Connect a USB Wi-Fi dongle to the USB port on your board.</li>
+                <ul>
+                  <li>Wait for the blinking blue LED on the Wi-Fi Dongle to indicate it is active.</li>
+                </ul>
+                <li>Create a new file at <code>/etc/netplan/01-wifi-setup.yaml</code> but set the SSID and password to your actual values. <strong>Note:</strong> that this file is indentation/whitespace sensitive:</li>
+              <br>
+              <pre class="thin-code-box"><code>network:<br>&nbsp&nbspversion: 2<br>&nbsp&nbsprenderer: NetworkManager<br>&nbsp&nbspwifis:<br>&nbsp&nbsp&nbsp&nbspwlan0:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmatch:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspname: wl*<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdhcp4: true<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdhcp6: true <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspaccess-points: <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"MY_SSID":<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsppassword: "MY_PASSWORD"</code></pre>
+              <li>Run the following command to apply your netplan configuration:</li>
+              <pre><code>sudo netplan apply</code></pre>
+              <li>Check to see that you can see the IP address for an interface with a name starting in wl. This may take a while (probably a few seconds, but best to wait a minute or two)</li>
+              <pre><code>ifconfig</code></pre>
+              <li>Check to see if you have routes configured for the subnet of the IP your see (first three octets or so should be the same of the IP you noted in ifconfig): </li>
+              <pre><code>route -n</code></pre>
+              <li>Check to see if you can connect to the DNS server, if name resolution is working, and if you can access a webpage: </li>
+              <pre><code>ping www.google.com</code></pre>
+              <li>After you have done this initial setup, if you need to add a new access point or edit an existing access point, you can add or update access points using the wifi setup notebook (<a href="https://github.com/Xilinx/PYNQ_Bootcamp/blob/master/wifi-setup.ipynb">https://github.com/Xilinx/PYNQ_Bootcamp/blob/master/wifi-setup.ipynb</a>) or by editing the netplan file(s) in /etc/netplan directly using any editor with root (sudo) access. </li>
+              </ol><br>
+
+              <h3 id="staticip">Local LAN using Static IP</h3>
+              <p>Follow the steps detailed below or refer this guide to setup Static IP for your board: <a href="https://www.freecodecamp.org/news/setting-a-static-ip-in-ubuntu-linux-ip-address-tutorial/">https://www.freecodecamp.org/news/setting-a-static-ip-in-ubuntu-linux-ip-address-tutorial/</a></p>
+              <h4>Create a new netplan</h4>
+              <ol>
+                <li>Create a new netplan file:</li>
+                <pre><code>sudo vim /etc/netplan/01-static-ip.yaml</code></pre>
+                <li>Add following settings to the file and save it (for vim, press i for insert, then copy/paste the code below, and then press escape, then type <code>:wq</code>) <strong>Note:</strong> that this file is indentation/whitespace sensitive:</li>
+                <pre class="thin-code-box"><code>network:<br>&nbsp&nbspversion: 2<br>&nbsp&nbsprenderer: NetworkManager<br>&nbsp&nbspethernets:<br>&nbsp&nbsp&nbsp&nbspeth0:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdhcp4: false<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdhcp6: false<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspaddresses:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- 192.168.1.2/24<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsproutes:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- to: default<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspvia: 192.168.1.1<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmetric: 10<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspnameservers:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspaddresses: [8.8.8.8,8.8.4.4]</code></pre>
+              </ol>
+              <h4>Restart the netplan service</h4>
+              <ol>
+                <pre><code>sudo netplan try</code></pre>
+                <li>Press enter to accept the changes. To sanity check, you can run:</li>
+                <pre><code>ip a</code></pre>
+                <li>You should see that you have an IP address of 192.168.1.2 on the Kria board. If you type:</li>
+                <pre><code>route -n</code></pre>
+                <li>You should see a route to/from the gateway 192.168.1.1</li>
+              </ol>
+              <h4>Configure Ethernet Adaptor on your windows laptop</h4>
+              <ol>
+                <li>Connect a Ethernet cable between the KRIA-SOM board and your laptop.</li>
+                <li>Open Network and Sharing center on your windows laptop.</li>
+                <li>Navigate to "Change adaptor settings" :</li>
+              <div style="width:100%;max-width:1000px;margin:20px auto;">
+                <img src="img/w1.png" alt="Instructional Image" style="width:100%;">
+              </div>
+                <li>Right click on the Ethernet adaptor associated with the ethernet cable connect to board and select properties.</li>
+                <li>Double click on "Internet Protocol Version 4 (TCP/IPv4) and configure it using following settings:</li>
+              <div style="width:80%;max-width:480px;margin:20px auto;">
+                <img src="img/w2.PNG" alt="Instructional Image" style="width:100%;">
+              </div>
+                <li>Click OK and save the settings. </li>
+              </ol>
+
+              <h4>Bridging</h4>
+              <p>To enable bridging from the kria board through your local machine to the internet (tested on Windows 11 Enterprise only). <strong>Note:</strong> some networks have settings or firewalls that may disallow bridging in this way.</p>
+              <ol>
+                <li>Plug an ethernet cable from the Kria board into your computer, connect your computer to wifi.</li>
+                <li>Follow the instructions from step 3.</li>
+                <li>Open the settings for internet by typing Windows+r and then typing <code>ncpa.cpl</code> and hitting Enter.</li>
+                <li>Open the settings for the wifi, and (on the sharing tab), select enable sharing.</li>
+                <li>Double check that your settings for the ethernet remain what they are supposed to be for step 3, ignore any warning boxes that may appear. Be especially careful to remove any DNS server information that may appear.</li>
+              </ol>
+              <p>Check to see if it worked by:</p>
+              <ol>
+                <li>On your windows machine, make sure you can still ping/ssh into the kria board using 192.168.1.2</li>
+                <li>On the kria board, ping 8.8.8.8 (which checks to see if you can access a DNS server). You can also <code> ping <a href="http://www.google.com">www.google.com </a></code>  or <code> curl <a href="http://www.google.com">www.google.com </a></code> to ensure resolution is working.</li>
+              </ol>
+
+              <div class="instruction-section">
+                <h2 id="uart">Troubleshooting - KRIA-SOM UART Setup</h2>
+                <hr>
+                <ol>
+                  <li>Unplug the power cable from KRIA-SOM</li>
+                  <li>Plug in Micro USB to KRIA-SOM and the USB end to your computer</li>
+                  <li>Find the KRIA-SOM under the Ports tab on the Device Manager on Windows (Might not be COM4)</li>
+                  <img class="image" src="img/dev-manager.png">
+                  <li>Run PuTTY. Under sessions, change the highlighted fields. (For serial line field use whatever port was found in step 3. It may not be the first port displayed.) <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Putty Download</a></li>
+                  <div style="width:80%;max-width:480px;margin:20px auto;">
+                    <img src="img/uart2.png" alt="Instructional Image" style="width:80%;">
+                  </div>
+                  <li>Change the highlighted sections under the serial tab</li>
+                  <div style="width:80%;max-width:480px;margin:20px auto;">
+                    <img src="img/uart3.png" alt="Instructional Image" style="width:80%;">
+                  </div>
+                  <li>Plug back in the power cable into the KRIA-SOM</li>
+                  <li>Select open and log into the KRIA-SOM</li>
+                  <img class="image" src="img/putty3.png">
+                </ol>
+                
+              </div>
+
+
+              <br>
+              <h2 id="amd">More Information for Getting Started</h2>
+              <hr>
+             <a href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html">AMD's KRIA Getting Started Page</a>
+             <h2 id="amd">Frequently Asked Questions</h2>
+             <hr>
+             <a href="faq.html">Frequently Asked Questions</a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container"></div>
+</body>
+
+</html>
