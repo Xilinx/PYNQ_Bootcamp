@@ -14,11 +14,12 @@ fi
 
 # Clone the repository
 echo "Cloning repository: $REPO_URL"
-git clone "$REPO_URL" "$LOCAL_DIR"
+git clone -b remote-board "$REPO_URL" "$LOCAL_DIR"
 
 # Check if the cloning was successful
 if [ $? -eq 0 ]; then
     echo "Repository cloned successfully into $LOCAL_DIR."
+    git config --global --add safe.directory /home/root/jupyter_notebooks/PYNQ_Bootcamp
 else
     echo "Failed to clone repository."
 fi
