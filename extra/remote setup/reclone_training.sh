@@ -2,7 +2,7 @@
 
 # Set the repository URL and destination folder name
 REPO_URL="https://github.com/Xilinx/PYNQ_Bootcamp.git"
-LOCAL_DIR="/home/root/jupyter_notebooks/PYNQ_Bootcamp (IDT Trainings"
+LOCAL_DIR="/home/root/jupyter_notebooks/PYNQ_Bootcamp (IDT Trainings)"
 
 # Check if the directory exists
 if [ -d "$LOCAL_DIR" ]; then
