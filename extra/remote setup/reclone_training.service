@@ -1,12 +1,14 @@
 [Unit]
 Description=Reclone Git Repository Service
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/reclone_training.sh
 User=root
 Group=root
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
