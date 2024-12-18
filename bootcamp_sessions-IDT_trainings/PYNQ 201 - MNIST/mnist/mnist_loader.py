@@ -22,7 +22,7 @@ __version__ = '0.2.2'
 # >>> mnist.datasets_url = 'http://my.mnist.url'
 # >>> mnist.temporary_dir = lambda: '/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 201 - MNIST'
 datasets_url = 'https://storage.googleapis.com/cvdf-datasets/mnist'
-temporary_dir = '/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 201 - MNIST'
+temporary_dir = '/home/root/jupyter_notebooks/PYNQ_Bootcamp (IDT Trainings)/bootcamp_sessions-IDT_trainings/PYNQ 201 - MNIST'
 
 
 class IdxDecodeError(ValueError):
@@ -30,7 +30,7 @@ class IdxDecodeError(ValueError):
     pass
 
 
-def download_file(fname, target_dir='/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 201 - MNIST', force=False):
+def download_file(fname, target_dir='/home/root/jupyter_notebooks/PYNQ_Bootcamp (IDT Trainings)/bootcamp_sessions-IDT_trainings/PYNQ 201 - MNIST', force=False):
     """Download fname from the datasets_url, and save it to target_dir,
     unless the file already exists, and force is False.
 
@@ -119,7 +119,7 @@ def parse_idx(fd):
     return numpy.array(data).reshape(dimension_sizes)
 
 
-def download_and_parse_mnist_file(fname, target_dir='/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 201 - MNIST', force=False):
+def download_and_parse_mnist_file(fname, target_dir='/home/root/jupyter_notebooks/PYNQ_Bootcamp (IDT Trainings)/bootcamp_sessions-IDT_trainings/PYNQ 201 - MNIST', force=False):
     """Download the IDX file named fname from the URL specified in dataset_url
     and return it as a numpy array.
 
