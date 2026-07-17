@@ -382,13 +382,15 @@ def main():
     all_ips = get_all_ips()
 
     show_viewer = os.environ.get('GENESIS_SHOW_VIEWER', 'true').lower() == 'true'
+    stream_port = int(os.environ.get('GENESIS_STREAM_PORT', '8080'))
 
     print(f"\n{'='*55}")
     print(f"  Genesis Simulation Server")
     print(f"{'='*55}")
     print(f"  Available IPs:")
     for ip in all_ips:
-        print(f"    - {ip}:{PORT}")
+        print(f"    - Main API: http://{ip}:{PORT}")
+        print(f"    - Stream: http://{ip}:{stream_port}")
     print(f"  Backend    : {os.environ.get('GENESIS_BACKEND', 'cpu')}")
     print(f"  Viewer     : {'enabled' if show_viewer else 'disabled'}")
     print(f"{'='*55}")
@@ -396,6 +398,10 @@ def main():
     print(f"{'='*55}\n")
 
     server = GenesisServer()
+
+    # Start the streaming server
+    from .stream_server import start_stream_server
+    start_stream_server(port=stream_port, simulations_dict=GenesisRequestHandler.simulations)
 
     print("  Server running. Press Ctrl+C to stop.\n")
 

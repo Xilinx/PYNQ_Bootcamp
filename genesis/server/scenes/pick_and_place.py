@@ -1,8 +1,13 @@
 import genesis as gs
 
 
-def setup(scene):
-    """Franka arm with table and cubes for pick-and-place tasks.0707"""
+def setup(scene, card_layout=None):
+    """Franka arm with table and cubes for pick-and-place tasks.
+
+    Args:
+        scene: Genesis scene object
+        card_layout: Optional card layout (not used in this scene, for compatibility)
+    """
     plane = scene.add_entity(gs.morphs.Plane())
 
     franka = scene.add_entity(
@@ -45,8 +50,8 @@ def setup(scene):
     ]
     cube_colors = [
         (1.0, 0.0, 0.0, 1.0),  # Red
-        (1.0, 0.0, 0.0, 1.0),  # Green
-        (1.0, 0.0, 0.0, 1.0),  # Blue
+        (0.0, 1.0, 0.0, 1.0),  # Green
+        (0.0, 0.0, 1.0, 1.0),  # Blue
     ]
 
     for pos, color in zip(cube_positions, cube_colors):

@@ -1,8 +1,13 @@
 import genesis as gs
 
 
-def setup(scene):
-    """Franka arm facing 5x6 grid of colored squares."""
+def setup(scene, card_layout=None):
+    """Franka arm facing 5x6 grid of colored squares.
+
+    Args:
+        scene: Genesis scene object
+        card_layout: Optional card layout (not used, for compatibility)
+    """
     plane = scene.add_entity(gs.morphs.Plane())
 
     franka = scene.add_entity(

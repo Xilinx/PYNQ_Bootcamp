@@ -1,6 +1,7 @@
 import os
 
 PORT = int(os.environ.get("GENESIS_PORT", 9002))
+STREAM_PORT = int(os.environ.get("GENESIS_STREAM_PORT", 8080))  # Video streaming server port
 BACKEND = os.environ.get("GENESIS_BACKEND", "amdgpu")  # cpu, gpu, cuda, amdgpu, metal
 SHOW_VIEWER = os.environ.get("GENESIS_SHOW_VIEWER", "true").lower() == "true"
 MAX_SESSIONS = int(os.environ.get("GENESIS_MAX_SESSIONS", 10))
