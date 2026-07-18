@@ -21,3 +21,7 @@ models:
 get_latest_training_material.ipynb
     Contains a sumple bas git pull command to update the repository and pull all of the new materials onto the board.
 
+bootcamp_utils:
+
+    Shared Python helper modules that are imported by the DPU-based session notebooks. Place this folder at the root of the repo so notebooks can import.
+
