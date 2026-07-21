@@ -14,16 +14,14 @@ class SimulationClient:
     or join_competition() for competition mode (shared scene with other teams).
     """
 
-    def __init__(self, server_ip: str, port: int = 9002, stream_port: int = 9003):
+    def __init__(self, server_ip: str, port: int = 9002):
         """Connect to a Genesis simulation server.
 
         Args:
             server_ip: IP address of the server (ask your instructor!)
             port: Server port (default: 9002)
-            stream_port: Stream server port for live viewing (default: 9003)
         """
         self.server_url = f"http://{server_ip}:{port}"
-        self.stream_url = f"http://{server_ip}:{stream_port}"
         self.token: Optional[str] = None
         self._competition_mode = False
 
@@ -49,14 +47,11 @@ class SimulationClient:
         """Create a new simulation environment.
 
         Args:
-            scene: Scene to load. Options: "empty", "grid_5x6", "pick_and_place"
+            scene: Scene to load. Options: "empty", "pick_and_place"
         """
         result = self._request("create_env", {"scene": scene})
         self.token = result["token"]
         self._competition_mode = False
-
-        # Display viewer link in Jupyter
-        self._show_viewer_link()
 
     def add_cube(
         self, position: List[float], size: List[float] = None
@@ -270,15 +265,18 @@ class SimulationClient:
 
     # Competition Mode Methods
 
-    def join_competition(self, team_id: str) -> None:
+    def join_competition(self, team_id, password=None):
         """Join an active competition.
-
-        The instructor must start a competition first.
 
         Args:
             team_id: Your team name (e.g., "team_red" or "team_blue")
+            password: The join password the instructor set for your team
+                      (omit if the instructor set no password for it)
         """
-        result = self._request("join_competition", {"team_id": team_id})
+        result = self._request("join_competition", {
+            "team_id": team_id,
+            "password": password,
+        })
         self.token = result["token"]
         self._competition_mode = True
 
@@ -303,12 +301,12 @@ class SimulationClient:
         per turn - if they match, you score a point!
 
         Args:
-            row: Row (0-4, bottom to top)
-            col: Column (0-5, left to right)
+            row: Row (0-3, bottom to top)
+            col: Column (0-3, left to right)
 
         Returns:
             Dict with:
-            - color_idx: The revealed color (0-14)
+            - color_idx: The revealed color (0-7)
             - already_flipped: True if card was already face-up
             - match_result: If second flip, contains match info
         """
@@ -318,8 +316,8 @@ class SimulationClient:
         """Get state of a specific card.
 
         Args:
-            row: Row (0-4)
-            col: Column (0-5)
+            row: Row (0-3)
+            col: Column (0-3)
 
         Returns:
             Dict with flipped, matched, and color_idx (if flipped)
@@ -350,23 +348,22 @@ class SimulationClient:
 
     # Admin Methods (for instructors)
 
-    def admin_start_competition(
-        self,
-        scene: str,
-        password: str,
-        card_layout: Dict[str, Any] = None,
-    ) -> None:
+    def admin_start_competition(self, scene, password, card_layout=None,
+                                join_passwords=None):
         """Start a competition (instructor only).
 
         Args:
-            scene: Competition scene ("competition_2v2" or "competition_card_flip")
+            scene: Competition scene name
             password: Admin password
-            card_layout: Optional custom card layout for card_flip scene
+            card_layout: Optional custom card layout
+            join_passwords: Optional dict {team_id: join_password}. Teams omitted
+                            here can join without a password.
         """
         self._request("admin_start_competition", {
             "scene": scene,
             "password": password,
             "card_layout": card_layout,
+            "join_passwords": join_passwords,
         })
 
     def admin_stop_competition(self, password: str) -> None:
@@ -376,6 +373,17 @@ class SimulationClient:
             password: Admin password
         """
         self._request("admin_stop_competition", {"password": password})
+        
+    def admin_reset_board(self, password: str) -> None:
+        """Reset the board (instructor only): re-cover all cards and zero scores.
+
+        Keeps the same layout and does NOT tear down the competition -- use this
+        when you just want a clean board mid-session instead of restarting.
+
+        Args:
+            password: Admin password
+        """
+        self._request("admin_reset_board", {"password": password})
 
     def admin_get_status(self, password: str) -> Dict[str, Any]:
         """Get server status (instructor only).
@@ -387,52 +395,6 @@ class SimulationClient:
             Dict with 'sessions' count and 'competition_active' flag
         """
         return self._request("admin_get_status", {"password": password})
-
-    # Private helper methods
-
-    def _show_viewer_link(self) -> None:
-        """Display the live viewer link in Jupyter notebooks."""
-        if not self.token:
-            return
-
-        viewer_url = f"{self.stream_url}/view/{self.token}"
-
-        try:
-            from IPython.display import display, HTML
-            display(HTML(f"""
-            <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        padding: 20px; border-radius: 10px; color: white;
-                        margin: 10px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.3);'>
-                <h2 style='margin: 0 0 10px 0; font-size: 24px;'>
-                    ✨ Environment Created!
-                </h2>
-                <p style='margin: 5px 0; font-size: 16px; opacity: 0.95;'>
-                    Your robot simulation is ready to go!
-                </p>
-                <div style='background: rgba(255,255,255,0.15); padding: 15px;
-                            border-radius: 5px; margin-top: 15px;'>
-                    <p style='margin: 0 0 10px 0; font-weight: bold; font-size: 16px;'>
-                        📺 Watch Your Robot Live:
-                    </p>
-                    <a href='{viewer_url}' target='_blank'
-                       style='color: #ffeb3b; font-size: 18px; text-decoration: none;
-                              padding: 12px 24px; background: rgba(0,0,0,0.3);
-                              border-radius: 5px; display: inline-block;
-                              border: 2px solid #ffeb3b; font-weight: bold;
-                              transition: all 0.3s;'>
-                        🔗 Open Live View →
-                    </a>
-                    <p style='margin: 15px 0 0 0; font-size: 13px; opacity: 0.85;'>
-                        💡 <strong>Tip:</strong> Keep this tab open in a separate window
-                        while you code! You'll see your robot move in real-time.
-                    </p>
-                </div>
-            </div>
-            """))
-        except ImportError:
-            # Fallback for non-Jupyter environments
-            print(f"✓ Environment created!")
-            print(f"📺 View live at: {viewer_url}")
 
     def admin_list_card_images(self, password: str) -> List[str]:
         """List available card images (instructor only).
