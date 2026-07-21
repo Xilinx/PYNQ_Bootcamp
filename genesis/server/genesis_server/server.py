@@ -184,9 +184,10 @@ class GenesisRequestHandler(BaseHTTPRequestHandler):
 
         return {"token": token, "status": "ok"}
 
-    def _join_competition(self, params: Dict[str, Any]) -> Dict[str, Any]:
+    def _join_competition(self, params):
         team_id = params["team_id"]
-        token = self.competition_manager.join(team_id)
+        password = params.get("password")
+        token = self.competition_manager.join(team_id, password=password)
         return {"token": token, "status": "ok"}
 
     def _handle_competition_action(
@@ -229,6 +230,33 @@ class GenesisRequestHandler(BaseHTTPRequestHandler):
                 result["match_result"] = match_result
 
             return {**result, "status": "ok"}
+
+        if action == "flip_raw":
+            row = params["row"]
+            col = params["col"]
+            # Which arm to use (default: this team's robot). Caller can override.
+            rid = params.get("robot_id", robot_id)
+
+            # Make sure the arm we're about to use is NOT frozen, and freeze the other
+            # (the handler froze the team's robot / unfroze based on team above, but
+            # flip_raw may use a different arm, so re-assert here).
+            sim.unfreeze_robot(rid)
+            if len(sim.robots) > 1:
+                sim.freeze_robot(1 - rid)
+
+            # Move the arm and grab the cover -- but DO NOT record_flip (no scoring,
+            # no turn advance, no re-cover). The cover ends up in the discard pile
+            # and stays there.
+            result = sim.flip_card(row, col, robot_id=rid)
+
+            return {**result, "status": "ok"}
+
+        if action == "unflip_raw":
+            row = params["row"]
+            col = params["col"]
+            # Instant teleport-back -- no arm, no scoring, no turn logic.
+            covered = sim.cover_card(row, col)
+            return {"status": "ok", "covered": covered}      
 
         if action == "get_card_state":
             row = params["row"]
@@ -290,12 +318,23 @@ class GenesisRequestHandler(BaseHTTPRequestHandler):
             self.competition_manager.start(
                 params["scene"],
                 card_layout=params.get("card_layout"),
+                join_passwords=params.get("join_passwords"),
             )
             return {"status": "ok"}
 
         if action == "admin_stop_competition":
             self.competition_manager.stop()
             return {"status": "ok"}
+
+        if action == "admin_reset_board":
+            self.competition_manager.reset_board()
+            return {"status": "ok"}
+
+        if action == "admin_cover_card":
+            row = params["row"]
+            col = params["col"]
+            covered = self.competition_manager.cover_card(row, col)
+            return {"status": "ok", "covered": covered}
 
         if action == "admin_list_card_images":
             images = []

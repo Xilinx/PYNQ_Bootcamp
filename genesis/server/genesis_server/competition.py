@@ -23,11 +23,13 @@ class CompetitionManager:
         self._card_layout: Optional[Dict[str, Any]] = None
         # Card flip tracking
         self._flipped_this_turn: List[tuple] = []  # [(row, col, color_idx), ...]
+        self._join_passwords: Dict[str, str] = {}   # team_id -> required password
 
     def start(
         self,
         scene_name: str,
         card_layout: Optional[Dict[str, Any]] = None,
+        join_passwords: Optional[Dict[str, str]] = None,
     ) -> None:
         with self._lock:
             if self._active:
@@ -35,6 +37,7 @@ class CompetitionManager:
 
             self._scene_name = scene_name
             self._card_layout = card_layout
+            self._join_passwords = dict(join_passwords) if join_passwords else {}
 
             self._simulation = GenesisSimulation(scene_name, card_layout=card_layout)
             self._simulation.build()
@@ -85,7 +88,31 @@ class CompetitionManager:
                 self._card_layout = None
                 self._flipped_this_turn.clear()
 
-    def join(self, team_id: str) -> Optional[str]:
+    def reset_board(self) -> None:
+        """Reset the board without tearing down the competition.
+
+        Re-covers all cards and zeroes both teams' scores. Keeps the same layout.
+        The current turn is left as-is; see the note below to reset it to team_red.
+        """
+        with self._lock:
+            if not self._active or not self._simulation:
+                raise ValueError("No competition active")
+
+            # Physically re-cover the whole board.
+            self._simulation.reset_board()
+
+            # Clear per-turn flip buffer so a half-finished turn doesn't linger.
+            self._flipped_this_turn = []
+
+            # Zero scores (same layout kept).
+            for team_id in self._scores:
+                self._scores[team_id] = 0
+
+            # ---- OPTIONAL: also reset whose turn it is to team_red ----
+            # self._current_turn_idx = 0
+            # self._current_turn = "team_red"
+
+    def join(self, team_id, password=None):
         with self._lock:
             if not self._active:
                 raise ValueError("No competition active")
@@ -93,6 +120,12 @@ class CompetitionManager:
             if team_id in self._teams:
                 raise ValueError(f"Team {team_id} already joined")
 
+            # Password gate: only enforced if a password was set for this team.
+            required = self._join_passwords.get(team_id)
+            if required is not None and password != required:
+                raise ValueError("Invalid team password")
+
+            import uuid
             token = str(uuid.uuid4())
             self._teams[team_id] = token
             self._tokens[token] = team_id
@@ -123,6 +156,13 @@ class CompetitionManager:
         elif team_id == "team_blue":
             return 1
         return 0
+
+    def cover_card(self, row: int, col: int) -> bool:
+        """Admin force re-cover of a single card. Returns True if re-covered."""
+        with self._lock:
+            if not self._active or not self._simulation:
+                raise ValueError("No competition active")
+            return self._simulation.cover_card(row, col)
 
     def get_state(self) -> Dict[str, Any]:
         print(f"get_state()", flush=True)

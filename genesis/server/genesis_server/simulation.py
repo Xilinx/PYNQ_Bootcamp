@@ -795,6 +795,80 @@ class GenesisSimulation:
             self.step(30)
             self.unpin_cover(cover)
 
+    def cover_card(self, row: int, col: int) -> bool:
+        """Force the cover back onto a single card, regardless of its state.
+
+        Returns True if a card existed at (row, col) and was re-covered.
+        Teleports the existing cover entity back to its original pose (same
+        set_pos/pin mechanism as unflip_card) and clears flipped/matched.
+        """
+        import numpy as np
+        if self.card_grid is None:
+            return False
+        if row < 0 or row >= self.grid_rows or col < 0 or col >= self.grid_cols:
+            raise ValueError(f"({row},{col}) out of range for "
+                            f"{self.grid_rows}x{self.grid_cols} grid")
+
+        card = self.card_grid[row][col]
+        if card is None:
+            return False
+
+        # Clear logical state -- force face-down even if it was a matched pair.
+        card["flipped"] = False
+        card["matched"] = False
+
+        cover = card["cover"]
+        x, y, cover_z = card["pos"]  # original cover center, stored at build
+        cover.set_pos(np.array([x, y, cover_z]))
+        cover.set_quat(np.array([1.0, 0.0, 0.0, 0.0]))
+        try:
+            cover.zero_all_dofs_velocity()
+        except AttributeError:
+            pass
+
+        # Briefly pin so it settles cleanly onto the card top.
+        self.pin_cover(cover)
+        self.step(30)
+        self.unpin_cover(cover)
+        return True
+
+    def reset_board(self) -> None:
+        """Re-cover the ENTIRE board: teleport every cover back to its spot and
+        clear each card's flipped/matched flags. Instant, no arm motion.
+
+        Reuses the same set_pos/set_quat + brief-pin approach as unflip_card, but
+        applies it to every card regardless of flipped/matched state (a matched
+        pair's covers were discarded too, so they must come back on a full reset).
+        """
+        import numpy as np
+        if self.card_grid is None:
+            return
+
+        covers_to_settle = []
+        for row in self.card_grid:
+            for card in row:
+                if card is None:
+                    continue
+                cover = card["cover"]
+                x, y, cover_z = card["pos"]  # original cover center from build
+                cover.set_pos(np.array([x, y, cover_z]))
+                cover.set_quat(np.array([1.0, 0.0, 0.0, 0.0]))
+                try:
+                    cover.zero_all_dofs_velocity()
+                except AttributeError:
+                    pass
+                # Reset logical state so the game treats them as fresh face-down.
+                card["flipped"] = False
+                card["matched"] = False
+                # Pin so it can't drift while the sim settles.
+                self.pin_cover(cover)
+                covers_to_settle.append(cover)
+
+        # Let all covers settle onto their card tops at once, then release pins.
+        self.step(30)
+        for cover in covers_to_settle:
+            self.unpin_cover(cover)
+
     def get_card_state(self, row: int, col: int) -> Dict[str, Any]:
         """Get state of a specific card."""
         if self.card_grid is None:
