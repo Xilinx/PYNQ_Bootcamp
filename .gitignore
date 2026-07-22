@@ -1,3 +1,26 @@
 .ipynb_checkpoints/
 .ipynb_checkpoints/*
 sds_trace_data.dat
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Pytest
+.pytest_cache/
+
+# Debian packages
+*.deb
+
+# IDE
+.vscode/
+.idea/

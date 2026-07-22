@@ -1,0 +1,14 @@
+import setuptools
+
+setuptools.setup(
+        name="pynqp2p",
+        version="0.0.1",
+        author="Xilinx Inc.",
+        description="Client side functions for pynqp2p",
+        packages=setuptools.find_packages(),
+        install_requires=[
+            'requests',
+            'getmac',
+        ],
+        python_requires='>=3.6',
+)
