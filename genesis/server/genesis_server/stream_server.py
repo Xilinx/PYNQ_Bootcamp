@@ -538,8 +538,7 @@ def start_stream_server(port: int = 9003, simulations_dict: Dict = None):
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.ERROR)
 
-        print(f"  Stream Server: http://localhost:{port}")
-        print(f"{'='*55}\n")
+        print(f"Open live view at port {port}")
 
         app.run(
             host='0.0.0.0',

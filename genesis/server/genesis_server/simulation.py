@@ -6,7 +6,7 @@ from typing import List, Dict, Any, Optional
 
 import genesis as gs
 
-from .config import SCENES_DIR, BACKEND, SHOW_VIEWER
+from .config import SCENES_DIR, BACKEND, SHOW_VIEWER, STREAM_PORT
 
 BACKEND_MAP = {
     "cpu": gs.cpu,

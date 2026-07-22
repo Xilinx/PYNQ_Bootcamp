@@ -421,7 +421,7 @@ def main():
     all_ips = get_all_ips()
 
     show_viewer = os.environ.get('GENESIS_SHOW_VIEWER', 'true').lower() == 'true'
-    stream_port = int(os.environ.get('GENESIS_STREAM_PORT', '8080'))
+    stream_port = int(os.environ.get('GENESIS_STREAM_PORT', '9005'))
 
     print(f"\n{'='*55}")
     print(f"  Genesis Simulation Server")
