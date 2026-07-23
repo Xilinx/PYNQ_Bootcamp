@@ -2,9 +2,6 @@
 YOLOv3-specific helpers — pre-processing, anchor decoding, NMS, drawing, run().
 Generic utilities (colors, classes, DPU buffers, image listing) live in bootcamp_utils.
 """
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..'))
-
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
