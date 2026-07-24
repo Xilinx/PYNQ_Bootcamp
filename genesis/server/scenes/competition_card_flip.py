@@ -42,10 +42,10 @@ def setup(scene, card_layout=None):
     colored_thickness = 0.005   # 5mm colored card (bottom layer)
     cover_thickness = 0.04      # 40mm gray cover (same as working cube example)
     card_spacing = 0.10         # 10cm between card centers (tightened for reach)
-    grid_cols = 5
-    grid_rows = 6
-    grid_width = grid_cols * card_spacing   # 0.50m (X span between robots - smaller = easier reach)
-    grid_height = grid_rows * card_spacing  # 0.60m (Y span)
+    grid_cols = 6
+    grid_rows = 5
+    grid_width = grid_cols * card_spacing   # 0.60m (X span between robots - smaller = easier reach)
+    grid_height = grid_rows * card_spacing  # 0.50m (Y span)
 
     # Grid center position
     grid_center_x = 0.55  # Center of grid
@@ -66,11 +66,16 @@ def setup(scene, card_layout=None):
         ),
     )
 
-    # Red marker cube to identify team red robot
+    # Red team indicator: a flat colored bar laid on the floor along red's
+    # side of the grid. A thin ground strip reads clearly from the top-down
+    # camera, unlike the old upright cube which was tiny/occluded from above.
+    marker_bar_width = 0.08          # extent toward the robot (X)
+    marker_bar_thick = 0.012         # lies flush on the floor
+    marker_bar_z = marker_bar_thick / 2 + 0.002
     scene.add_entity(
         gs.morphs.Box(
-            size=(0.06, 0.06, 0.06),
-            pos=(robot_red_pos[0] - 0.20, robot_red_pos[1], 0.03),
+            size=(marker_bar_width, grid_height, marker_bar_thick),
+            pos=(grid_center_x - grid_width / 2 - 0.10, grid_center_y, marker_bar_z),
             fixed=True,
         ),
         surface=gs.surfaces.Plastic(color=(1.0, 0.0, 0.0, 1.0)),  # Red
@@ -87,11 +92,11 @@ def setup(scene, card_layout=None):
         ),
     )
 
-    # Blue marker cube to identify team blue robot
+    # Blue team indicator: matching flat floor bar on blue's side of the grid.
     scene.add_entity(
         gs.morphs.Box(
-            size=(0.06, 0.06, 0.06),
-            pos=(robot_blue_pos[0] + 0.20, robot_blue_pos[1], 0.03),
+            size=(marker_bar_width, grid_height, marker_bar_thick),
+            pos=(grid_center_x + grid_width / 2 + 0.10, grid_center_y, marker_bar_z),
             fixed=True,
         ),
         surface=gs.surfaces.Plastic(color=(0.0, 0.0, 1.0, 1.0)),  # Blue
@@ -195,7 +200,11 @@ def setup(scene, card_layout=None):
     for row in range(grid_rows):
         for col in range(grid_cols):
             x = grid_start_x + col * card_spacing
-            y = grid_start_y + row * card_spacing
+            # Row 0 should render at the TOP of the top-down camera view.
+            # camera_up=(0,1,0) makes +Y the image-up direction, and
+            # grid_start_y is the smallest Y (image-bottom), so invert the
+            # row index here to flip which physical row is "row 0".
+            y = grid_start_y + (grid_rows - 1 - row) * card_spacing
 
             card_idx = row * grid_cols + col
             color_idx = color_pairs[card_idx]
