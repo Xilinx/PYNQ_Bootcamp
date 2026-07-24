@@ -112,18 +112,24 @@ class CompetitionManager:
             # self._current_turn_idx = 0
             # self._current_turn = "team_red"
 
-    def join(self, team_id, password=None):
+    def join(self, team_id, password=None, rejoin=False):
         with self._lock:
             if not self._active:
                 raise ValueError("No competition active")
 
             if team_id in self._teams:
-                raise ValueError(f"Team {team_id} already joined")
-
-            # Password gate: only enforced if a password was set for this team.
-            required = self._join_passwords.get(team_id)
-            if required is not None and password != required:
-                raise ValueError("Invalid team password")
+                if not rejoin:
+                    raise ValueError(f"Team {team_id} already joined")
+                # Reclaim the seat: invalidate the old token and issue a new one
+                # so a board that lost its token (e.g. Jupyter kernel restart) can
+                # rejoin the SAME team mid-game without resetting the match.
+                old_token = self._teams.pop(team_id)
+                self._tokens.pop(old_token, None)
+            else:
+                # Password gate only enforced on first join of a team.
+                required = self._join_passwords.get(team_id)
+                if required is not None and password != required:
+                    raise ValueError("Invalid team password")
 
             import uuid
             token = str(uuid.uuid4())
