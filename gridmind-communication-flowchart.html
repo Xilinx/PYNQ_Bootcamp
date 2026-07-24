@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>PYNQ Bootcamp</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <style>
+    .menu-index {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+    .flow-box { border: 1px solid #888; border-radius: 6px; padding: 10px 14px; margin: 6px 0; background: #f7f7f7; }
+    .flow-box.recv { border-color: #2a6ebb; background: #eaf2fb; }
+    .flow-box.send { border-color: #2e8b57; background: #eafaf0; }
+    .flow-label { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; text-align: center; margin: 14px 0 6px; }
+    .flow-arrow { text-align: center; color: #888; }
+    .flow-columns { display: flex; gap: 24px; }
+    .flow-column { flex: 1; }
+    .flow-column h4 { text-align: center; }
+    code.api { background: #222; color: #eee; padding: 1px 6px; border-radius: 3px; }
+    code.msg { background: #ddd; padding: 1px 6px; border-radius: 3px; }
+    .layer-box { border: 1px solid #888; border-radius: 6px; padding: 10px 14px; margin: 8px 0; }
+    .layer-box.required { border-color: #b02a2a; background: #fbeaea; }
+    .layer-box.optional { border-color: #888; background: #f2f2f2; }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            <h2>How to Build Your Own GridMind Client</h2>
+            <hr>
+            <p class="text">
+              <strong>Every team builds their own client &mdash; there's no shared default.</strong> The
+              <code>PYNQ_302-Referee_Match_Client</code> notebook is a working reference implementation,
+              not something everyone just runs as-is: start from it, extend it, or ignore it entirely and
+              write your own from scratch in whatever language you like. This page is the part every
+              team needs, regardless of approach &mdash; not an edge case for teams doing something unusual.
+            </p>
+            <p class="text">
+              There are three layers to a working client, in order of how load-bearing they are:
+            </p>
+            <div class="layer-box required">
+              <strong>1. Peer-to-peer transport &mdash; required.</strong> Your board needs some way to
+              send and receive messages to the referee. The reference client uses the
+              <code class="api">pynqp2p</code> library's four functions: <code class="api">register(ip, key)</code>
+              (once, at startup), <code class="api">get_id()</code> (your board's MAC address, used as your
+              team's identity), <code class="api">send(id, message)</code> (POST a JSON string to a
+              recipient), and <code class="api">receive_all()</code> (GET every message currently queued
+              for you, as a list of raw JSON strings). Whatever language or library you use instead,
+              you're talking to the same relay-server HTTP endpoints (<code>/send</code>, <code>/receive_all</code>)
+              one way or another &mdash; this layer is mandatory for any client to function at all.
+            </div>
+            <div class="layer-box required">
+              <strong>2. The GridMind wire protocol &mdash; required.</strong> The JSON message types in
+              the flowchart below are what the referee actually sends and expects &mdash; this is the real
+              contract, independent of <code>pynqp2p</code> or the reference notebook. Any client, in any
+              language, must produce and consume these exact message shapes to play a match.
+            </div>
+            <div class="layer-box optional">
+              <strong>3. Genesis simulated-arm integration &mdash; optional, cosmetic.</strong> If wired
+              up, <code class="api">pynqsim.SimulationClient</code>'s <code class="api">join_competition(team_id)</code> /
+              <code class="api">flip_card(row, col)</code> / <code class="api">end_turn()</code> mirror
+              your flips onto a simulated robot arm for spectators. Purely visual &mdash; it never affects
+              scoring and is safe to skip entirely.
+            </div>
+            <p class="text">
+              The flow below covers layer 2, the part that's actually mandatory. Function names shown
+              (<code class="api">flip_both</code>, <code class="api">report_result</code>, <code class="api">request_hint</code>)
+              are the reference notebook's own helper methods around <code class="api">pynqp2p.send()</code>
+              &mdash; if you're writing your own client, send the same wire messages however your code is
+              structured; the names don't have to match.
+            </p>
+
+            <div class="flow-label">Pre-Game</div>
+            <div class="flow-box recv">Referee &rarr; both teams: <code class="msg">pregame_riddle</code>
+              &mdash; no response expected; solving it is entirely up to your team (the reference
+              notebook auto-solves it with an LLM, but that's optional)</div>
+            <div class="flow-arrow">&darr;</div>
+            <div class="flow-box recv">Referee &rarr; both teams: <code class="msg">free_hint_fragment</code> &times; N
+              &mdash; assemble these yourself as they arrive; complete once every <code>index</code> from
+              <code>0</code> to <code>total - 1</code> has been seen</div>
+            <div class="flow-arrow">&darr;</div>
+            <div class="flow-box recv">Referee &rarr; both teams: <code class="msg">game_start</code>
+              &mdash; requires your client to have already sent a <code class="msg">join</code> message to
+              the master's lobby (via <code class="api">pynqp2p.send()</code>) before this arrives, so the
+              operator can confirm your board</div>
+
+            <div class="flow-label">Active Team's Turn vs. Waiting Team</div>
+            <div class="flow-columns">
+              <div class="flow-column">
+                <h4>Active Team</h4>
+                <div class="flow-box recv">Receive <code class="msg">your_turn</code></div>
+                <div class="flow-arrow">&darr;</div>
+                <div class="flow-box send">Send <code class="msg">flip_both</code> (team, pos1, pos2)
+                  &mdash; the two grid positions your vision system chose to flip</div>
+                <div class="flow-arrow">&darr;</div>
+                <div class="flow-box recv">Receive <code class="msg">card_revealed</code> &times; 2</div>
+                <div class="flow-arrow">&darr;</div>
+                <div class="flow-box send">(optional) Send <code class="msg">hint_request</code> (team, object)
+                  &mdash; resolves immediately, but the request takes time off your own turn clock</div>
+                <div class="flow-arrow">&darr;</div>
+                <div class="flow-box send">Send <code class="msg">report_result</code> (team, pos1, pos2,
+                  cls1, cls2, claim) &mdash; your model's classification of both cards and whether you're
+                  claiming a match</div>
+                <div class="flow-arrow">&darr;</div>
+                <div class="flow-box recv">Receive <code class="msg">match</code> (streak continues,
+                  back to top) or <code class="msg">no_match</code> (turn ends)</div>
+                <div class="flow-arrow">&darr;</div>
+                <div class="flow-box recv">Receive <code class="msg">your_turn</code> again (streak) or
+                  <code class="msg">wait</code> (turn passed)</div>
+              </div>
+              <div class="flow-column">
+                <h4>Waiting Team</h4>
+                <div class="flow-box recv">Receive <code class="msg">wait</code></div>
+                <div class="flow-arrow">&darr;</div>
+                <div class="flow-box recv">Passively receive the same <code class="msg">card_revealed</code>
+                  &times; 2 from the active team's flips &mdash; your client should log these to its own
+                  memory even though it's not your turn</div>
+                <div class="flow-arrow">&darr;</div>
+                <div class="flow-box send">(recommended) Send <code class="msg">hint_request</code> now
+                  &mdash; queued server-side, resolves via
+                  <code class="msg">hint_response</code>/<code class="msg">hint_rejected</code> the instant
+                  your turn starts, before your clock begins</div>
+                <div class="flow-arrow">&darr;</div>
+                <div class="flow-box recv">Receive <code class="msg">your_turn</code> when the active
+                  team's turn ends</div>
+              </div>
+            </div>
+
+            <div class="flow-label">End of Match</div>
+            <div class="flow-box recv">Referee &rarr; both teams: <code class="msg">game_over</code>
+              &mdash; final scores, no further messages expected</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container"></div>
+</body>
+
+</html>
