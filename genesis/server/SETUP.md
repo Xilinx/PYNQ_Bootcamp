@@ -148,7 +148,7 @@ export GENESIS_STREAM_PORT=8080
 export GENESIS_BACKEND=amdgpu
 
 # Show Genesis desktop viewer (set to false for headless servers)
-export GENESIS_SHOW_VIEWER=false
+export GENESIS_SHOW_VIEWER=true
 
 # Admin password for administrative actions
 export GENESIS_ADMIN_PASSWORD=bootcamp2024
