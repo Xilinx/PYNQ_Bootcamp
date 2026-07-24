@@ -187,7 +187,8 @@ class GenesisRequestHandler(BaseHTTPRequestHandler):
     def _join_competition(self, params):
         team_id = params["team_id"]
         password = params.get("password")
-        token = self.competition_manager.join(team_id, password=password)
+        rejoin = params.get("rejoin", False)
+        token = self.competition_manager.join(team_id, password=password, rejoin=rejoin)
         return {"token": token, "status": "ok"}
 
     def _handle_competition_action(
@@ -320,10 +321,19 @@ class GenesisRequestHandler(BaseHTTPRequestHandler):
                 card_layout=params.get("card_layout"),
                 join_passwords=params.get("join_passwords"),
             )
+            # Register the competition simulation in the streamed `simulations`
+            # dict so the live web viewer (stream_server) can find it. The
+            # competition sim otherwise lives only inside CompetitionManager and
+            # is never inserted here, so the viewer would show "No active sessions".
+            sim = self.competition_manager.get_simulation()
+            if sim is not None:
+                self.simulations["competition"] = sim
             return {"status": "ok"}
 
         if action == "admin_stop_competition":
             self.competition_manager.stop()
+            # Remove the competition sim from the streamed dict on stop.
+            self.simulations.pop("competition", None)
             return {"status": "ok"}
 
         if action == "admin_reset_board":
