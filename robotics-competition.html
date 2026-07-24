@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>PYNQ Bootcamp</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <style>
+    .menu-index {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            <h2>Robotics Competition Overview</h2>
+            <hr>
+            <h3>This Year's Theme: Physical AI</h3>
+            <p class="text">
+              Most AI you've used lives inside a screen &mdash; a chatbot, a game, a recommendation.
+              <strong>Physical AI is different: it uses a camera to SEE the real world, code to THINK
+              about what it sees, and then actually DOES something about it.</strong> No screen in
+              between. GridMind is your team's own Physical AI project: your KRIA board's camera is
+              its eyes, your code is its brain, and the moves it reports back to the referee are its
+              hands &mdash; the referee is the only one who actually touches the real, physical cards.
+            </p>
+            <h3>What is the Robotics Competition?</h3>
+            <p class="text">
+              This year's bootcamp finale replaces the hackathon with <strong>GridMind</strong>, a
+              head-to-head robotics competition. Two teams share a grid of face-down cards, each
+              hiding an object that appears on exactly two cards &mdash; a classic memory-match game,
+              except each team's KRIA board plays it with its own camera and its own vision model.
+              There is no shared "referee vision system" watching the grid: when a card is revealed,
+              both teams get to look at it and remember what they saw, but each team's board decides
+              for itself, on its own turn, whether two cards match.
+            </p>
+            <h3>Bootcamp Robotics Competition Details</h3>
+            <p class="text">
+              Teams spend the bootcamp building an autonomous player for GridMind: eyes (a vision
+              pipeline that recognizes objects on the grid), a brain (a decision loop that picks
+              pairs, claims matches, and manages hints), all running on the team's own KRIA board,
+              with <strong>no human input once the match clock starts</strong>. On competition day,
+              every match is played and scored automatically by the GridMind referee software;
+              there's no judging panel &mdash; the scoreboard decides the winner.
+            </p>
+            <p>In the Robotics Competition, participants will learn:</p>
+            <ul>
+              <li><strong>Physical AI:</strong> Connect a camera, a model, and a decision loop into
+                one system that sees, thinks, and acts in the real world &mdash; not just on a screen.</li>
+              <li><strong>Computer Vision:</strong> Build and tune a vision pipeline that has to work
+                reliably under real competition conditions, not just a demo.</li>
+              <li><strong>Autonomous Decision-Making:</strong> Design a turn-taking strategy &mdash;
+                when to claim a match, when to decline, when to spend a hint &mdash; with no
+                human in the loop.</li>
+              <li><strong>Networked Protocols:</strong> Talk to a live referee over the wire
+                protocol, handling turns, timeouts, and scoring updates in real time.</li>
+              <li><strong>Collaborative Learning:</strong> Engage in teamwork to apply new skills
+                effectively under a real deadline.</li>
+              <li><strong>Competitive Strategy:</strong> Every outcome is scored &mdash; a wrong
+                guess costs points, so knowing when not to claim a match matters as much as
+                recognizing one.</li>
+            </ul>
+
+            <h2><a href="schedule.html">Robotics Competition / Bootcamp Schedule</a></h2>
+            <hr>
+
+            <h2>How the Competition Works</h2>
+            <p class="text">
+              <ul>
+                <li>Teams are split into <strong>two pools</strong>. Within a pool, every team plays
+                  every other team once (round robin).</li>
+                <li>The team with the best record in each pool advances to a single
+                  <strong>Grand Final</strong> match.</li>
+                <li>There is no elimination round &mdash; a bad match doesn't knock you out of your
+                  pool.</li>
+                <li>Tiebreakers within a pool: most wins, then most total pairs matched.</li>
+              </ul>
+            </p>
+
+            <h2>How Scoring Works</h2>
+            <p class="text">
+              Points only depend on speed when you get it right. Wrong guesses, correct passes, and
+              timeouts always give the same penalty or zero &mdash; it doesn't matter how fast you are.
+              <ul>
+                <li><strong>Correct match:</strong> a streak bonus (how many correct matches in a
+                  row this turn) plus a speed bonus for reporting quickly.</li>
+                <li><strong>Wrong match claim:</strong> a flat penalty, always &mdash; your turn ends
+                  immediately.</li>
+                <li><strong>Correct decline (genuinely not a pair):</strong> zero, always &mdash;
+                  no bonus, no penalty.</li>
+                <li><strong>Timeout (no action within the turn clock):</strong> a flat penalty,
+                  always.</li>
+              </ul>
+              The exact numbers are tunable per event and will be confirmed closer to competition
+              day &mdash; the mechanism (speed only ever rewards being right) stays the same either
+              way.
+            </p>
+
+            <h2>Hints</h2>
+            <p class="text">
+              <ul>
+                <li><strong>Paid hints</strong> &mdash; request a hint for a specific object
+                  mid-match. It costs a point, deducted immediately, capped at a small number of
+                  attempts per match, and only available while your score is positive.</li>
+                <li><strong>Free hints</strong> &mdash; one shared, non-competitive hint per match,
+                  delivered before the match starts, available to both teams equally.</li>
+              </ul>
+            </p>
+
+            <p class="text">
+              Every team builds their own player for this competition &mdash; see
+              <a href="gridmind-communication-flowchart.html">How to Build Your Own GridMind Client</a>
+              for the exact wire messages and required integration points behind every step above.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container"></div>
+</body>
+
+</html>
