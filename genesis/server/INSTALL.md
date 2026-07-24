@@ -33,7 +33,10 @@ python3 -m venv venv
 source venv/bin/activate
 
 # Install PyTorch with ROCm support (adjust ROCm version as needed)
-pip install torch --index-url https://download.pytorch.org/whl/rocm6.0
+pip3 uninstall torch torchvision torchaudio -y
+pip3 install torch torchvision --index-url https://pytorch.org
+pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm7.2
+
 
 # Install Genesis and dependencies
 pip install -e .
