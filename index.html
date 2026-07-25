@@ -10,6 +10,7 @@
   <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/amd-theme.css" media="screen" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
@@ -29,36 +30,45 @@
   <div class="menu-container"></div>
   <div class="content-container">
     <!-------------------------------------------------------------------------------------------->
-
-    <!--Background --> 
-    <div class="banner" style="background: url('img/kv260.png') no-repeat center; background-size: 50%; height: 300px;"></div>
-    <div class="banner">
-      <div class="banner-table flex-row-center">
-        <div class="links-container">
-          <hr>
-          <hr>
-          <hr>
-          <!-- Text links removed -->
+    <div class="hero">
+      <div class="hero-inner flex-row" style="align-items: center; flex-wrap: wrap;">
+        <div class="flex-item-stretch" style="min-width: 280px;">
+          <span class="hero-eyebrow">This Year's Theme: Physical AI</span>
+          <h1>PYNQ Bootcamp 2026</h1>
+          <p>
+            AI that sees the real world through a camera, thinks with code, and acts on it
+            directly &mdash; no screen in between. Join us <strong>July 27&ndash;30</strong>,
+            hosted by the St. Vrain Innovation Center at Trail Ridge Middle School, culminating
+            in the GridMind Robotics Competition Showcase on the final afternoon.
+          </p>
+          <p style="margin-top: 20px;">
+            <a class="btn-amd" href="robotics-competition.html">See the Robotics Competition</a>
+          </p>
+        </div>
+        <div class="flex-item" style="max-width: 320px; text-align: center;">
+          <img src="img/kv260.png" alt="AMD KRIA KV260 board" style="max-width: 100%;">
         </div>
       </div>
     </div>
-
     <!--End Header-->
     <!-------------------------------------------------------------------------------------------->
     <div class="content">
       <div class="content-table flex-column">
+        <div class="feature-grid">
+          <div class="feature-tile">
+            <strong>July 27&ndash;30</strong>
+            Four days at Trail Ridge Middle School, hosted by the St. Vrain Innovation Center.
+          </div>
+          <div class="feature-tile">
+            <strong>Physical AI</strong>
+            Camera sees, code decides, a real action follows &mdash; on your own KRIA board.
+          </div>
+          <div class="feature-tile">
+            <strong>GridMind</strong>
+            This year's capstone: a two-team robotics card-matching competition, refereed live.
+          </div>
+        </div>
         <!---------------------UPDATES----------------------------------------------->
-        <h2>PYNQ Bootcamp 2026</h2>
-        <hr>
-        <p class="text">
-          Welcome to PYNQ Bootcamp 2026! This year's theme is <strong>Physical AI</strong> &mdash;
-          AI that sees the real world through a camera, thinks with code, and acts on it directly,
-          no screen in between. Join us <strong>July 27&ndash;30</strong>, hosted by the St. Vrain
-          Innovation Center at Trail Ridge Middle School, culminating in the GridMind
-          <a href="robotics-competition.html">Robotics Competition</a> Showcase on the final
-          afternoon.
-        </p>
-        <!-------------------------------------------------------------------------------------------->
           <h2 id="What-is=KRIA?">What is the KRIA SOM Board?</h2>
             <hr>
             <p class="text">

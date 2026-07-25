@@ -10,6 +10,7 @@
   <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/amd-theme.css" media="screen" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
@@ -24,7 +25,12 @@
     }
 
     table, th, td {
-    border: 1px solid black;
+    border: 1px solid #e5e5e5;
+    border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px 12px;
+      text-align: left;
     }
   </style>
 </head>
@@ -32,49 +38,55 @@
 <body>
   <div class="menu-container"></div>
   <div class="content-container">
+    <div class="hero">
+      <div class="hero-inner">
+        <span class="hero-eyebrow">GridMind Robotics Competition</span>
+        <h1>Teams</h1>
+        <p>Two pools of three, round robin, then a Grand Final between the pool winners.</p>
+      </div>
+    </div>
     <div class="content">
       <div class="content-table flex-column">
         <div class="flex-row">
           <div class="flex-item flex-column">
-        <!-------------------------------------------------------------------------------------------->
-        <h2>Robotics Competition Teams</h2>
-        <hr>
         <p class="text">
-          Teams are split into two pools of three for round-robin play before the top team from
-          each pool meets in the Grand Final &mdash; see
-          <a href="robotics-competition.html">Robotics Competition Overview</a> for the full format.
           Team formation happens Tuesday morning of camp week; rosters below will be filled in
-          right after, once teams are locked in.
+          right after, once teams are locked in &mdash; see
+          <a href="robotics-competition.html">Robotics Competition Overview</a> for the full format.
         </p>
-        <h3>Pool 1</h3>
-        <table style="width:100%">
-            <tr>
-              <th>Team Name</th>
-              <th>Members</th>
-              <th>Intern</th>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-          </table>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-label">Pool 1</span>
+            <table style="width:100%">
+                <tr>
+                  <th>Team Name</th>
+                  <th>Members</th>
+                  <th>Intern</th>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+          </div>
 
-        <h3>Pool 2</h3>
-        <table style="width:100%">
-            <tr>
-              <th>Team Name</th>
-              <th>Members</th>
-              <th>Intern</th>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-          </table>
-
-        <!-------------------------------------------------------------------------------------------->
+          <div class="card">
+            <span class="card-label">Pool 2</span>
+            <table style="width:100%">
+                <tr>
+                  <th>Team Name</th>
+                  <th>Members</th>
+                  <th>Intern</th>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+          </div>
+        </div>
           </div>
         </div>
       </div>

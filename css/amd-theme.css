@@ -1,0 +1,210 @@
+/*************************************************************************
+ * AMD brand theme layer for the "front-door" pages (index, bootcamp,
+ * robotics-competition, schedule, teams, Trainings, faq, getting-started).
+ *
+ * Loaded AFTER frame.css/controls.css/custom.css so it can override them
+ * without editing the shared framework those files provide to every page
+ * on the site (including the curriculum/notebook-embed pages this theme
+ * intentionally does not touch). Pulls the AMD red already used for the
+ * nav logo (rgb(215, 17, 17)) out to every other accent that was
+ * previously a generic blue, and adds a few reusable components
+ * (hero banners, card grids) built from the existing flex-row/flex-column
+ * primitives in frame.css -- no new layout system, just new looks.
+ *************************************************************************/
+
+:root {
+  --amd-red: #d71111;
+  --amd-red-dark: #a10d0d;
+  --amd-black: #1d1a1a;
+  --amd-gray: #666666;
+  --amd-gray-light: #f4f4f4;
+}
+
+/* ---- Sitewide accent: red instead of the generic blue ---- */
+.content p a,
+.content ul a,
+.content ol a,
+.content li a {
+  color: var(--amd-red);
+}
+
+.content p a:hover,
+.content ul a:hover,
+.content ol a:hover,
+.content li a:hover {
+  color: var(--amd-red-dark);
+}
+
+/* h1 had no styling anywhere in frame.css -- schedule.html's day headers
+   were rendering as unstyled browser-default h1, visibly inconsistent
+   with the rest of the site's Open Sans h2/h3. */
+h1 {
+  font-size: 28px;
+  color: var(--amd-black);
+  margin: 40px 0 0 0;
+  padding: 0;
+  font-weight: 700;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  border-left: 4px solid var(--amd-red);
+  padding-left: 12px;
+}
+
+.content-table > .flex-row:first-child h1:first-child {
+  margin-top: 0;
+}
+
+/* ---- Hero banner: a bigger, more deliberate version of .banner for
+   page-top intros. Reuses .banner's existing dark background/flex
+   structure -- just adds a themed accent stripe and larger type. ---- */
+.hero {
+  position: relative;
+  background-color: var(--amd-black);
+  background-image: linear-gradient(135deg, #1d1a1a 0%, #1d1a1a 55%, #3a1414 100%);
+  border-bottom: 4px solid var(--amd-red);
+  padding: 56px 30px;
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  color: var(--amd-red);
+  font-family: 'Open Sans Condensed', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  color: #ffffff;
+  border-left: none;
+  padding-left: 0;
+  font-size: 40px;
+  margin: 0 0 12px 0;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+  max-width: 640px;
+  margin: 0;
+}
+
+.hero a {
+  color: var(--amd-red);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.hero a:hover {
+  color: #ff4d4d;
+  text-decoration: underline;
+}
+
+/* ---- Card grid: for schedule days, team pools, feature highlights ---- */
+.card-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.card {
+  flex: 1 1 260px;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-top: 3px solid var(--amd-red);
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.card h2,
+.card h3 {
+  margin-top: 0;
+}
+
+.card .card-label {
+  display: inline-block;
+  background-color: var(--amd-gray-light);
+  color: var(--amd-gray);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+
+.card ul {
+  padding-left: 18px;
+  margin: 10px 0 0 0;
+}
+
+.card li {
+  margin-bottom: 6px;
+}
+
+/* ---- Feature grid: icon-less highlight tiles (index.html, robotics-competition.html) ---- */
+.feature-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0 24px 0;
+}
+
+.feature-tile {
+  flex: 1 1 200px;
+  background-color: var(--amd-gray-light);
+  border-radius: 4px;
+  padding: 16px 18px;
+}
+
+.feature-tile strong {
+  color: var(--amd-red);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ---- Buttons (e.g. hero CTA links styled as buttons) ---- */
+.btn-amd {
+  display: inline-block;
+  background-color: var(--amd-red);
+  color: #ffffff !important;
+  font-weight: 700;
+  text-decoration: none !important;
+  padding: 10px 22px;
+  border-radius: 3px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.btn-amd:hover {
+  background-color: var(--amd-red-dark);
+  color: #ffffff !important;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 36px 20px;
+  }
+  .hero h1 {
+    font-size: 30px;
+  }
+  .card {
+    flex: 1 1 100%;
+  }
+}
