@@ -197,6 +197,112 @@ h1 {
   color: #ffffff !important;
 }
 
+/* ---- "How GridMind works" flow diagram: pure CSS + Font Awesome icons,
+   no image assets (avoids introducing any unlicensed stock imagery). ---- */
+.gm-flow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  margin: 24px 0;
+}
+
+.gm-flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 130px;
+}
+
+.gm-flow-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--amd-red);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 8px rgba(215, 17, 17, 0.35);
+}
+
+.gm-flow-step strong {
+  display: block;
+  font-size: 14px;
+  color: var(--amd-black);
+  margin-bottom: 2px;
+}
+
+.gm-flow-step span {
+  font-size: 12px;
+  color: var(--amd-gray);
+}
+
+.gm-flow-arrow {
+  align-self: center;
+  color: #cccccc;
+  font-size: 20px;
+  margin-top: 22px;
+}
+
+@media (max-width: 700px) {
+  .gm-flow-arrow {
+    transform: rotate(90deg);
+    margin: 4px 0;
+  }
+}
+
+/* ---- Memory-card visual: an illustrative mini grid, not the real card
+   set -- entirely CSS-drawn card backs/fronts + Font Awesome icons, so
+   there's no photographic asset (and no licensing question) involved. ---- */
+.gm-card-demo {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  max-width: 480px;
+  margin: 24px auto;
+}
+
+.gm-card {
+  aspect-ratio: 3 / 4;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  position: relative;
+}
+
+.gm-card-back {
+  background: repeating-linear-gradient(135deg, var(--amd-black), var(--amd-black) 8px, #2a2626 8px, #2a2626 16px);
+  border: 2px solid var(--amd-red);
+  color: var(--amd-red);
+}
+
+.gm-card-front {
+  background-color: #ffffff;
+  border: 2px solid #e5e5e5;
+  color: var(--amd-black);
+}
+
+.gm-card-matched {
+  border-color: #2e9e4f;
+  color: #2e9e4f;
+  box-shadow: 0 0 0 2px rgba(46, 158, 79, 0.25);
+}
+
+.gm-card-caption {
+  text-align: center;
+  font-size: 13px;
+  color: var(--amd-gray);
+  margin-top: 8px;
+}
+
 @media (max-width: 700px) {
   .hero {
     padding: 36px 20px;
