@@ -38,7 +38,8 @@
               <li><a href="#xilinxdev">Xilinx Development and Demonstration Set Up Errors</a></li>
               <li><a href="#jupyter">Accessing the Jupyter Notebooks</a></li>
               <li><a href="#networksetup">Network Setup Errors/Issues</a></li>
-              <li><a href="#troubleshooting">Network Setup Errors/Issues</a></li>
+              <li><a href="#troubleshooting">Static IP &amp; UART Troubleshooting</a></li>
+              <li><a href="#gridmind">GridMind Robotics Competition</a></li>
             </ul>
 
             <h2 id="xilinxdev">Xilinx Development and Demonstration Set Up Errors</h2>
@@ -187,6 +188,24 @@
                   </ol>
                   </details>
 
+              <h2 id="gridmind">GridMind Robotics Competition</h2>
+              <hr>
+              <details>
+                <summary>My board isn't receiving any messages from the referee</summary>
+                <p>Check that your <code>BROKER_KEY</code> in your notebook matches the exact key given to you at the event, and that your board's MAC address is registered with the operator. Watching the broker's own terminal (visible to staff) shows every message that actually arrives.</p>
+              </details>
+              <details>
+                <summary>Can I request a hint mid-match?</summary>
+                <p>Paid hints, yes &mdash; capped at 2 per match, &minus;1 point each, and only while your score is positive. The free hint is only available during the ~60-second pre-game window before the match clock starts; it can't be requested again once play begins.</p>
+              </details>
+              <details>
+                <summary>What happens if my board crashes mid-match?</summary>
+                <p>Flag it to the operator right away &mdash; they can pause the match with zero scoring side effect (paused time never counts against your clock), giving you time to restart your board and reconnect before resuming.</p>
+              </details>
+              <details>
+                <summary>Where do I find the exact wire protocol my client needs to speak?</summary>
+                <p>See <a href="gridmind-communication-flowchart.html">How to Build Your Own GridMind Client</a> for every message type, and the <a href="robotics-competition.html">Robotics Competition Overview</a> for the rules and scoring behind them.</p>
+              </details>
 
           </div>
         </div>

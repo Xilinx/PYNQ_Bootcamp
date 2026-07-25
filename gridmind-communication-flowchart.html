@@ -108,7 +108,9 @@
                 <div class="flow-box recv">Receive <code class="msg">your_turn</code></div>
                 <div class="flow-arrow">&darr;</div>
                 <div class="flow-box send">Send <code class="msg">flip_both</code> (team, pos1, pos2)
-                  &mdash; the two grid positions your vision system chose to flip</div>
+                  &mdash; the two grid positions your vision system chose to flip. Valid only as the
+                  first action of a turn &mdash; sending it after you've already flipped once this
+                  turn is a protocol error.</div>
                 <div class="flow-arrow">&darr;</div>
                 <div class="flow-box recv">Receive <code class="msg">card_revealed</code> &times; 2</div>
                 <div class="flow-arrow">&darr;</div>
