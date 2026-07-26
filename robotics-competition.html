@@ -2,16 +2,19 @@
 <html>
 
 <head>
-  <title>PYNQ Bootcamp</title>
-  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title>GridMind Robotics Competition - PYNQ Bootcamp 2026</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GridMind: a head-to-head Physical AI robotics card-matching competition, the capstone of PYNQ Bootcamp 2026.">
   <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/amd-theme.css" media="screen" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/footer.js"></script>
   <style>
@@ -26,22 +29,72 @@
 <body>
   <div class="menu-container"></div>
   <div class="content-container">
+    <div class="hero">
+      <div class="hero-inner">
+        <span class="hero-eyebrow">This Year's Theme: Physical AI</span>
+        <h1>GridMind Robotics Competition</h1>
+        <p>
+          Most AI you've used lives inside a screen &mdash; a chatbot, a game, a recommendation.
+          Physical AI is different: a camera SEEs the real world, code THINKs about what it sees,
+          and then it actually DOES something about it. GridMind is your team's own Physical AI
+          project &mdash; your KRIA board's camera is its eyes, your code is its brain, and the
+          moves it reports back to the referee are its hands.
+        </p>
+        <p style="margin-top: 20px;">
+          <a class="btn-amd" href="schedule.html">See the Full Schedule</a>
+        </p>
+      </div>
+    </div>
     <div class="content">
       <div class="content-table flex-column">
         <div class="flex-row">
           <div class="flex-item flex-column">
-            <h2>Robotics Competition Overview</h2>
+
+            <h2>See, Think, Act</h2>
             <hr>
-            <h3>This Year's Theme: Physical AI</h3>
-            <p class="text">
-              Most AI you've used lives inside a screen &mdash; a chatbot, a game, a recommendation.
-              <strong>Physical AI is different: it uses a camera to SEE the real world, code to THINK
-              about what it sees, and then actually DOES something about it.</strong> No screen in
-              between. GridMind is your team's own Physical AI project: your KRIA board's camera is
-              its eyes, your code is its brain, and the moves it reports back to the referee are its
-              hands &mdash; the referee is the only one who actually touches the real, physical cards.
-            </p>
-            <h3>What is the Robotics Competition?</h3>
+            <div class="gm-flow">
+              <div class="gm-flow-step">
+                <div class="gm-flow-icon"><i class="fas fa-camera"></i></div>
+                <strong>See</strong>
+                <span>Your KRIA board's camera scans the grid</span>
+              </div>
+              <div class="gm-flow-arrow"><i class="fas fa-chevron-right"></i></div>
+              <div class="gm-flow-step">
+                <div class="gm-flow-icon"><i class="fas fa-microchip"></i></div>
+                <strong>Think</strong>
+                <span>Your vision model identifies each object</span>
+              </div>
+              <div class="gm-flow-arrow"><i class="fas fa-chevron-right"></i></div>
+              <div class="gm-flow-step">
+                <div class="gm-flow-icon"><i class="fas fa-bolt"></i></div>
+                <strong>Decide</strong>
+                <span>Your code claims a match, declines, or asks for a hint</span>
+              </div>
+              <div class="gm-flow-arrow"><i class="fas fa-chevron-right"></i></div>
+              <div class="gm-flow-step">
+                <div class="gm-flow-icon"><i class="fas fa-robot"></i></div>
+                <strong>Act</strong>
+                <span>The referee flips the physical cards and reports the result</span>
+              </div>
+            </div>
+
+            <div class="gm-card-demo">
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-matched gm-card-front"><i class="fas fa-bicycle"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-front"><i class="fas fa-car"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-matched gm-card-front"><i class="fas fa-bicycle"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+            </div>
+            <p class="gm-card-caption">A matched pair, mid-game &mdash; most of the grid stays face-down until a team's board chooses to reveal it.</p>
+
+            <h2>What is the Robotics Competition?</h2>
             <p class="text">
               This year's bootcamp finale replaces the hackathon with <strong>GridMind</strong>, a
               head-to-head robotics competition. Two teams share a grid of face-down cards, each
@@ -78,51 +131,41 @@
                 recognizing one.</li>
             </ul>
 
-            <h2><a href="schedule.html">Robotics Competition / Bootcamp Schedule</a></h2>
-            <hr>
-
-            <h2>How the Competition Works</h2>
-            <p class="text">
-              <ul>
-                <li>Teams are split into <strong>two pools</strong>. Within a pool, every team plays
-                  every other team once (round robin).</li>
-                <li>The team with the best record in each pool advances to a single
-                  <strong>Grand Final</strong> match.</li>
-                <li>There is no elimination round &mdash; a bad match doesn't knock you out of your
-                  pool.</li>
-                <li>Tiebreakers within a pool: most wins, then most total pairs matched.</li>
-              </ul>
-            </p>
-
-            <h2>How Scoring Works</h2>
-            <p class="text">
-              Points only depend on speed when you get it right. Wrong guesses, correct passes, and
-              timeouts always give the same penalty or zero &mdash; it doesn't matter how fast you are.
-              <ul>
-                <li><strong>Correct match:</strong> a streak bonus (how many correct matches in a
-                  row this turn) plus a speed bonus for reporting quickly.</li>
-                <li><strong>Wrong match claim:</strong> a flat penalty, always &mdash; your turn ends
-                  immediately.</li>
-                <li><strong>Correct decline (genuinely not a pair):</strong> zero, always &mdash;
-                  no bonus, no penalty.</li>
-                <li><strong>Timeout (no action within the turn clock):</strong> a flat penalty,
-                  always.</li>
-              </ul>
-              The exact numbers are tunable per event and will be confirmed closer to competition
-              day &mdash; the mechanism (speed only ever rewards being right) stays the same either
-              way.
-            </p>
-
-            <h2>Hints</h2>
-            <p class="text">
-              <ul>
-                <li><strong>Paid hints</strong> &mdash; request a hint for a specific object
-                  mid-match. It costs a point, deducted immediately, capped at a small number of
-                  attempts per match, and only available while your score is positive.</li>
-                <li><strong>Free hints</strong> &mdash; one shared, non-competitive hint per match,
-                  delivered before the match starts, available to both teams equally.</li>
-              </ul>
-            </p>
+            <h2>The Rules</h2>
+            <div class="card-grid">
+              <div class="card">
+                <span class="card-label">Format</span>
+                <ul>
+                  <li><strong>Six teams</strong>, <strong>two pools of three</strong>, round robin
+                    (three matches per pool).</li>
+                  <li>6x5 grid: 30 face-down cards, 15 objects, each appearing exactly twice.</li>
+                  <li>Best record per pool advances to the <strong>Grand Final</strong>.</li>
+                  <li>No elimination &mdash; a bad match doesn't knock you out of your pool.</li>
+                  <li>Tiebreakers: most wins, then most total pairs matched.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <span class="card-label">Scoring</span>
+                <ul>
+                  <li><strong>Correct match:</strong> streak bonus (1/2/3/4 pts) + speed bonus
+                    (+2 within 40s, 0 within 80s, &minus;2 within 120s).</li>
+                  <li><strong>Wrong claim:</strong> flat &minus;2, turn ends immediately.</li>
+                  <li><strong>Correct decline:</strong> zero, always.</li>
+                  <li><strong>Timeout:</strong> flat &minus;3, always.</li>
+                  <li><strong>Paid hint:</strong> &minus;1 each time.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <span class="card-label">Hints</span>
+                <ul>
+                  <li><strong>Paid</strong> &mdash; for a specific object, mid-match. Capped at 2
+                    per match, only while your score is positive.</li>
+                  <li><strong>Free</strong> &mdash; one shared hint, delivered during the
+                    ~60-second pre-game window only. Can't be requested again once the match
+                    starts.</li>
+                </ul>
+              </div>
+            </div>
 
             <p class="text">
               Every team builds their own player for this competition &mdash; see
