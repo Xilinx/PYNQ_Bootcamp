@@ -1,6 +1,6 @@
 """
 YOLOv3-specific helpers — pre-processing, anchor decoding, NMS, drawing, run().
-Generic utilities (colors, classes, DPU buffers, image listing) live in bootcamp_utils.
+Generic utilities (colors, classes, DPU buffers, image listing) live in ./bootcamp_utils.
 """
 import numpy as np
 import cv2
