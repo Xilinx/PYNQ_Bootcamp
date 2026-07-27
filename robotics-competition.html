@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>GridMind Robotics Competition - PYNQ Bootcamp 2026</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GridMind: a head-to-head Physical AI robotics card-matching competition, the capstone of PYNQ Bootcamp 2026.">
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/amd-theme.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <style>
+    .menu-index {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="hero">
+      <div class="hero-inner">
+        <span class="hero-eyebrow">This Year's Theme: Physical AI</span>
+        <h1>GridMind Robotics Competition</h1>
+        <p>
+          Most AI you've used lives inside a screen &mdash; a chatbot, a game, a recommendation.
+          Physical AI is different: a camera SEEs the real world, code THINKs about what it sees,
+          and then it actually DOES something about it. GridMind is your team's own Physical AI
+          project &mdash; your KRIA board's camera is its eyes, your code is its brain, and the
+          moves it reports back to the referee are its hands.
+        </p>
+        <p style="margin-top: 20px;">
+          <a class="btn-amd" href="schedule.html">See the Full Schedule</a>
+        </p>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+
+            <h2>See, Think, Act</h2>
+            <hr>
+            <div class="gm-flow">
+              <div class="gm-flow-step">
+                <div class="gm-flow-icon"><i class="fas fa-camera"></i></div>
+                <strong>See</strong>
+                <span>Your KRIA board's camera scans the grid</span>
+              </div>
+              <div class="gm-flow-arrow"><i class="fas fa-chevron-right"></i></div>
+              <div class="gm-flow-step">
+                <div class="gm-flow-icon"><i class="fas fa-microchip"></i></div>
+                <strong>Think</strong>
+                <span>Your vision model identifies each object</span>
+              </div>
+              <div class="gm-flow-arrow"><i class="fas fa-chevron-right"></i></div>
+              <div class="gm-flow-step">
+                <div class="gm-flow-icon"><i class="fas fa-bolt"></i></div>
+                <strong>Decide</strong>
+                <span>Your code claims a match, declines, or asks for a hint</span>
+              </div>
+              <div class="gm-flow-arrow"><i class="fas fa-chevron-right"></i></div>
+              <div class="gm-flow-step">
+                <div class="gm-flow-icon"><i class="fas fa-robot"></i></div>
+                <strong>Act</strong>
+                <span>The referee flips the physical cards and reports the result</span>
+              </div>
+            </div>
+
+            <div class="gm-card-demo">
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-matched gm-card-front"><i class="fas fa-bicycle"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-front"><i class="fas fa-car"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-matched gm-card-front"><i class="fas fa-bicycle"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+              <div class="gm-card gm-card-back"><i class="fas fa-question"></i></div>
+            </div>
+            <p class="gm-card-caption">A matched pair, mid-game &mdash; most of the grid stays face-down until a team's board chooses to reveal it.</p>
+
+            <h2>What is the Robotics Competition?</h2>
+            <p class="text">
+              This year's bootcamp finale replaces the hackathon with <strong>GridMind</strong>, a
+              head-to-head robotics competition. Two teams share a grid of face-down cards, each
+              hiding an object that appears on exactly two cards &mdash; a classic memory-match game,
+              except each team's KRIA board plays it with its own camera and its own vision model.
+              There is no shared "referee vision system" watching the grid: when a card is revealed,
+              both teams get to look at it and remember what they saw, but each team's board decides
+              for itself, on its own turn, whether two cards match.
+            </p>
+            <h3>Bootcamp Robotics Competition Details</h3>
+            <p class="text">
+              Teams spend the bootcamp building an autonomous player for GridMind: eyes (a vision
+              pipeline that recognizes objects on the grid), a brain (a decision loop that picks
+              pairs, claims matches, and manages hints), all running on the team's own KRIA board,
+              with <strong>no human input once the match clock starts</strong>. On competition day,
+              every match is played and scored automatically by the GridMind referee software;
+              there's no judging panel &mdash; the scoreboard decides the winner.
+            </p>
+            <p>In the Robotics Competition, participants will learn:</p>
+            <ul>
+              <li><strong>Physical AI:</strong> Connect a camera, a model, and a decision loop into
+                one system that sees, thinks, and acts in the real world &mdash; not just on a screen.</li>
+              <li><strong>Computer Vision:</strong> Build and tune a vision pipeline that has to work
+                reliably under real competition conditions, not just a demo.</li>
+              <li><strong>Autonomous Decision-Making:</strong> Design a turn-taking strategy &mdash;
+                when to claim a match, when to decline, when to spend a hint &mdash; with no
+                human in the loop.</li>
+              <li><strong>Networked Protocols:</strong> Talk to a live referee over the wire
+                protocol, handling turns, timeouts, and scoring updates in real time.</li>
+              <li><strong>Collaborative Learning:</strong> Engage in teamwork to apply new skills
+                effectively under a real deadline.</li>
+              <li><strong>Competitive Strategy:</strong> Every outcome is scored &mdash; a wrong
+                guess costs points, so knowing when not to claim a match matters as much as
+                recognizing one.</li>
+            </ul>
+
+            <h2>The Rules</h2>
+            <div class="card-grid">
+              <div class="card">
+                <span class="card-label">Format</span>
+                <ul>
+                  <li><strong>Six teams</strong>, <strong>two pools of three</strong>, round robin
+                    (three matches per pool).</li>
+                  <li>6x5 grid: 30 face-down cards, 15 objects, each appearing exactly twice.</li>
+                  <li>Best record per pool advances to the <strong>Grand Final</strong>.</li>
+                  <li>No elimination &mdash; a bad match doesn't knock you out of your pool.</li>
+                  <li>Tiebreakers: most wins, then most total pairs matched.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <span class="card-label">Scoring</span>
+                <ul>
+                  <li><strong>Correct match:</strong> streak bonus (1/2/3/4 pts) + speed bonus
+                    (+2 within 40s, 0 within 80s, &minus;2 within 120s).</li>
+                  <li><strong>Wrong claim:</strong> flat &minus;2, turn ends immediately.</li>
+                  <li><strong>Correct decline:</strong> zero, always.</li>
+                  <li><strong>Timeout:</strong> flat &minus;3, always.</li>
+                  <li><strong>Paid hint:</strong> &minus;1 each time.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <span class="card-label">Hints</span>
+                <ul>
+                  <li><strong>Paid</strong> &mdash; for a specific object, mid-match. Capped at 2
+                    per match, only while your score is positive.</li>
+                  <li><strong>Free</strong> &mdash; one shared hint, delivered during the
+                    ~60-second pre-game window only. Can't be requested again once the match
+                    starts.</li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="text">
+              Every team builds their own player for this competition &mdash; see
+              <a href="gridmind-communication-flowchart.html">How to Build Your Own GridMind Client</a>
+              for the exact wire messages and required integration points behind every step above.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container"></div>
+</body>
+
+</html>

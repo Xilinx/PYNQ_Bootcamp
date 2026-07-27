@@ -2,16 +2,19 @@
 <html>
 
 <head>
-  <title>PYNQ Bootcamp</title>
-  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title>F.A.Q. - PYNQ Bootcamp 2026</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Frequently asked questions for PYNQ Bootcamp 2026: board setup, network troubleshooting, and the GridMind Robotics Competition.">
   <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/amd-theme.css" media="screen" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/footer.js"></script>
   <style>
@@ -26,19 +29,22 @@
 <body>
   <div class="menu-container"></div>
   <div class="content-container">
+    <div class="hero">
+      <div class="hero-inner">
+        <h1>Frequently Asked Questions</h1>
+        <p>Board setup, network troubleshooting, and GridMind Robotics Competition questions.</p>
+      </div>
+    </div>
     <div class="content">
       <div class="content-table flex-column">
         <div class="flex-row">
           <div class="flex-item flex-column">
-
-
-            <h2>Frequently Asked Questions</h2>
-            <hr>
             <ul>
               <li><a href="#xilinxdev">Xilinx Development and Demonstration Set Up Errors</a></li>
               <li><a href="#jupyter">Accessing the Jupyter Notebooks</a></li>
               <li><a href="#networksetup">Network Setup Errors/Issues</a></li>
-              <li><a href="#troubleshooting">Network Setup Errors/Issues</a></li>
+              <li><a href="#troubleshooting">Static IP &amp; UART Troubleshooting</a></li>
+              <li><a href="#gridmind">GridMind Robotics Competition</a></li>
             </ul>
 
             <h2 id="xilinxdev">Xilinx Development and Demonstration Set Up Errors</h2>
@@ -62,7 +68,7 @@
             <details>
               <summary>Programming Device failed </summary>
               <p>More than one notebook may be trying to run at a time.</p>
-              <img class="image" src="img/faqnotebookerror.jpg">
+              <img class="image" src="img/faqnotebookerror.jpg" alt="Jupyter notebook error from more than one notebook running at once">
               <p><strong>Solution:</strong><br>
                 Shutdown and close all running notebooks you are not using. In the top left corner of the notebook, <br><code> Kernel > Restart & Clear Output </code> and then rerun the notebook.</details>
             
@@ -172,7 +178,7 @@
                     <li>Unplug the power cable from KRIA-SOM</li>
                     <li>Plug in Micro USB to KRIA-SOM and the USB end to your computer</li>
                     <li>Find the KRIA-SOM under the Ports tab on the Device Manager on Windows (Might not be COM4)</li>
-                    <img class="image" src="img/dev-manager.png">
+                    <img class="image" src="img/dev-manager.png" alt="KRIA-SOM listed under the Ports tab in Windows Device Manager">
                     <li>Run PuTTY. Under sessions, change the highlighted fields. (For serial line field use whatever port was found in step 3. It may not be the first port displayed.) <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Putty Download</a></li>
                     <div style="width:80%;max-width:480px;margin:20px auto;">
                       <img src="img/uart2.png" alt="Instructional Image" style="width:80%;">
@@ -183,10 +189,28 @@
                     </div>
                     <li>Plug back in the power cable into the KRIA-SOM</li>
                     <li>Select open and log into the KRIA-SOM</li>
-                    <img class="image" src="img/putty3.png">
+                    <img class="image" src="img/putty3.png" alt="PuTTY serial session logged into the KRIA-SOM">
                   </ol>
                   </details>
 
+              <h2 id="gridmind">GridMind Robotics Competition</h2>
+              <hr>
+              <details>
+                <summary>My board isn't receiving any messages from the referee</summary>
+                <p>Check that your <code>BROKER_KEY</code> in your notebook matches the exact key given to you at the event, and that your board's MAC address is registered with the operator. Watching the broker's own terminal (visible to staff) shows every message that actually arrives.</p>
+              </details>
+              <details>
+                <summary>Can I request a hint mid-match?</summary>
+                <p>Paid hints, yes &mdash; capped at 2 per match, &minus;1 point each, and only while your score is positive. The free hint is only available during the ~60-second pre-game window before the match clock starts; it can't be requested again once play begins.</p>
+              </details>
+              <details>
+                <summary>What happens if my board crashes mid-match?</summary>
+                <p>Flag it to the operator right away &mdash; they can pause the match with zero scoring side effect (paused time never counts against your clock), giving you time to restart your board and reconnect before resuming.</p>
+              </details>
+              <details>
+                <summary>Where do I find the exact wire protocol my client needs to speak?</summary>
+                <p>See <a href="gridmind-communication-flowchart.html">How to Build Your Own GridMind Client</a> for every message type, and the <a href="robotics-competition.html">Robotics Competition Overview</a> for the rules and scoring behind them.</p>
+              </details>
 
           </div>
         </div>

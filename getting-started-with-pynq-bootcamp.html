@@ -3,15 +3,17 @@
 
 <head>
   <title>PYNQ Bootcamp</title>
-  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/amd-theme.css" media="screen" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/footer.js"></script>
   <style>
@@ -26,13 +28,16 @@
 <body>
   <div class="menu-container"></div>
   <div class="content-container">
+    <div class="hero">
+      <div class="hero-inner">
+        <h1 id="scratch">Getting Started with PYNQ Bootcamp</h1>
+        <p>Download the bootcamp image or flash a pre-setup SD card, then connect and start writing code.</p>
+      </div>
+    </div>
     <div class="content">
       <div class="content-table flex-column">
         <div class="flex-row">
           <div class="flex-item flex-column">
-
-            <h2 id="scratch">Getting Started with PYNQ Bootcamp</h2>
-            <hr>
             <p class="text">
               This guide provides instructions for downloading an already setup image or using a pre-flashed 32GB SD card. If you do not have a flashed SD card and prefer to set it up independently, navigate to this page: Board Setup & Bootcamp Image Creation. This guide also includes steps for setting up a static IP on your computer and accessing the Notebooks.
               <ul>
@@ -58,7 +63,7 @@
             <h2 id="image">PYNQ Bootcamp 2026 Image</h2>
             <hr>
             <h3>Getting the PYNQ Bootcamp 2026 Image</h3>
-            <p class="text">Download PYNQ Bootcamp 2026 image from: <a href="https://amdcloud-my.sharepoint.com/personal/shwprasa_amd_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fshwprasa%5Famd%5Fcom%2FDocuments%2FPYNQ%5FBootCamp%5FImage%5FFolder%2FFinal%5FPynq%5FBootcamp%5FImage%2Eimg&parent=%2Fpersonal%2Fshwprasa%5Famd%5Fcom%2FDocuments%2FPYNQ%5FBootCamp%5FImage%5FFolder&openShare=truel">Pynq Bootcamp Image</a></p>
+            <p class="text">Download the PYNQ Bootcamp 2026 image from: <a href="https://amdcloud-my.sharepoint.com/personal/shwprasa_amd_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fshwprasa%5Famd%5Fcom%2FDocuments%2FPYNQ%5FBootCamp%5FImage%5FFolder%2FFinal%5FPynq%5FBootcamp%5FImage%2Eimg&parent=%2Fpersonal%2Fshwprasa%5Famd%5Fcom%2FDocuments%2FPYNQ%5FBootCamp%5FImage%5FFolder&openShare=truel">Pynq Bootcamp Image</a></p>
             <h3>Flash the image to a 32 GB SD Card</h3>
             <ol>
               <li>
@@ -84,13 +89,13 @@
             
             <ol>
             <div class="gallery add-top-margin-small add-bottom-margin-small">
-              <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/sd-card.png">
+              <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/sd-card.png" alt="Insert the SD card">
                 <div>1. Insert the sd card. </div>
               </a>
-              <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/e3.jpg">
+              <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/e3.jpg" alt="Connect Ethernet cable between the KRIA-SOM board and your computer">
                 <div>2. Connect Ethernet cable between the Kria-SOM Board and your computer.</div>
               </a>
-              <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/e4.jpg">
+              <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/e4.jpg" alt="Power on the board by plugging in the barrel power cord">
                 <div>3. Power on the board by plugging in the barrel power cord.</div>
               </a>
             </div>
@@ -120,19 +125,19 @@
             <h2 id="power">Power on KRIA-SOM</h2>
             <hr>
             <div class="gallery add-top-margin-small add-bottom-margin-small">
-                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/sd-card.png">
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/sd-card.png" alt="Insert the SD card">
                   <div>Step 1: Insert the sd card </div>
                 </a>
-                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/micro-usb.png">
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/micro-usb.png" alt="Plug in the micro-USB cable to the board">
                   <div>Step 2: Plug in the micro-USB cable to the board</div>
                 </a>
-                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/pmod.png">
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/pmod.png" alt="Plug in the PMOD Adapter">
                   <div>Step 3: Plug in the PMOD Adapter</div>
                 </a>
-                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/wifi.png">
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/wifi.png" alt="Plug in the Wifi Dongle">
                   <div>Step 4: Plug in the Wifi Dongle</div>
                 </a>
-                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/power-plug.png">
+                <a href="javascript:void(0)" class="flex-column spread-out"><img src="img/power-plug.png" alt="Plug in the Barrel Power Cord">
                   <div>Step 5: Plug in the Barrel Power Cord</div>
                 </a>
               </div>
@@ -148,7 +153,7 @@
               <li>Wait for a few minutes for the board to power up</li>
               <li>You should now see text displayed on the OLED screen that shows what network you are connected to as well as your board's IP address</li>
             </ol>
-            <img class="image" src="img/oled-example.png">
+            <img class="image" src="img/oled-example.png" alt="Example OLED screen showing the board's network and IP address">
             <p><strong>Note:</strong> If you wait for more than 4 minutes and you still do not see the text displayed on the OLED screen, reboot your board by unplugging it and plugging it back in.</p>
             <p><strong>Note:</strong> Your IP address will change if you connect to different networks.</p>
 
