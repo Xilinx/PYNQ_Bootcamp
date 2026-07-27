@@ -7339,6 +7339,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7599,6 +7600,14 @@ a.anchor-link {
 <td style="text-align:center">resize_shortest_edge</td>
 <td style="text-align:center">While maintaining the aspect ratio of the image, resizes the shortest edge</td>
 </tr>
+<tr>
+<td style="text-align:center">detect_aruco</td>
+<td style="text-align:center">Detects ArUco markers in an image and draws their corners/ids</td>
+</tr>
+<tr>
+<td style="text-align:center">detect_and_read_qr</td>
+<td style="text-align:center">Detects and decodes a QR code in an image</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -7636,9 +7645,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </pre></div>
 </div>
 </div>
@@ -7690,7 +7699,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_images</span><span class="p">(</span><span class="n">original_image</span><span class="p">,</span> <span class="n">processed_image</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_images</span><span class="p">(</span><span class="n">original_image</span><span class="p">,</span> <span class="n">processed_image</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">),</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">original_image</span><span class="p">),</span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Original'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
@@ -7723,7 +7732,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">gray</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span>
-<span class="c1"># plt.figure(figsize=(10, 10)), plt.axis("off"), plt.imshow(gray, cmap='gray');</span>
 <span class="n">plot_images</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">gray</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7802,11 +7810,11 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
     <span class="n">image_norm</span><span class="o">=</span><span class="n">image</span><span class="o">/</span><span class="mf">256.0</span>
     <span class="n">image_norm</span><span class="o">=</span><span class="n">image_norm</span><span class="o">-</span><span class="mf">0.5</span>
     <span class="n">image_norm</span><span class="o">=</span><span class="n">image_norm</span><span class="o">*</span><span class="mi">2</span>
-    <span class="n">plot_images</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image_norm</span><span class="p">)</span>
+    <span class="n">plot_images</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">image_norm</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># rescale to [0,1] just for display, avoids imshow clipping warning</span>
     <span class="k">return</span> <span class="n">image_norm</span>
 </pre></div>
 </div>
@@ -7846,7 +7854,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">central_crop</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">crop_height</span><span class="p">,</span> <span class="n">crop_width</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">central_crop</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">crop_height</span><span class="p">,</span> <span class="n">crop_width</span><span class="p">):</span>
     <span class="n">image_height</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">image_width</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">offset_height</span> <span class="o">=</span> <span class="p">(</span><span class="n">image_height</span> <span class="o">-</span> <span class="n">crop_height</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
@@ -7895,7 +7903,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">BGR2RGB</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">BGR2RGB</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
     <span class="n">B</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
     <span class="n">processed_image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
     <span class="n">plot_images</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">processed_image</span><span class="p">)</span>
@@ -7938,7 +7946,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">resize_shortest_edge</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">resize_shortest_edge</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
     <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">H</span> <span class="o">&gt;=</span> <span class="n">W</span><span class="p">:</span>
         <span class="n">nW</span> <span class="o">=</span> <span class="n">size</span>
@@ -7968,6 +7976,213 @@ a.anchor-link {
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Size of processed image: "</span><span class="p">,</span> <span class="n">processed_image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="How-to-detect-ArUco-markers?">How to detect ArUco markers?<a class="anchor-link" href="#How-to-detect-ArUco-markers?">¶</a></h2><p><a href="https://gregorkovalcik.github.io/opencv_contrib/tutorial_aruco_detection.html">ArUco markers</a> are square, black-and-white fiducial markers, each encoding a unique binary id. They are widely used in robotics and augmented reality for camera pose estimation and object tracking because they are fast and reliable to detect, even from far away or at an angle.</p>
+<p>Every marker belongs to a <em>dictionary</em>, a set of markers that share the same grid size (e.g. 6x6 bits) and a fixed number of unique ids. OpenCV's <code>cv.aruco</code> module can both generate and detect these markers.</p>
+<p>Reference: <a href="https://gregorkovalcik.github.io/opencv_contrib/tutorial_aruco_detection.html">OpenCV: Detection of ArUco Markers</a></p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># pick a predefined dictionary of 6x6-bit markers (250 unique ids)</span>
+<span class="n">aruco_dict</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">aruco</span><span class="o">.</span><span class="n">getPredefinedDictionary</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">aruco</span><span class="o">.</span><span class="n">DICT_6X6_250</span><span class="p">)</span>
+
+<span class="c1"># generate an image of marker id 23 and add a white quiet-zone border around it,</span>
+<span class="c1"># real markers need this border so the detector can find their black outer edge</span>
+<span class="n">marker_image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">aruco</span><span class="o">.</span><span class="n">generateImageMarker</span><span class="p">(</span><span class="n">aruco_dict</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">marker_image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">copyMakeBorder</span><span class="p">(</span><span class="n">marker_image</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">BORDER_CONSTANT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">marker_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'ArUco marker, id 23'</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Now let's detect the marker in that image! <code>cv.aruco.ArucoDetector</code> looks for markers from the chosen dictionary and returns the pixel corners and id of each one it finds.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">detect_aruco</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">aruco_dict</span><span class="o">=</span><span class="n">aruco_dict</span><span class="p">):</span>
+    <span class="n">detector_params</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">aruco</span><span class="o">.</span><span class="n">DetectorParameters</span><span class="p">()</span>
+    <span class="n">detector</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">aruco</span><span class="o">.</span><span class="n">ArucoDetector</span><span class="p">(</span><span class="n">aruco_dict</span><span class="p">,</span> <span class="n">detector_params</span><span class="p">)</span>
+    <span class="n">corners</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">rejected</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectMarkers</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="n">processed_image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)</span> <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">cv</span><span class="o">.</span><span class="n">aruco</span><span class="o">.</span><span class="n">drawDetectedMarkers</span><span class="p">(</span><span class="n">processed_image</span><span class="p">,</span> <span class="n">corners</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span>
+    <span class="n">plot_images</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">processed_image</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">corners</span><span class="p">,</span> <span class="n">ids</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">corners</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="n">detect_aruco</span><span class="p">(</span><span class="n">marker_image</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Detected marker ids:"</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="How-to-detect-and-read-QR-codes?">How to detect and read QR codes?<a class="anchor-link" href="#How-to-detect-and-read-QR-codes?">¶</a></h2><p><a href="https://en.wikipedia.org/wiki/QR_code">QR (Quick Response) codes</a> are 2D barcodes that can encode text, URLs, and other data. OpenCV's <code>cv.QRCodeDetector</code> class can locate a QR code in an image and decode the text stored inside it.</p>
+<p>Reference: <a href="https://note.nkmk.me/en/python-opencv-qrcode/">Detect and read QR codes with OpenCV in Python | note.nkmk.me</a></p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># generate a QR code encoding a URL</span>
+<span class="n">qr_encoder</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">QRCodeEncoder</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">qr_image</span> <span class="o">=</span> <span class="n">qr_encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"https://www.amd.com"</span><span class="p">)</span>
+
+<span class="c1"># the encoder returns a tiny 1-pixel-per-module bitmap, so scale it up and add a</span>
+<span class="c1"># white quiet-zone border, the same way a printed QR code would have one</span>
+<span class="n">qr_image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">qr_image</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">cv</span><span class="o">.</span><span class="n">INTER_NEAREST</span><span class="p">)</span>
+<span class="n">qr_image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">copyMakeBorder</span><span class="p">(</span><span class="n">qr_image</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">BORDER_CONSTANT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">qr_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'QR code'</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Now let's detect and read that QR code! <code>cv.QRCodeDetector.detectAndDecode()</code> finds a QR code in an image, decodes the text stored inside it, and gives us back the four corner points of the code.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">detect_and_read_qr</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="n">qr_detector</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">QRCodeDetector</span><span class="p">()</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">qr_detector</span><span class="o">.</span><span class="n">detectAndDecode</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="n">processed_image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)</span> <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">processed_image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">polylines</span><span class="p">(</span><span class="n">processed_image</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">plot_images</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">processed_image</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">decoded_data</span> <span class="o">=</span> <span class="n">detect_and_read_qr</span><span class="p">(</span><span class="n">qr_image</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Decoded data:"</span><span class="p">,</span> <span class="n">decoded_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><p>Let's summarize, in this notebook we</p>
+<ul>
+<li>learned how to read, display, and plot images side by side with OpenCV and matplotlib</li>
+<li>converted images between color spaces (RGB to grayscale, RGB to HSV, and BGR to RGB)</li>
+<li>used the Harris Corner Detector to find corners in an image</li>
+<li>normalized, center-cropped, and resized images</li>
+<li>detected ArUco markers and read their ids</li>
+<li>detected and decoded QR codes</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%E2%9C%A8-Bonus-Challenge!-%E2%9C%A8">✨ Bonus Challenge! ✨<a class="anchor-link" href="#%E2%9C%A8-Bonus-Challenge!-%E2%9C%A8">¶</a></h3><p>Here is an optional challenge for you to work through!</p>
+<ul>
+<li>Connect a USB Camera to your board and capture a live video feed instead of using the static <code>mosaic.jpg</code> image. Try applying some of the functions you learned in this notebook (grayscale conversion, HSV conversion, corner detection, normalization, central crop, BGR2RGB, and resize_shortest_edge) to each frame of the live video!<ul>
+<li>hint: you can use <code>cv.VideoCapture(-1)</code> to open the camera, then call <code>cap.read()</code> in a loop to grab each frame, just like the <code>view()</code> function in the PYNQ 201 - MNIST notebook</li>
+<li>hint: try using <code>IPython.display</code> and <code>ipywidgets</code> (a <code>display_handle</code> and a stop <code>ToggleButton</code>) to show the live video feed in the notebook and give yourself a way to stop the loop, the same way it was done in PYNQ 201 - MNIST</li>
+<li>hint: instead of showing the original frame, try encoding the <em>processed</em> frame (e.g. the grayscale or HSV version) with <code>cv.imencode('.jpeg', processed_frame)</code> so you can watch the effect update live!</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>

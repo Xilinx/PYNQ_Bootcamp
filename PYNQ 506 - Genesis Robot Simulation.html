@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>PYNQ 503 - Pose Detection</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>PYNQ_506_Genesis_Robot_Simulation</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7511,107 +7511,87 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5158dd12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=intro">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Pose-Detection">Pose Detection<a class="anchor-link" href="#Pose-Detection">¶</a></h1>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44ae990e">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this training, we are going to try to detect the position of a person's arms, hands, legs, and feet, from an input image. This is called pose detection. We use a model called the "OpenPose" model, which can detect up to 10 people in an image.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56211f92">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Glossary">Glossary<a class="anchor-link" href="#Glossary">¶</a></h2><table>
-<thead>
-<tr>
-<th>Term</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AI Model</td>
-<td>An artificial intelligence model is a computer program that is trained on a lot of data and usually performs calculations on matrices.</td>
-</tr>
-<tr>
-<td>Array</td>
-<td>Another word for list. Multiple variables or items stored under one variable name.</td>
-</tr>
-<tr>
-<td>DPU</td>
-<td>Data Processing Unit</td>
-</tr>
-<tr>
-<td>FPGA</td>
-<td>Field Programmable Gate Array; a specialized device that allows you to run your model faster</td>
-</tr>
-<tr>
-<td>Matrix</td>
-<td>A table of numbers</td>
-</tr>
-<tr>
-<td>OpenPose</td>
-<td>This is the pose detection model we are using!</td>
-</tr>
-<tr>
-<td>Pose Detection</td>
-<td>Understanding the pose of a person from an image, such as standing, sitting, etc; easy for humans, hard for computers</td>
-</tr>
-<tr>
-<td>Tensor</td>
-<td>A multi-dimensional table of numbers. A matrix is a (two-dimensional) tensor.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cbaf9210">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="1.-Hardware-Setup">1. Hardware Setup<a class="anchor-link" href="#1.-Hardware-Setup">¶</a></h2><p>For this training you will need:</p>
+<h1 id="PYNQ-506---Genesis-Robot-Simulation">PYNQ 506 - Genesis Robot Simulation<a class="anchor-link" href="#PYNQ-506---Genesis-Robot-Simulation">¶</a></h1><p>Learn to control a robot arm in 3D simulation!</p>
+<p>By the end of this session, you will:</p>
 <ul>
-<li>KRIA SoM</li>
-<li>Webcam</li>
+<li>Control a robot arm using 3D coordinates</li>
+<li>Perform pick-and-place operations</li>
+<li>Understand inverse kinematics</li>
+<li>Watch your robot in real-time via video stream</li>
 </ul>
-<p>Connect the webcam now, if it is not already connected.</p>
+<h2 id="Real-World-Applications">Real-World Applications<a class="anchor-link" href="#Real-World-Applications">¶</a></h2><p>Companies like Tesla (assembly lines), Amazon (520,000+ warehouse robots), and NASA (Mars rover) use these skills every day!</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f1592637">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=genesis-intro">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-Imports">2. Imports<a class="anchor-link" href="#2.-Imports">¶</a></h2><p>Let's start by loading in all the functionality we are going to need later. It is considered good style to put all of your imports at the beginning, so that's what we do. The comments explain what we use each import for.</p>
+<hr/>
+<h2 id="What-is-Genesis?">What is Genesis?<a class="anchor-link" href="#What-is-Genesis?">¶</a></h2><h3 id="Genesis-Physics-Simulation-Server">Genesis Physics Simulation Server<a class="anchor-link" href="#Genesis-Physics-Simulation-Server">¶</a></h3><p>Genesis is a <strong>powerful physics engine</strong> that simulates realistic robot movements:</p>
+<ul>
+<li>Calculates gravity, friction, collisions</li>
+<li>Figures out how to move 7 robot joints (complex math!)</li>
+<li>Renders 3D graphics</li>
+<li>Handles multiple students' robots at once</li>
+</ul>
+<h3 id="Why-Client-Server?">Why Client-Server?<a class="anchor-link" href="#Why-Client-Server?">¶</a></h3><p>Your Kria board is small and lightweight - perfect for sending commands. But running realistic physics is <strong>hard work</strong> and would make your board slow and hot!</p>
+<p><strong>Solution:</strong> Client-Server architecture</p>
+<pre><code>Your Kria (Client)          Genesis Server
+"Move to [0.5, 0.0, 0.3]"  ───►  [Does complex math]
+                            ◄───  "Done! Here's the result"
+</code></pre>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=cf177374">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=why-sim">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Why-Use-Simulation?">Why Use Simulation?<a class="anchor-link" href="#Why-Use-Simulation?">¶</a></h3><p>You might wonder: "Why not use a real robot?"</p>
+<p>Simulation is <strong>essential</strong> in robotics development! Here's why:</p>
+<p><strong>💰 Cost</strong></p>
+<ul>
+<li>Real Franka Panda robot: ~$25,000</li>
+<li>Simulation: Free!</li>
+<li>Can test 20+ students at once without buying 20 robots</li>
+</ul>
+<p><strong>⚡ Speed</strong></p>
+<ul>
+<li>Test ideas instantly - no waiting for hardware setup</li>
+<li>Run the same test 1000 times in minutes</li>
+<li>Try crazy experiments without breaking anything!</li>
+</ul>
+<p><strong>🔬 Real-World Usage</strong></p>
+<p>Companies use simulation <strong>before</strong> deploying real robots:</p>
+<ul>
+<li><strong>NASA</strong>: Simulates Mars rover movements before sending commands (8-minute delay to Mars!)</li>
+<li><strong>Tesla</strong>: Tests factory robots in simulation before installation</li>
+<li><strong>Boston Dynamics</strong>: Trains robot dogs in simulation first</li>
+<li><strong>Self-driving cars</strong>: Waymo/Tesla simulate millions of miles of driving</li>
+</ul>
+<p><strong>The Process:</strong></p>
+<pre><code>1. Design in simulation (safe, fast, cheap)
+2. Test in simulation (find bugs early!)
+3. Deploy to real robot (confident it works)
+</code></pre>
+<p>Simulation lets you <strong>fail fast and learn faster</strong> - without $25,000 repair bills! 🚀</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=connect">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7619,49 +7599,27 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span>%%bash
-pip<span class="w"> </span>install<span class="w"> </span>scikit-image
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a6e2c90b">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>                         <span class="c1"># used to execute bash commands to download and uncompress stuff</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>                        <span class="c1"># OpenCV image processing library</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># Import the Genesis simulation client library</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pynqsim</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimulationClient</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>                <span class="c1"># For math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>   <span class="c1"># For plotting stuff</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pynq_dpu</span><span class="w"> </span><span class="kn">import</span> <span class="n">DpuOverlay</span>   <span class="c1"># Overlay for the FPGA</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">IPython.display</span>            <span class="c1"># For displaying a live feed of video</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">patches</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">structural_similarity</span> <span class="k">as</span> <span class="n">ssim</span>
+
+<span class="c1"># Server configuration</span>
+<span class="c1"># Your instructor will provide the correct IP address</span>
+<span class="n">SERVER_IP</span> <span class="o">=</span> <span class="s2">"172.20.166.171"</span>  <span class="c1"># Replace with actual server IP</span>
+<span class="n">SERVER_PORT</span> <span class="o">=</span> <span class="mi">9002</span>           <span class="c1"># Default Genesis port</span>
+
+<span class="c1"># Connect to the server</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">SimulationClient</span><span class="p">(</span><span class="n">SERVER_IP</span><span class="p">,</span> <span class="n">SERVER_PORT</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connected to Genesis server at </span><span class="si">{</span><span class="n">SERVER_IP</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">SERVER_PORT</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Video stream is available at http://{SERVER_IP}:9005</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Video stream: http://</span><span class="si">{</span><span class="n">SERVER_IP</span><span class="si">}</span><span class="s2">:9005"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8c3612f8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="3.-FPGA-Overlays">3. FPGA Overlays<a class="anchor-link" href="#3.-FPGA-Overlays">¶</a></h2><p>We run the model on specialized hardware that will allow it to execute faster than on a regular processor. The fastest option would be if we could build custom hardware -- a specialized electronic circuit -- that performs exactly the computations we need. However, soldering your own circuits is hard and takes a lot of time. Also, once such a specialized circuit is built, it can only be used for one thing -- the specific thing it was built for.</p>
-<p>FPGAs are the next best thing. They are like circuits, but instead of having to solder them physically, the different electrical connections can be "programmed". FPGAs consist of a large number of gates that we can use to route electricity (which we use to encode data) different ways. This is different from "normal" processor programming: Regular processors read a stream of instructions (our program) and execute those instructions. On FPGAs, we configure a circuit once ahead of time, and can then use it to perform the function it was designed to do multiple times very quickly. The KRIA SoM comes with an FPGA.</p>
-<p>Engineering these FPGA circuits is hard. For this reason, we will use a circuit somebody else already built for us! This is called an "overlay". The circuit we will use allows us to do lightning-fast data processing. This is exactly what we need to perform machine learning inference. Let us first load this circuit. By running the following step, you will configure the electronic circuit on your FPGA as a data processing unit (DPU):</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9d091736">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=video-helper">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7669,444 +7627,59 @@ pip<span class="w"> </span>install<span class="w"> </span>scikit-image
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">overlay</span> <span class="o">=</span> <span class="n">DpuOverlay</span><span class="p">(</span><span class="s2">"dpu.bit"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3c282993">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Note:</strong> If you run into a "Device or resource busy" error, quit all your Jupyter notebook kernels and restart this one. Then, try again. You can quit notebook kernels by clicking Kernel &gt; Shutdown and restart by clicking Kernel &gt; Restart.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5f7afa88">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="4.-AI-Model-Setup">4. AI Model Setup<a class="anchor-link" href="#4.-AI-Model-Setup">¶</a></h2><p>How ML models work internally is not super important to us as users of the models. What we need to know is that these models take an input matrix, perform some calculations, and produce an output matrix of potentially a different dimension.</p>
-<p>What the meaning of the input and output matrices is depends on the model. In our model, the input matrix represents an image: Each cell in the matrix can be thought of as a pixel -- a red/green/blue color value at that coordinate in the image. The model outputs many matrices, which can be interpreted as probabilities that a limb is present in a certain pixel.</p>
-<p>When models are built, they are "trained" on a large set of input data. This simply means that the coefficients of the calculations are optimized. In order to run the model on our FPGA overlay, some additional modifications are required. Someone has already done this for us, so we only have to download the model.</p>
-<p>Here, we load the model onto the overlay. There is also some code to download the model, but we won't need that, since we already have the model.</p>
-<p>This model expects input of dimensions 368x368.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=902f2643">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">archive_filename</span> <span class="o">=</span> <span class="s2">"openpose_pruned_0_3.tar.gz"</span>
-<span class="n">extracted_model_path</span> <span class="o">=</span> <span class="s2">"openpose_pruned_0_3.xmodel"</span>
-<span class="c1"># The following will download the model if it is not already present in the folder:</span>
-<span class="c1"># model_download_url = "https://www.xilinx.com/bin/public/openDownload?filename=openpose_pruned_0_3-zcu102_zcu104_kv260-r2.5.0.tar.gz"</span>
-<span class="c1"># os.system("wget -nv -O \"{}\" \"{}\"".format(archive_filename, model_download_url))</span>
-<span class="c1"># os.system("tar -xvf \"{}\"".format(archive_filename))</span>
-<span class="n">overlay</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">extracted_model_path</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5fe01fc0">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="5.-Load-an-Image">5. Load an Image<a class="anchor-link" href="#5.-Load-an-Image">¶</a></h2><p>To test the model, let's load an image of a person and see if the model can detect the pose.</p>
-<p>The model works on matrices of size 368 x 368. So first, we need to get our input into the right format. We load a JPEG, decompress it into its raw pixel values, remove the color information and put each pixel value on a 0 - 1 scale. Since the input image also does not exactly match the 368 x 368 format expected by the model, we crop it slightly. We use the OpenCV library which provides functions to do this necessary processing on the image.</p>
-<p><em>Image: Sydney International Tennis ATP, licensed CC-BY-SA 2.0.</em></p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a38860a0">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># The test image should have been shipped with this notebook; if not, download it like so:</span>
-<span class="c1"># img_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Sydney_International_Tennis_ATP_%2833040179108%29.jpg/640px-Sydney_International_Tennis_ATP_%2833040179108%29.jpg"</span>
-<span class="c1"># os.system("wget -nv -O test_image.jpeg {}".format(img_url))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1be57f51">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The image shows with distorted colors because CV2 reads as BGR but matplotlib expects RGB. We don't convert because the OpenPose model expects BGR too.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b5f0a619">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">"img/test_image.jpeg"</span><span class="p">)</span>
-<span class="c1"># img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) # Need BGR for OpenPose</span>
-<span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">aspect_ratio</span> <span class="o">=</span> <span class="n">width</span> <span class="o">/</span> <span class="n">height</span>
-<span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f3f148ed">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="6.-Prepare-the-DPU">6. Prepare the DPU<a class="anchor-link" href="#6.-Prepare-the-DPU">¶</a></h2><p>Different models have different input and output sizes. Let us see what the expected dimensions are for this model.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b6244de0">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dpu</span> <span class="o">=</span> <span class="n">overlay</span><span class="o">.</span><span class="n">runner</span>
+<div class="highlight hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
 
-<span class="n">inputTensors</span> <span class="o">=</span> <span class="n">dpu</span><span class="o">.</span><span class="n">get_input_tensors</span><span class="p">()</span>
-<span class="n">outputTensors</span> <span class="o">=</span> <span class="n">dpu</span><span class="o">.</span><span class="n">get_output_tensors</span><span class="p">()</span>
-
-<span class="n">shapeIn</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">inputTensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
-<span class="n">shapeOut</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">outputTensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
-<span class="n">outputSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">outputTensors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_data_size</span><span class="p">()</span> <span class="o">/</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">shapeIn</span><span class="p">,</span> <span class="n">shapeOut</span><span class="p">,</span> <span class="n">outputSize</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=efa8675f">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="7.-Adjust-the-Image">7. Adjust the Image<a class="anchor-link" href="#7.-Adjust-the-Image">¶</a></h2><p>As we can see, we need an image that has different dimensions than our image we read in previously. To address this, let's pad the image on top and bottom a little:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=72a6947b">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">xpad</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ypad</span> <span class="o">=</span> <span class="mi">50</span>
-
-<span class="n">greyscale_color</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1"># padding color a scale of 0 to 255. 0 being black 255 being white.</span>
-<span class="n">canvas</span> <span class="o">=</span> <span class="n">greyscale_color</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">height</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">ypad</span><span class="p">,</span> <span class="n">width</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">xpad</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="c1"># </span>
-<span class="n">canvas</span><span class="p">[</span><span class="n">ypad</span><span class="p">:</span><span class="n">height</span><span class="o">+</span><span class="n">ypad</span><span class="p">,</span> <span class="n">xpad</span><span class="p">:</span><span class="n">width</span><span class="o">+</span><span class="n">xpad</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">canvas</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">canvas</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=757e32ed">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now, let's resize and crop it to get the corrected dimensions:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a1d8529e">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">new_height</span> <span class="o">=</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">img_resized</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> 
-                         <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">aspect_ratio</span><span class="o">*</span><span class="n">new_height</span><span class="p">),</span>   <span class="c1"># new width; maintain aspect ratio</span>
-                          <span class="n">new_height</span><span class="p">))</span>                    <span class="c1"># new height</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">shapeIn</span><span class="p">)</span>
-
-<span class="n">left_bound</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Half of original width minus half of input width</span>
-<span class="n">right_bound</span> <span class="o">=</span> <span class="n">left_bound</span> <span class="o">+</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># left bound plus image width </span>
-<span class="n">crop_width</span> <span class="o">=</span> <span class="n">right_bound</span><span class="o">-</span><span class="n">left_bound</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Cropped X range: </span><span class="si">{</span><span class="n">left_bound</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">right_bound</span><span class="si">}</span><span class="s1">  Width: </span><span class="si">{</span><span class="n">crop_width</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-
-
-<span class="n">upper_bound</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Half of original height minus half of input height</span>
-<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">upper_bound</span> <span class="o">+</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># upper bound plus image width (upper bound is numerically lower than lower bound) </span>
-<span class="n">crop_height</span> <span class="o">=</span> <span class="n">lower_bound</span><span class="o">-</span><span class="n">upper_bound</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Cropped Y range: </span><span class="si">{</span><span class="n">upper_bound</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">lower_bound</span><span class="si">}</span><span class="s1">  Height: </span><span class="si">{</span><span class="n">crop_height</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-
-
-<span class="n">img_cropped</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">upper_bound</span><span class="p">:</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">:</span><span class="n">right_bound</span><span class="p">,</span> <span class="p">:]</span><span class="c1"># .reshape((shapeIn[1],shapeIn[2],3))</span>
-<span class="n">img_cropped</span> <span class="o">=</span> <span class="n">img_cropped</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.0</span>  <span class="c1"># Make it floats</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_cropped</span><span class="p">),</span> <span class="n">img_cropped</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0f53c0bc">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Here is a look at what the crop looks like compared to the original photo.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=132d37cc">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span>  <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="c1"># Create a Rectangle patch</span>
-<span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">left_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">crop_width</span><span class="p">,</span> <span class="n">crop_height</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">'none'</span><span class="p">)</span>
-
-<span class="c1"># Add the rectangle to the plot</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25649366">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="8.-Run-the-Model">8. Run the Model<a class="anchor-link" href="#8.-Run-the-Model">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ce533934">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now that the model is loaded, the DPU is ready, and the image has been properly prepared, there's nothing stopping us from running the model!</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ec8c14ed">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare an array of zeros with the correct output dimensions; the DPU will fill in the results in here, but we </span>
-<span class="c1"># have to prepare some space for it.</span>
-<span class="n">output_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shapeOut</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">"C"</span><span class="p">)]</span>
-
-<span class="c1"># We will be putting our image into this array:</span>
-<span class="n">input_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shapeIn</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">"C"</span><span class="p">)]</span>
-<span class="c1"># ... but first, we must adjust the shape of the matrix slightly ...</span>
-<span class="n">processed_image</span> <span class="o">=</span> <span class="n">img_cropped</span>
-<span class="n">processed_image</span> <span class="o">=</span> <span class="n">processed_image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shapeIn</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">"C"</span><span class="p">)</span>
-<span class="n">input_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">processed_image</span>
-
-<span class="c1"># Now, we can send our input to the model ...</span>
-<span class="n">job_id</span> <span class="o">=</span> <span class="n">dpu</span><span class="o">.</span><span class="n">execute_async</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">output_data</span><span class="p">)</span>
-<span class="c1"># ... and wait for it to be done doing its calculation</span>
-<span class="n">dpu</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
-
-<span class="c1"># Now, the results are in output_data</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e19b6783">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>But did it work? Let's plot the output of the model!</p>
-<p>The model will output several matrices. One of those is a heat map that gives the probabilities that a limb is present at a certain coordinate. A value close to 1 will indicate that the model thinks there is a limb in that model. For now, we will just take the max of these matrices to get an iteresting output. This causes us to lose some information, i.e. which limb the model detected, but it gives us something interesting to look at.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=92f1cd34">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_cropped</span><span class="p">)</span>
-<span class="n">heatmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">output_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][:][:][:],</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">heatmap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">heatmap</span><span class="p">,</span> <span class="p">(</span><span class="n">shapeIn</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">heatmap</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'hot'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84ce499d">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Looking good!</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7403a135">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="9.-Put-it-all-in-functions">9. Put it all in functions<a class="anchor-link" href="#9.-Put-it-all-in-functions">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f16a9463">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Next, to make things a little more interesting, we will try to apply the model to a live video feed. For this, let us first take all the stuff we programmed above, and put it into functions so we can reuse it without having to repeat ourselves.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=160e9ab3">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">preprocess_image</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
-    <span class="c1"># Convert RGB to BGR</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2BGR</span><span class="p">)</span> 
-
-    <span class="c1"># Get dimensions</span>
-    <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">aspect_ratio</span> <span class="o">=</span> <span class="n">width</span> <span class="o">/</span> <span class="n">height</span>
-    <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="p">,</span> <span class="c1"># plt.imshow(img)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">show_robot_video</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Robot View"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Display video stream automatically.</span>
+<span class="sd">    Video is always visible - no clicking needed!</span>
+<span class="sd">    """</span>
+    <span class="c1"># Get the session token from the sim object</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="s1">'token'</span><span class="p">,</span> <span class="s1">'default'</span><span class="p">)</span>
     
-    <span class="c1"># Padding</span>
-    <span class="n">xpad</span> <span class="o">=</span> <span class="mi">40</span>
-    <span class="n">ypad</span> <span class="o">=</span> <span class="mi">40</span>
-    <span class="n">canvas</span> <span class="o">=</span> <span class="mi">255</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">height</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">ypad</span><span class="p">,</span> <span class="n">width</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">xpad</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-    <span class="n">canvas</span><span class="p">[</span><span class="n">ypad</span><span class="p">:</span><span class="n">height</span><span class="o">+</span><span class="n">ypad</span><span class="p">,</span> <span class="n">xpad</span><span class="p">:</span><span class="n">width</span><span class="o">+</span><span class="n">xpad</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">canvas</span>
-    
-    <span class="c1"># Cropping</span>
-    <span class="n">left_bound</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Half of original width minus half of input width</span>
-    <span class="n">right_bound</span> <span class="o">=</span> <span class="n">left_bound</span> <span class="o">+</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># left bound plus image width </span>
-    <span class="n">crop_width</span> <span class="o">=</span> <span class="n">right_bound</span><span class="o">-</span><span class="n">left_bound</span>
-       <span class="c1"># print(f'Cropped X range: {left_bound}:{right_bound}  Width: {crop_width}')</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'''</span>
+<span class="s1">    &lt;div style="</span>
+<span class="s1">        border: 3px solid #2196F3; </span>
+<span class="s1">        border-radius: 8px;</span>
+<span class="s1">        padding: 15px; </span>
+<span class="s1">        margin: 15px 0;</span>
+<span class="s1">        background: #f5f5f5;</span>
+<span class="s1">    "&gt;</span>
+<span class="s1">        &lt;h3 style="margin: 0 0 15px 0; color: #2196F3;"&gt;📹 </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">&lt;/h3&gt;</span>
+<span class="s1">        </span>
+<span class="s1">        &lt;img src="http://</span><span class="si">{</span><span class="n">SERVER_IP</span><span class="si">}</span><span class="s1">:9005/stream/</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">" </span>
+<span class="s1">             width="640" </span>
+<span class="s1">             style="max-width: 100%; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"&gt;</span>
+<span class="s1">        </span>
+<span class="s1">        &lt;p style="margin: 10px 0 0 0;"&gt;</span>
+<span class="s1">            &lt;small&gt;</span>
+<span class="s1">                💡 &lt;a href="http://</span><span class="si">{</span><span class="n">SERVER_IP</span><span class="si">}</span><span class="s1">:9005/view/</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">" target="_blank"&gt;Open in new tab&lt;/a&gt; for full-screen |</span>
+<span class="s1">                Session: </span><span class="si">{</span><span class="n">token</span><span class="si">}</span>
+<span class="s1">            &lt;/small&gt;</span>
+<span class="s1">        &lt;/p&gt;</span>
+<span class="s1">    &lt;/div&gt;</span>
+<span class="s1">    '''</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">))</span>
 
-
-    <span class="n">upper_bound</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Half of original height minus half of input height</span>
-    <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">upper_bound</span> <span class="o">+</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># upper bound plus image width (upper bound is numerically lower than lower bound) </span>
-    <span class="n">crop_height</span> <span class="o">=</span> <span class="n">lower_bound</span><span class="o">-</span><span class="n">upper_bound</span>
-       <span class="c1"># print(f'Cropped Y range: {upper_bound}:{lower_bound}  Height: {crop_height}')</span>
-
-    <span class="n">img_cropped</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">upper_bound</span><span class="p">:</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">:</span><span class="n">right_bound</span><span class="p">,</span> <span class="p">:]</span>
-    <span class="n">img_cropped</span> <span class="o">=</span> <span class="n">img_cropped</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.0</span>  <span class="c1"># Make it floats</span>
-       <span class="c1"># plt.imshow(img_cropped), img_cropped.shape</span>
-    
-    <span class="k">return</span> <span class="n">img_cropped</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="n">processed_image</span><span class="p">):</span>
-    
-    <span class="c1"># Convert Data type to float 32</span>
-    <span class="n">processed_image</span> <span class="o">=</span> <span class="n">processed_image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shapeIn</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">"C"</span><span class="p">)</span>
-    <span class="c1"># Setup Inputs and Outputs</span>
-    <span class="n">output_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shapeOut</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">"C"</span><span class="p">)]</span>
-    <span class="n">input_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shapeIn</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">"C"</span><span class="p">)]</span>
-    <span class="n">input_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">processed_image</span>
-    <span class="c1"># Run Model</span>
-    <span class="n">job_id</span> <span class="o">=</span> <span class="n">dpu</span><span class="o">.</span><span class="n">execute_async</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">output_data</span><span class="p">)</span>
-    <span class="n">dpu</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">output_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Video helper function loaded!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Use show_robot_video('title') to display the robot stream"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b71b45d0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=create-env">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="10.-Getting-a-live-video-feed">10. Getting a live video feed<a class="anchor-link" href="#10.-Getting-a-live-video-feed">¶</a></h2><p>You may have to re-run the first code block if it can't open the camera.</p>
+<h3 id="Create-Robot-Environment">Create Robot Environment<a class="anchor-link" href="#Create-Robot-Environment">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=fe77e408">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=create">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8114,243 +7687,94 @@ pip<span class="w"> </span>install<span class="w"> </span>scikit-image
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Setup</span>
-<span class="n">capture</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Get a handle on the camera; if you have multiple cameras, you can use different indices</span>
-<span class="n">capture</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_BUFFERSIZE</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Disable buffering</span>
-<span class="n">capture</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># set input width</span>
-<span class="n">capture</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># set input height</span>
-<span class="n">num_frames</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># set the number of frames you want to run for. </span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c9e66bd3">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>After initial setup above, let's do the same processing we did above for ten frames in a row. We will show each frame after the model has run.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8d8a1b36">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_frames</span><span class="p">):</span>
-    
-    <span class="c1"># Capture a photo</span>
-    <span class="n">success</span><span class="p">,</span> <span class="n">newimg</span> <span class="o">=</span> <span class="n">capture</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Error reading webcam image."</span><span class="p">)</span>
-        <span class="k">break</span>
-        
-    <span class="c1">#Process Image</span>
-    <span class="n">img_cropped</span> <span class="o">=</span> <span class="n">preprocess_image</span><span class="p">(</span><span class="n">newimg</span><span class="p">)</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">img_cropped</span><span class="p">)</span>
-    <span class="n">heatmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:][:][:],</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-    <span class="n">heatmap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">heatmap</span><span class="p">,</span> <span class="p">(</span><span class="n">shapeIn</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-    
-    <span class="c1"># Choose what to display</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span> <span class="c1"># Clears previous frame</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_cropped</span><span class="p">)</span>  <span class="c1"># Displays processed image</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">heatmap</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'hot'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span> <span class="c1"># Displays heatmap over image</span>
-    
-    <span class="c1"># Display video </span>
-    <span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">())</span>
-    
-<span class="n">capture</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d1f7ff08">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="11.-Comparing-Heatmaps">11. Comparing Heatmaps<a class="anchor-link" href="#11.-Comparing-Heatmaps">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72984e42">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Before we get started, lets define some functions that we will use! Mainly, we need a function to compare heatmaps, which you can find defined below.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=05d41b0f">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">show_comp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    
-    <span class="c1"># Convert heatmaps to grayscale</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Image 1 already in grayscale format"</span><span class="p">)</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">img2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Image 2 already in grayscale format"</span><span class="p">)</span>
-    
-    <span class="c1"># Pad template for better convolutional comparison</span>
-    <span class="n">xpad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">ypad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">greyscale_color</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># padding color a scale of 0 to 255. 0 being black 255 being white.</span>
-    <span class="n">canvas1</span> <span class="o">=</span> <span class="n">greyscale_color</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">ypad</span><span class="p">,</span> <span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">xpad</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">img1</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="c1"># </span>
-    <span class="n">canvas1</span><span class="p">[</span><span class="n">ypad</span><span class="p">:</span><span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">ypad</span><span class="p">,</span> <span class="n">xpad</span><span class="p">:</span><span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">xpad</span><span class="p">]</span> <span class="o">=</span> <span class="n">img1</span>
-    <span class="c1">#plt.imshow(img1)</span>
-    <span class="c1">#plt.show()</span>
-    <span class="c1">#plt.imshow(img2)</span>
-    <span class="c1">#plt.show()</span>
-    
-    <span class="c1"># Create matrix to store comparison data</span>
-    <span class="n">comp_matrix_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">stride</span><span class="p">)</span>
-    <span class="n">comp_matrix_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">stride</span><span class="p">)</span>
-    <span class="n">comparison_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">comp_matrix_x</span><span class="p">,</span> <span class="n">comp_matrix_y</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-    <span class="c1"># Convolve photos:</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">comp_matrix_x</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">comp_matrix_y</span><span class="p">):</span>        
-            <span class="n">canvas2</span> <span class="o">=</span> <span class="n">greyscale_color</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">canvas1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">canvas1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">canvas1</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="c1"># init blank canvas</span>
-            <span class="n">canvas2</span><span class="p">[</span><span class="n">y</span><span class="o">*</span><span class="n">stride</span><span class="p">:</span><span class="n">img2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">stride</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">stride</span><span class="p">:</span><span class="n">img2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">stride</span><span class="p">]</span> <span class="o">=</span> <span class="n">img2</span> <span class="c1"># add img2 at x,y coordinates</span>
-            <span class="c1">#plt.imshow(canvas2)</span>
-            <span class="c1">#plt.show()</span>
-            <span class="c1">#time.sleep(1)</span>
-            <span class="n">mse</span> <span class="o">=</span> <span class="p">((</span><span class="n">canvas1</span> <span class="o">-</span> <span class="n">canvas2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># get the Mean Square error</span>
-            <span class="n">comparison_matrix</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse</span> <span class="c1"># store x,y corrdinates mse in comparison_matrix</span>
-    
-    <span class="c1"># Show comparison matrix. THis is usefull for seeing where in the </span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">show_comp</span><span class="p">):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">comparison_matrix</span><span class="p">)</span> 
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    
-    <span class="c1"># Return minimum error score (lower means a better match)</span>
-    <span class="k">return</span> <span class="n">comparison_matrix</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">/</span><span class="mi">1000000</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b2cbd67a">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Here is a look at a heatmap we are going to be testing:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=779f356d">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">img_path</span> <span class="o">=</span> <span class="s1">'/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 503 - Pose Detection/img/'</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">'Template.jpg'</span>
-<span class="n">test_heatmap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test_heatmap</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58f61dfd">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now lets load the template we will be comparing to:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0c63eda4">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">img_path</span> <span class="o">=</span> <span class="s1">'/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 503 - Pose Detection/img/'</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">'Template1.jpg'</span>
-<span class="n">template</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7131d7c7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Lets compare the two!
-The comparison function we defined before returns a low value if the two heatmaps are similar. Ideally, it should return 0 when comparing a photo to itself, but a few changes were made when writing the function so that it runs quickly that make it a little less accurate.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=764494cd">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">score1</span> <span class="o">=</span> <span class="n">compare</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">test_heatmap</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Comaparing the two heatmaps gives a score of: </span><span class="si">{</span><span class="n">score1</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># Create a robot environment</span>
+<span class="c1"># The "simple_cubes" scene includes:</span>
+<span class="c1">#   - 1 Franka Emika Panda robot arm</span>
+<span class="c1">#   - 1 table</span>
+<span class="c1">#   - 3 colored cubes (red, green, blue)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">create_environment</span><span class="p">(</span><span class="n">scene</span><span class="o">=</span><span class="s2">"simple_cubes"</span><span class="p">)</span>
 
-<span class="n">score2</span> <span class="o">=</span> <span class="n">compare</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">template</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Comparing the template heatmap with itself gives a score of: </span><span class="si">{</span><span class="n">score2</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Robot environment created!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Your robot is ready to control."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Watch the video stream to see your robot in action!"</span><span class="p">)</span>
+
+<span class="c1"># Show live video feed</span>
+<span class="n">show_robot_video</span><span class="p">(</span><span class="s2">"Your Robot Environment"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=af5989f8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=coords">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now what if we compare it to a completely different heatmap?</p>
+<hr/>
+<h2 id="Understanding-3D-Coordinates">Understanding 3D Coordinates<a class="anchor-link" href="#Understanding-3D-Coordinates">¶</a></h2><p>To control the robot, we need to tell it <strong>exactly</strong> where to move. We use a 3D coordinate system:</p>
+<pre><code>     Z (up/down)
+     ↑
+     │
+     │       Y (left/right)
+     │      ↗
+     │     /
+     │    /
+     │   /
+     │  /
+     │ /
+     |/_______________→ X (forward/backward)
+    🤖 Robot Base
+</code></pre>
+<p><strong>Three numbers tell the robot where to go:</strong></p>
+<ul>
+<li><p><strong>X:</strong> How far forward (+) or backward (-) from the robot</p>
+<ul>
+<li>Like steps forward/backward</li>
+<li>Range: 0.3 to 0.8 meters</li>
+</ul>
+</li>
+<li><p><strong>Y:</strong> How far left (-) or right (+) from the robot</p>
+<ul>
+<li>Like steps left/right</li>
+<li>Range: -0.3 to 0.3 meters</li>
+</ul>
+</li>
+<li><p><strong>Z:</strong> How far up (+) or down (-)</p>
+<ul>
+<li>Like height off the ground</li>
+<li>Range: 0.0 (ground) to 0.5 meters</li>
+</ul>
+</li>
+</ul>
+<p><strong>Units: Meters</strong></p>
+<ul>
+<li>1 meter = 100 centimeters = about 3 feet</li>
+<li>0.5 meters = 50 centimeters = about 1.5 feet</li>
+<li>0.1 meters = 10 centimeters = about 4 inches</li>
+</ul>
+<p><strong>Example positions:</strong></p>
+<ul>
+<li><code>[0.5, 0.0, 0.3]</code> = 50cm forward, centered, 30cm high</li>
+<li><code>[0.4, -0.2, 0.1]</code> = 40cm forward, 20cm left, 10cm high</li>
+<li><code>[0.6, 0.15, 0.0]</code> = 60cm forward, 15cm right, on the ground</li>
+</ul>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=07c8395b">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=first-move">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Your-First-Robot-Movement">Your First Robot Movement<a class="anchor-link" href="#Your-First-Robot-Movement">¶</a></h3><p>Let's move the robot to a starting position! Watch the video stream as the robot moves.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=move">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8358,16 +7782,51 @@ The comparison function we defined before returns a low value if the two heatmap
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">img_path</span> <span class="o">=</span> <span class="s1">'/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 503 - Pose Detection/img/'</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">'Template3.jpg'</span>
-<span class="n">test_heatmap2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test_heatmap2</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># Move robot to starting position</span>
+<span class="n">show_robot_video</span><span class="p">(</span><span class="s2">"Robot Moving to Starting Position"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Moving robot to starting position..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_waypoints</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Movement complete!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Robot is now at position [0.5, 0.0, 0.3]"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  X = 0.5 meters (50cm forward)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  Y = 0.0 meters (centered)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  Z = 0.3 meters (30cm above ground)"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32a10702">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=move-params">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Understanding-move_robot()">Understanding move_robot()<a class="anchor-link" href="#Understanding-move_robot()">¶</a></h3><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_waypoints</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+<ul>
+<li><code>0</code> = Your robot ID</li>
+<li><code>position=[x, y, z]</code> = Where to move (in meters)</li>
+<li><code>smooth=True</code> = Safe, smooth path (uses motion planning)</li>
+<li><code>num_waypoints=50</code> = How smooth (higher = smoother but slower)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=state">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Checking-the-Robot's-Position">Checking the Robot's Position<a class="anchor-link" href="#Checking-the-Robot's-Position">¶</a></h3><p>We can ask the robot "where are you?" at any time using <code>get_state()</code>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=get-state">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8375,48 +7834,67 @@ The comparison function we defined before returns a low value if the two heatmap
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">score3</span> <span class="o">=</span> <span class="n">compare</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">test_heatmap2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Comaparing the two different heatmaps gives a score of: </span><span class="si">{</span><span class="n">score3</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># Get current robot state</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Extract the end effector (hand) position</span>
+<span class="n">position</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s1">'end_effector'</span><span class="p">][</span><span class="s1">'position'</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Current robot hand position:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  X = </span><span class="si">{</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> meters (forward/backward)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Y = </span><span class="si">{</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> meters (left/right)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Z = </span><span class="si">{</span><span class="n">position</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> meters (up/down)"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bdb13c7a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=step">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Notice how the score was higher when we comparred two heatmaps that don't look alike!</p>
+<h3 id="What-is-sim.step()?">What is sim.step()?<a class="anchor-link" href="#What-is-sim.step()?">¶</a></h3><p>After each command, we call <code>sim.step(50)</code> to give the robot time to move.</p>
+<p><strong>Think of it like:</strong> Pressing the fast-forward button on a video!</p>
+<ul>
+<li>Each step = 1/60th of a second</li>
+<li><code>step(60)</code> = 1 second of robot time</li>
+<li><code>step(30)</code> = 0.5 seconds</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39b45d1b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=gripper-intro">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="12.-Detecting-a-Pose-Using-Templates">12. Detecting a Pose Using Templates<a class="anchor-link" href="#12.-Detecting-a-Pose-Using-Templates">¶</a></h2>
+<hr/>
+<h2 id="Gripper-Control">Gripper Control<a class="anchor-link" href="#Gripper-Control">¶</a></h2><h3 id="What-is-the-Gripper?">What is the Gripper?<a class="anchor-link" href="#What-is-the-Gripper?">¶</a></h3><p>The gripper is the robot's "hand" - the end effector that can grasp objects. The Franka Panda has a two-finger parallel gripper:</p>
+<ul>
+<li><strong>Open position:</strong> Fingers spread apart (ready to grasp)</li>
+<li><strong>Closed position:</strong> Fingers together (holding an object)</li>
+</ul>
+<p>The gripper is essential for pick-and-place tasks, which are fundamental to warehouse automation, manufacturing assembly, and many other robotics applications.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7b019b1a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=gripper-control">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>With multiple templates to choose from, we can figure out which pose a person is doing by comparing each and seeing which has the lowest score.
-Lets load in our potential poses: Power pose, Normal stance, and Wacky!</p>
+<h3 id="Opening-and-Closing-the-Gripper">Opening and Closing the Gripper<a class="anchor-link" href="#Opening-and-Closing-the-Gripper">¶</a></h3><p>Let's practice controlling the gripper. Watch the video stream to see the fingers move!</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41e1a748">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=gripper">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8424,40 +7902,62 @@ Lets load in our potential poses: Power pose, Normal stance, and Wacky!</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">img_path</span> <span class="o">=</span> <span class="s1">'/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 503 - Pose Detection/img/'</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">'power_pose.jpg'</span>
-<span class="n">template_power</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">template_power</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">show_robot_video</span><span class="p">(</span><span class="s2">"Gripper Control"</span><span class="p">)</span>
 
-<span class="n">img_path</span> <span class="o">=</span> <span class="s1">'/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 503 - Pose Detection/img/'</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">'normal_stance.jpg'</span>
-<span class="n">template_normal</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">template_normal</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Open the gripper</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Opening gripper..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">open_gripper</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># Give time for gripper to open</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Gripper is now open"</span><span class="p">)</span>
 
-<span class="n">img_path</span> <span class="o">=</span> <span class="s1">'/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 503 - Pose Detection/img/'</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">'wacky.jpg'</span>
-<span class="n">template_wacky</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">template_wacky</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Close the gripper</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Closing gripper..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">close_gripper</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>  <span class="c1"># Closing takes slightly longer</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Gripper is now closed"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=332552f2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=pick-place-intro">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Lets compare our photo from earlier to these three templates and see which it is closest to:</p>
+<hr/>
+<h2 id="Pick-and-Place">Pick-and-Place<a class="anchor-link" href="#Pick-and-Place">¶</a></h2><h3 id="What-is-Pick-and-Place?">What is Pick-and-Place?<a class="anchor-link" href="#What-is-Pick-and-Place?">¶</a></h3><p>Pick-and-place is the fundamental operation in robotics where a robot:</p>
+<ol>
+<li>Picks up an object from one location</li>
+<li>Moves it through space</li>
+<li>Places it at a different location</li>
+</ol>
+<p>This seemingly simple task is the foundation of:</p>
+<ul>
+<li><strong>Warehouse automation:</strong> Amazon robots moving packages</li>
+<li><strong>Manufacturing:</strong> Assembly line robots installing components</li>
+<li><strong>Surgery:</strong> Robotic surgical systems manipulating instruments</li>
+<li><strong>Agriculture:</strong> Automated harvesting and sorting</li>
+</ul>
+<h3 id="The-Standard-Pick-and-Place-Sequence">The Standard Pick-and-Place Sequence<a class="anchor-link" href="#The-Standard-Pick-and-Place-Sequence">¶</a></h3><p>Every pick-and-place operation follows this pattern:</p>
+<ol>
+<li>Move ABOVE the object (safe height)</li>
+<li>OPEN the gripper</li>
+<li>Move DOWN to grasp height</li>
+<li>CLOSE the gripper (grasp object)</li>
+<li>Move UP (lift the object)</li>
+<li>Move to destination (above target location)</li>
+<li>Move DOWN to place height</li>
+<li>OPEN the gripper (release object)</li>
+<li>Move UP (move away safely)</li>
+</ol>
+<p>Let's implement this step by step!</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3eea20bd">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=pick-place-demo">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8465,14 +7965,143 @@ Lets load in our potential poses: Power pose, Normal stance, and Wacky!</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Here is the test photo:</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test_heatmap</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"=== PICK-AND-PLACE DEMONSTRATION ==="</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="n">show_robot_video</span><span class="p">(</span><span class="s2">"Pick-and-Place Demonstration"</span><span class="p">)</span>
+
+<span class="c1"># Cube is at [0.5, -0.1, 0.02] on the ground</span>
+<span class="n">cube_x</span><span class="p">,</span> <span class="n">cube_y</span><span class="p">,</span> <span class="n">cube_z</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.02</span>
+
+<span class="c1"># Heights</span>
+<span class="n">safe_z</span> <span class="o">=</span> <span class="mf">0.35</span>
+<span class="n">hover_z</span> <span class="o">=</span> <span class="n">cube_z</span> <span class="o">+</span> <span class="mf">0.23</span>
+<span class="n">grab_z</span> <span class="o">=</span> <span class="n">cube_z</span> <span class="o">+</span> <span class="mf">0.11</span>
+
+<span class="c1"># Destination</span>
+<span class="n">dest_x</span><span class="p">,</span> <span class="n">dest_y</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.1</span>
+
+<span class="c1"># ===== PICKING UP =====</span>
+
+<span class="c1"># Approach</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 1: Approaching cube..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="n">cube_x</span><span class="p">,</span> <span class="n">cube_y</span><span class="p">,</span> <span class="n">hover_z</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_waypoints</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Open gripper</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 2: Opening gripper..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">open_gripper</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Descend</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 3: Descending to grasp..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="n">cube_x</span><span class="p">,</span> <span class="n">cube_y</span><span class="p">,</span> <span class="n">grab_z</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+
+<span class="c1"># Grasp</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 4: Grasping cube..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="n">cube_x</span><span class="p">,</span> <span class="n">cube_y</span><span class="p">,</span> <span class="n">grab_z</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">close_gripper</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="c1"># Lift</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 5: Lifting cube..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="n">cube_x</span><span class="p">,</span> <span class="n">cube_y</span><span class="p">,</span> <span class="n">safe_z</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Secure grip</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 6: Securing grip..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="n">cube_x</span><span class="p">,</span> <span class="n">cube_y</span><span class="p">,</span> <span class="n">safe_z</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">close_gripper</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="c1"># ===== MOVING =====</span>
+
+<span class="c1"># Midpoint</span>
+<span class="n">mid_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">cube_x</span> <span class="o">+</span> <span class="n">dest_x</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">mid_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">cube_y</span> <span class="o">+</span> <span class="n">dest_y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 7: Moving to midpoint..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="n">mid_x</span><span class="p">,</span> <span class="n">mid_y</span><span class="p">,</span> <span class="n">safe_z</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 8: Moving to destination..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="n">dest_x</span><span class="p">,</span> <span class="n">dest_y</span><span class="p">,</span> <span class="n">safe_z</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># ===== PLACING =====</span>
+
+<span class="c1"># Lower</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 9: Lowering to place..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="n">dest_x</span><span class="p">,</span> <span class="n">dest_y</span><span class="p">,</span> <span class="n">grab_z</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># Release</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 10: Releasing cube..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">open_gripper</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Move away</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Step 11: Moving away..."</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">move_robot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="n">dest_x</span><span class="p">,</span> <span class="n">dest_y</span><span class="p">,</span> <span class="n">safe_z</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== PICK-AND-PLACE COMPLETE! ==="</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Moved cube from [</span><span class="si">{</span><span class="n">cube_x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">cube_y</span><span class="si">}</span><span class="s2">] to [</span><span class="si">{</span><span class="n">dest_x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">dest_y</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15329831">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=summary">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><p>Great work! You learned:</p>
+<p>✓ <strong>Robot control</strong> with 3D coordinates [X, Y, Z]<br/>
+✓ <strong>Pick-and-place</strong> operations - the foundation of warehouse automation<br/>
+✓ <strong>Gripper control</strong> to grasp and release objects<br/>
+✓ <strong>Inverse kinematics</strong> - the complex math behind robot movement<br/>
+✓ <strong>Real-time visualization</strong> via live video streaming<br/>
+✓ <strong>Video recording</strong> to capture and share your robot creations</p>
+<p>These skills power Tesla factories, Amazon warehouses, and NASA rovers!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=challenges">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h2 id="Challenges">Challenges<a class="anchor-link" href="#Challenges">¶</a></h2><p>Test your skills!</p>
+<p><strong>Tips:</strong></p>
+<ul>
+<li>Reset first: <code>sim.reset()</code> and <code>sim.step(100)</code></li>
+<li>Cube positions: Red [0.5, -0.1], Green [0.5, 0.0], Blue [0.5, 0.1]</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=challenge1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Challenge-1:-Move-the-Green-Cube">Challenge 1: Move the Green Cube<a class="anchor-link" href="#Challenge-1:-Move-the-Green-Cube">¶</a></h3><p><strong>Goal:</strong> Move the green cube to position [0.6, 0.15]</p>
+<p>Modify the demo code above to pick up the green cube and place it at the new location.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=challenge1-code">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8480,53 +8109,30 @@ Lets load in our potential poses: Power pose, Normal stance, and Wacky!</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">score1</span> <span class="o">=</span> <span class="n">compare</span><span class="p">(</span><span class="n">template_power</span><span class="p">,</span> <span class="n">test_heatmap</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Comared to Power Stance: </span><span class="si">{</span><span class="n">score1</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># Challenge 1: Move green cube to [0.6, 0.15]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="n">score2</span> <span class="o">=</span> <span class="n">compare</span><span class="p">(</span><span class="n">template_normal</span><span class="p">,</span> <span class="n">test_heatmap</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Compared to Normal: </span><span class="si">{</span><span class="n">score2</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-
-<span class="n">score3</span> <span class="o">=</span> <span class="n">compare</span><span class="p">(</span><span class="n">template_wacky</span><span class="p">,</span> <span class="n">test_heatmap</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Compared to Wacky: </span><span class="si">{</span><span class="n">score3</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="c1"># Your code here:</span>
+<span class="c1"># Modify the pick-and-place code to move green cube from [0.5, 0.0] to [0.6, 0.15]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93fbc1fe">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=challenge2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Hooray! It looks like our lowest score is the normal stance which is the most similar to our original heatmap.</p>
+<h3 id="Challenge-2:-Stack-Two-Cubes">Challenge 2: Stack Two Cubes<a class="anchor-link" href="#Challenge-2:-Stack-Two-Cubes">¶</a></h3><p><strong>Goal:</strong> Stack the green cube on top of the red cube!</p>
+<p><strong>Hint:</strong> The second cube needs to be placed higher. Try <code>grab_z + 0.04</code> for the place height.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2be463fb">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="13.-Generating-Your-Own-Templates:">13. Generating Your Own Templates:<a class="anchor-link" href="#13.-Generating-Your-Own-Templates:">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=524c81b9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Lets generate our own Template!</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=59001895">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=challenge2-code">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8534,46 +8140,33 @@ Lets load in our potential poses: Power pose, Normal stance, and Wacky!</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Setup</span>
-<span class="n">capture</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Get a handle on the camera; if you have multiple cameras, you can use different indices</span>
-<span class="n">capture</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_BUFFERSIZE</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Disable buffering</span>
-<span class="n">capture</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># set input width</span>
-<span class="n">capture</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># set input height</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># Challenge 2: Stack green cube on red cube</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="n">success</span><span class="p">,</span> <span class="n">newimg</span> <span class="o">=</span> <span class="n">capture</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="c1"># Step 1: Move red cube to stacking location [0.5, 0.0]</span>
+<span class="c1"># (if it's not already there)</span>
 
-<span class="n">img_cropped</span> <span class="o">=</span> <span class="n">preprocess_image</span><span class="p">(</span><span class="n">newimg</span><span class="p">)</span>
-<span class="n">output</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">img_cropped</span><span class="p">)</span>
-<span class="n">heatmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:][:][:],</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">heatmap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">heatmap</span><span class="p">,</span> <span class="p">(</span><span class="n">shapeIn</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">shapeIn</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_cropped</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">heatmap</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'hot'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span> <span class="c1"># Displays heatmap over image</span>
-
-<span class="n">img_path</span> <span class="o">=</span> <span class="s1">'/home/root/jupyter_notebooks/PYNQ_Bootcamp/bootcamp_sessions/PYNQ 503 - Pose Detection/img/'</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">'my_template.jpg'</span>
-
-<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">img_path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">,</span> <span class="mi">255</span><span class="o">*</span><span class="n">heatmap</span><span class="p">)</span>
-
-<span class="c1"># close camera</span>
-<span class="n">capture</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+<span class="c1"># Step 2: Pick up green cube and place it ON TOP of red cube</span>
+<span class="c1"># Hint: Place at higher Z position</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39f7565f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cleanup">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="14.-You-Made-It!">14. You Made It!<a class="anchor-link" href="#14.-You-Made-It!">¶</a></h2><p>Phew that was a long one, wasn't it? This can be a particularly finnickey model to deal with, so don't get too frustrated if you struggle using it. As always, if you get stuck reach out and ask questions!</p>
-<p>Dont forget to clean up your environment too!</p>
+<hr/>
+<h2 id="Cleanup">Cleanup<a class="anchor-link" href="#Cleanup">¶</a></h2><p>When you're finished working with the robot, it's important to properly clean up your session. This frees up server resources for other students.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c87939da">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=destroy">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8581,22 +8174,16 @@ Lets load in our potential poses: Power pose, Normal stance, and Wacky!</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">del</span> <span class="n">dpu</span>
-<span class="k">del</span> <span class="n">overlay</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20576a8b">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-python"><pre><span></span><span class="c1"># Destroy your robot environment to free up server resources</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Environment destroyed."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Session complete!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Thank you for exploring robotics simulation!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Keep building, keep learning, keep creating!"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
