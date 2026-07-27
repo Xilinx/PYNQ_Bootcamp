@@ -1,23 +1,19 @@
-<!-- vim: tw=80:cc=80:spell:nowrap
--->
-
 # PYNQ Bootcamp
 
-This is a repository of materials used in the PYNQ2023 Bootcamp. The goal of this bootcamp 
-is to teach students how to use both the KRIA SOM board, Jupyter Notebooks, and some of 
-the AI models within Xilinx's AI model zoo. The repository contains multiple files and 
-directories detailed below:
+Learn AI, computer vision, Python, and hardware acceleration with the AMD Kria
+KV260 Vision AI Starter Kit and Jupyter Notebooks.
 
-bootcamp_sessions:
-    Contains all of the jupyter notebook trainings aswell as the resources needed to run them.
+## Links
 
-drivers: 
-    Containes all drivers needed that are not included in the KRIA SOMs initial image.
+- [PYNQ Bootcamp website](https://xilinx.github.io/PYNQ_Bootcamp/)
+- [Training modules](https://xilinx.github.io/PYNQ_Bootcamp/Trainings.html)
 
-models:
-    Conatains a template for using models not explicetly demonstrated in the trainings as well
-    as the additional models.
+## Get started
 
-get_latest_training_material.ipynb
-    Contains a sumple bas git pull command to update the repository and pull all of the new materials onto the board.
+Open `bootcamp_sessions/` in the PYNQ Jupyter environment, choose your training,
+and open its notebook.
 
+## Update the training materials
+
+Open `get_latest_training_material.ipynb` and run its cells before the event or
+when instructed. It downloads the latest notebooks and supporting files.

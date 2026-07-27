@@ -58,27 +58,54 @@ class GenesisSimulation:
 
         # Adjust camera based on scene type
         if "competition" in self.scene_name:
-            # View for competition grid with robots on opposite sides
-            # Grid centered at x=0.55, robots at x~0.15 and x~0.95
-            camera_pos = (0.55, -1.5, 1.2)  # Side view from negative Y
-            camera_lookat = (0.55, 0.0, 0.1)  # Center of grid
-            camera_fov = 55
+            # Top-down (bird's-eye) view of the card grid centered at x=0.55.
+            # camera_up must be horizontal since we look straight down -Z,
+            # otherwise the default up=(0,0,1) is degenerate.
+            camera_pos = (0.55, 0.0, 1.9)
+            camera_lookat = (0.55, 0.0, 0.0)
+            camera_up = (0.0, 1.0, 0.0)  # +Y is image-up (grid rows run up the frame)
+            camera_fov = 50
         else:
             # Default side view
             camera_pos = (1.5, -1.0, 1.0)
             camera_lookat = (0.5, 0.0, 0.3)
+            camera_up = (0.0, 0.0, 1.0)
             camera_fov = 45
 
         self.scene = gs.Scene(
             viewer_options=gs.options.ViewerOptions(
                 camera_pos=camera_pos,
                 camera_lookat=camera_lookat,
+                camera_up=camera_up,
                 camera_fov=camera_fov,
                 max_FPS=60,
+            ),
+            vis_options=gs.options.VisOptions(
+                # Bright, even lighting so colors read clearly and shadows
+                # aren't harsh. Flat (shadow=False) suits a top-down board.
+                ambient_light=(0.55, 0.55, 0.55),
+                shadow=False,
+                plane_reflection=False,
+                background_color=(0.88, 0.90, 0.93),
             ),
             sim_options=gs.options.SimOptions(dt=0.01),
             show_viewer=show_viewer,
         )
+
+        # Add a few soft overhead/side lights for even illumination across the
+        # grid (no single harsh key light).
+        try:
+            self.scene.add_light(pos=(0.55, 0.0, 3.0), dir=(0.0, 0.0, -1.0),
+                                 color=(1.0, 1.0, 1.0), intensity=0.5,
+                                 directional=True, castshadow=False)
+            for lp, ld in [((-0.6, -1.2, 2.4), (0.4, 0.5, -1.0)),
+                           ((1.7, 1.2, 2.4), (-0.4, -0.5, -1.0)),
+                           ((1.7, -1.2, 2.4), (-0.4, 0.5, -1.0))]:
+                self.scene.add_light(pos=lp, dir=ld, color=(1.0, 1.0, 1.0),
+                                     intensity=0.3, directional=True,
+                                     castshadow=False)
+        except Exception as exc:
+            print(f"Warning: add_light failed: {exc!r}")
 
         if show_viewer:
             _viewer_active = True
@@ -94,6 +121,7 @@ class GenesisSimulation:
             res=(640, 480),
             pos=camera_pos,
             lookat=camera_lookat,
+            up=camera_up,
             fov=camera_fov,
             GUI=False,
         )
