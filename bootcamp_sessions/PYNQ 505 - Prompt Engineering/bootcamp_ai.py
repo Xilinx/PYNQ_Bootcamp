@@ -35,8 +35,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 __version__ = "2026.07.10-10"
 
 # ============ SETTINGS (organizers edit these) ============
-STRIX_IP    = "192.168.101.5"
-PORT        = 8080
+STRIX_IP    = "172.27.90.39"
+PORT        = 13305
 MAX_TOKENS  = 3000
 API_KEY     = None
 
